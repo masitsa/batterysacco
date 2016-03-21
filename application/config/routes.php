@@ -584,3 +584,9 @@ $route['import/import-loan-payments'] = 'microfinance/import/do_loan_payments_im
 *	MFI Reports Routes
 */
 $route['mfi-reports/dashboard'] = 'microfinance/reports/dashboard';
+
+
+/*
+*	MFI Messaging Routes
+*/
+$route['send-statement/(:num)'] = 'microfinance/messaging/send_statement/$1';

@@ -1,0 +1,245 @@
+<?php
+
+class Messaging_model extends CI_Model 
+{
+
+	public function send_statement($individual_id)
+	{
+		$individual_data = $this->individual_model->get_individual($individual_id);
+		$savings_payments = $this->individual_model->get_savings_payments($individual_id);
+		$individual_loan = $this->individual_model->get_individual_loans($individual_id);
+
+
+		$row = $individual_data->row();
+		$outstanding_loan = $row->outstanding_loan;
+		$total_savings = $row->total_savings;
+		$individual_lname = $row->individual_lname;
+		$individual_mname = $row->individual_mname;
+		$individual_fname = $row->individual_fname;
+		$individual_email = $row->individual_email;
+		$individual_phone = $row->individual_phone;
+		$individual_number = $row->individual_number;
+
+		// savings
+
+		//get all savings before date
+		$total_credit = $running_balance = $total_savings;
+		
+		if($savings_payments->num_rows() > 0)
+        {
+            $count = 1;
+            $total_debit = 0;
+            $total_payments = 0;
+            foreach ($savings_payments->result() as $row2)
+            {
+                $savings_payment_id = $row2->savings_payment_id;
+                $payment_amount = $row2->payment_amount;
+                $payment_date = $row2->payment_date;
+                $total_payments += $payment_amount;
+                $running_balance += $payment_amount;
+                
+				if($payment_amount > 0)
+				{
+					$count++;
+					
+					$total_credit += $payment_amount;
+				}
+            }
+            
+        }
+
+        // get loan balance 
+
+       		 $last_date = '';
+			$payments = $this->individual_model->get_loan_payments($individual_id);
+			$result = '';
+			$count = 1;
+			$total_debit = $running_balance = $outstanding_loan;
+			$total_credit = 0;
+			$total_loans = $individual_loan->num_rows();
+			$loans_count = 0;
+			
+            if($total_loans > 0)
+			{
+				foreach ($individual_loan->result() as $row)
+				{
+					$loans_plan_name = $row->loans_plan_name;
+					$individual_loan_status = $row->individual_loan_status;
+					$individual_loan_id = $row->individual_loan_id;
+					$proposed_amount = $row->proposed_amount;
+					$approved_amount = $row->approved_amount;
+					$disbursed_amount = $row->disbursed_amount;
+					$purpose = $row->purpose;
+					$installment_type_duration = $row->installment_type_duration;
+					$no_of_repayments = $row->no_of_repayments;
+					$interest_rate = $row->interest_rate;
+					$interest_id = $row->interest_id;
+					$grace_period = $row->grace_period;
+					$disbursed_date = date('jS d M Y',strtotime($row->disbursed_date));
+					$disbursed = $row->disbursed_date;
+					$created_by = $row->created_by;
+					$approved_by = $row->approved_by;
+					$disbursed_by = $row->disbursed_by;
+					$loans_count++;
+					
+					//get all loan deductions before date
+					if($payments->num_rows() > 0)
+					{
+						foreach ($payments->result() as $row2)
+						{
+							$loan_payment_id = $row2->loan_payment_id;
+							$personnel_fname = $row2->personnel_fname;
+							$personnel_onames = $row2->personnel_onames;
+							$payment_amount = $row2->payment_amount;
+							$payment_interest = $row2->payment_interest;
+							$created = date('jS M Y H:i:s',strtotime($row2->created));
+							$payment_date = $row2->payment_date;
+							
+							if(($payment_date <= $disbursed) && ($payment_date > $last_date) && ($payment_amount > 0))
+							{
+								$count++;
+								$running_balance -= $payment_amount;
+								
+								$total_credit += $payment_amount;
+							}
+						}
+					}
+					
+					//display loan if disbursed
+					if($individual_loan_status == 2)
+					{
+						$running_balance += $disbursed_amount;
+						$total_debit += $disbursed_amount;
+						
+						$count++;
+						
+					}
+					
+					//check if there are any more payments
+					if($total_loans == $loans_count)
+					{
+						//get all loan deductions before date
+						if($payments->num_rows() > 0)
+						{
+							foreach ($payments->result() as $row2)
+							{
+								$loan_payment_id = $row2->loan_payment_id;
+								$personnel_fname = $row2->personnel_fname;
+								$personnel_onames = $row2->personnel_onames;
+								$payment_amount = $row2->payment_amount;
+								$payment_interest = $row2->payment_interest;
+								$created = date('jS M Y H:i:s',strtotime($row2->created));
+								$payment_date = $row2->payment_date;
+								
+								if(($payment_date > $disbursed) && ($payment_amount > 0))
+								{
+									$count++;
+									$running_balance -= $payment_amount;
+									
+									$total_credit += $payment_amount;
+								}
+							}
+						}
+					}
+					$last_date = $disbursed;
+				}
+			}
+			
+			else
+			{
+				//get all loan deductions before date
+				if($payments->num_rows() > 0)
+				{
+					foreach ($payments->result() as $row2)
+					{
+						$loan_payment_id = $row2->loan_payment_id;
+						$personnel_fname = $row2->personnel_fname;
+						$personnel_onames = $row2->personnel_onames;
+						$payment_amount = $row2->payment_amount;
+						$payment_interest = $row2->payment_interest;
+						$created = date('jS M Y H:i:s',strtotime($row2->created));
+						$payment_date = $row2->payment_date;
+						$running_balance -= $payment_amount;
+						
+						$count++;
+						if($payment_amount > 0)
+						{
+							
+							$total_credit += $payment_amount;
+						}
+					}
+				}
+			}
+					
+			$loan_balance = number_format($total_debit - $total_credit, 0);
+
+			
+			$message = 'Hello '.$individual_mname.', Member No. '.$individual_number.'. Your current account status. Total Savings KES. '.number_format($total_credit).' Loan balance KES. '.$loan_balance.'. For any queries,contact Battery Sacco. Thank you.';
+			$this->sms($individual_phone,$message);
+			return TRUE;
+	}
+
+	public function sms($phone,$message)
+	{
+        // This will override any configuration parameters set on the config file
+		// max of 160 characters
+		// to get a unique name make payment of 8700 to Africastalking/SMSLeopard
+		// unique name should have a maximum of 11 characters
+		$phone_number = '+254'.$phone;
+		// get items 
+
+		$configuration = $this->admin_model->get_configuration();
+
+		$mandrill = '';
+		$configuration_id = 0;
+		
+		if($configuration->num_rows() > 0)
+		{
+			$res = $configuration->row();
+			$configuration_id = $res->configuration_id;
+			$mandrill = $res->mandrill;
+			$sms_key = $res->sms_key;
+			$sms_user = $res->sms_user;
+	       
+		}
+	    else
+	    {
+	        $configuration_id = '';
+	        $mandrill = '';
+	        $sms_key = '';
+	       
+
+	    }
+
+	    $actual_message = $message;
+	    // var_dump($actual_message); die();
+		// get the current branch code
+        $params = array('username' => $sms_user, 'apiKey' => $sms_key);  
+
+        $this->load->library('AfricasTalkingGateway', $params);
+		// var_dump($params)or die();
+        // Send the message
+		try 
+		{
+        	$results = $this->africastalkinggateway->sendMessage($phone_number, $actual_message, $sms_from=22384);
+			
+			//var_dump($results);die();
+			foreach($results as $result) {
+				// status is either "Success" or "error message"
+				// echo " Number: " .$result->number;
+				// echo " Status: " .$result->status;
+				// echo " MessageId: " .$result->messageId;
+				// echo " Cost: "   .$result->cost."\n";
+			}
+			return $result->status;
+
+		}
+		
+		catch(AfricasTalkingGatewayException $e)
+		{
+			// echo "Encountered an error while sending: ".$e->getMessage();
+			return $e->getMessage();
+		}
+    }
+}
+?>

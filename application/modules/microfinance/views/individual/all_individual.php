@@ -19,7 +19,7 @@
 						<th><a href="'.site_url().'microfinance/individual/individual_mname/'.$order_method.'/'.$page.'">Middle name</a></th>
 						<th><a href="'.site_url().'microfinance/individual/individual_phone/'.$order_method.'/'.$page.'">Phone</a></th>
 						<th><a href="'.site_url().'microfinance/individual/individual_status/'.$order_method.'/'.$page.'">Status</a></th>
-						<th colspan="4">Actions</th>
+						<th colspan="5">Actions</th>
 					</tr>
 				</thead>
 				  <tbody>
@@ -88,6 +88,8 @@
 						<td><a href="'.site_url().'microfinance/edit-individual/'.$individual_id.'" class="btn btn-sm btn-success" title="Edit '.$individual_name.'"><i class="fa fa-pencil"></i></a></td>
 						<td>'.$button.'</td>
 						<td><a href="'.site_url().'microfinance/delete-individual/'.$individual_id.'" class="btn btn-sm btn-danger" onclick="return confirm(\'Do you really want to delete '.$individual_name.'?\');" title="Delete '.$individual_name.'"><i class="fa fa-trash"></i></a></td>
+						<td><a href="'.site_url().'send-statement/'.$individual_id.'" class="btn btn-primary">Statement SMS</a></td>
+
 						<td><a href="'.site_url().'microfinance/individual/download_statement/'.$individual_id.'" class="btn btn-danger">Download</a></td>
 					</tr> 
 				';
