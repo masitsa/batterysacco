@@ -127,7 +127,8 @@ class Individual_model extends CI_Model
 	public function add_individual()
 	{
 		$data = array(
-			'individual_lname'=>ucwords(strtolower($this->input->post('individual_onames'))),
+			'individual_mname'=>ucwords(strtolower($this->input->post('individual_mname'))),
+			'individual_lname'=>ucwords(strtolower($this->input->post('individual_lname'))),
 			'individual_fname'=>ucwords(strtolower($this->input->post('individual_fname'))),
 			'individual_dob'=>$this->input->post('individual_dob'),
 			'individual_email'=>$this->input->post('individual_email'),
@@ -166,7 +167,8 @@ class Individual_model extends CI_Model
 	public function edit_individual($individual_id, $image, $signature)
 	{
 		$data = array(
-			'individual_lname'=>ucwords(strtolower($this->input->post('individual_onames'))),
+			'individual_mname'=>ucwords(strtolower($this->input->post('individual_mname'))),
+			'individual_lname'=>ucwords(strtolower($this->input->post('individual_lname'))),
 			'individual_fname'=>ucwords(strtolower($this->input->post('individual_fname'))),
 			'individual_dob'=>$this->input->post('individual_dob'),
 			'individual_email'=>$this->input->post('individual_email'),

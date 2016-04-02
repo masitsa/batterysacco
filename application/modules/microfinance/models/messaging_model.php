@@ -9,7 +9,6 @@ class Messaging_model extends CI_Model
 		$savings_payments = $this->individual_model->get_savings_payments($individual_id);
 		$individual_loan = $this->individual_model->get_individual_loans($individual_id);
 
-
 		$row = $individual_data->row();
 		$outstanding_loan = $row->outstanding_loan;
 		$total_savings = $row->total_savings;
@@ -19,6 +18,8 @@ class Messaging_model extends CI_Model
 		$individual_email = $row->individual_email;
 		$individual_phone = $row->individual_phone;
 		$individual_number = $row->individual_number;
+		$outstanding_loan = $row->outstanding_loan;
+		$total_savings = $row->total_savings;
 
 		// savings
 
@@ -42,7 +43,7 @@ class Messaging_model extends CI_Model
 				{
 					$count++;
 					
-					$total_credit += $payment_amount;
+					$total_savings += $payment_amount;
 				}
             }
             
@@ -50,7 +51,7 @@ class Messaging_model extends CI_Model
 
         // get loan balance 
 
-       		 $last_date = '';
+       		$last_date = '';
 			$payments = $this->individual_model->get_loan_payments($individual_id);
 			$result = '';
 			$count = 1;
@@ -174,9 +175,9 @@ class Messaging_model extends CI_Model
 			$loan_balance = number_format($total_debit - $total_credit, 0);
 
 			
-			$message = 'Hello '.$individual_mname.', Member No. '.$individual_number.'. Your current account status. Total Savings KES. '.number_format($total_credit).' Loan balance KES. '.$loan_balance.'. For any queries,contact Battery Sacco. Thank you.';
-			$this->sms($individual_phone,$message);
-			return TRUE;
+			$message = 'Hello '.$individual_mname.', Member No. '.$individual_number.'. Your current account status. Total Savings KES. '.number_format($total_savings).' Loan balance KES. '.number_format($loan_balance).'. For any queries,contact Battery Sacco. Thank you.';
+			$response = $this->sms($individual_phone,$message);
+			return $response;
 	}
 
 	public function sms($phone,$message)
@@ -185,7 +186,14 @@ class Messaging_model extends CI_Model
 		// max of 160 characters
 		// to get a unique name make payment of 8700 to Africastalking/SMSLeopard
 		// unique name should have a maximum of 11 characters
+		
+		if (substr($phone, 0, 1) === '0') 
+		{
+			$phone = ltrim($phone, '0');
+		}
+		
 		$phone_number = '+254'.$phone;
+		//$phone_number = $phone;
 		// get items 
 
 		$configuration = $this->admin_model->get_configuration();
@@ -200,46 +208,48 @@ class Messaging_model extends CI_Model
 			$mandrill = $res->mandrill;
 			$sms_key = $res->sms_key;
 			$sms_user = $res->sms_user;
+
+			$actual_message = $message;
+			// var_dump($actual_message); die();
+			// get the current branch code
+			$params = array('username' => $sms_user, 'apiKey' => $sms_key);  
+	
+			$this->load->library('africastalkinggateway', $params);
+			// var_dump($params)or die();
+			// Send the message
+			try 
+			{
+				//$results = $this->africastalkinggateway->sendMessage($phone_number, $actual_message, $sms_from=22384);
+				$results = $this->africastalkinggateway->sendMessage($phone_number, $actual_message);
+				
+				//var_dump($results);die();
+				$number = $phone_number;
+				$status = 'unsent';
+				
+				foreach($results as $result) 
+				{
+					$number = $result->number;
+					$status = $result->status;
+					// status is either "Success" or "error message"
+					// echo " Number: " .$result->number;
+					// echo " Status: " .$result->status;
+					// echo " MessageId: " .$result->messageId;
+					// echo " Cost: "   .$result->cost."\n";
+				}
+				return $status.' sent to '.$number;
+			}
+			
+			catch(AfricasTalkingGatewayException $e)
+			{
+				// echo "Encountered an error while sending: ".$e->getMessage();
+				return $e->getMessage();
+			}
 	       
 		}
 	    else
 	    {
-	        $configuration_id = '';
-	        $mandrill = '';
-	        $sms_key = '';
-	       
-
+	        return 'Configuration not set';
 	    }
-
-	    $actual_message = $message;
-	    // var_dump($actual_message); die();
-		// get the current branch code
-        $params = array('username' => $sms_user, 'apiKey' => $sms_key);  
-
-        $this->load->library('AfricasTalkingGateway', $params);
-		// var_dump($params)or die();
-        // Send the message
-		try 
-		{
-        	$results = $this->africastalkinggateway->sendMessage($phone_number, $actual_message, $sms_from=22384);
-			
-			//var_dump($results);die();
-			foreach($results as $result) {
-				// status is either "Success" or "error message"
-				// echo " Number: " .$result->number;
-				// echo " Status: " .$result->status;
-				// echo " MessageId: " .$result->messageId;
-				// echo " Cost: "   .$result->cost."\n";
-			}
-			return $result->status;
-
-		}
-		
-		catch(AfricasTalkingGatewayException $e)
-		{
-			// echo "Encountered an error while sending: ".$e->getMessage();
-			return $e->getMessage();
-		}
     }
 }
 ?>

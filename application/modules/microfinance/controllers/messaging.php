@@ -15,14 +15,16 @@ class Messaging extends microfinance
 
 	public function send_statement($individual_id)
 	{
-		if($this->messaging_model->send_statement($individual_id))
+		$response = $this->messaging_model->send_statement($individual_id);
+		$this->session->set_userdata("success_message", $response);
+		/*if()
 		{
-			$this->session->set_userdata("success_message", "Statement was sent successfully");
+			
 		}
 		else
 		{
 			$this->session->set_userdata("error_message", "Opps!! Something went wrong. Please try again");
-		}
+		}*/
 		redirect('microfinance/individual');
 	}
 }

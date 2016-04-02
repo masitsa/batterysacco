@@ -141,18 +141,26 @@ if(!empty($validation_error))
         </div>
         
         <div class="form-group">
-            <label class="col-lg-5 control-label ">Other Names *: </label>
+            <label class="col-lg-5 control-label">First Name *: </label>
             
             <div class="col-lg-7">
-            	<input type="text" class="form-control " name="individual_onames" placeholder="Other Names" value="<?php echo $individual_mname;?>" required>
+            	<input type="text" class="form-control" name="individual_fname" placeholder="First Name" value="<?php echo $individual_fname;?>">
             </div>
         </div>
         
         <div class="form-group">
-            <label class="col-lg-5 control-label ">First Name *: </label>
+            <label class="col-lg-5 control-label">Middle Name: </label>
             
             <div class="col-lg-7">
-            	<input type="text" class="form-control " name="individual_fname" placeholder="First Name" value="<?php echo $individual_fname;?>">
+            	<input type="text" class="form-control" name="individual_mname" placeholder="Middle Name" value="<?php echo $individual_mname;?>">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-lg-5 control-label">Last Name *: </label>
+            
+            <div class="col-lg-7">
+            	<input type="text" class="form-control" name="individual_lname" placeholder="Last Name" value="<?php echo $individual_lname;?>">
             </div>
         </div>
         

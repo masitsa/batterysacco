@@ -33,6 +33,9 @@ class Import_model extends CI_Model
 		$report[$row_count][16] = 'Document type (National ID or Passport';
 		$report[$row_count][17] = 'Document Number';
 		$report[$row_count][18] = 'Place of issue';
+		$report[$row_count][19] = 'Member type';
+		$report[$row_count][20] = 'Loan Balance';
+		$report[$row_count][21] = 'Savings Balance';
 		
 		$row_count++;
 		
@@ -80,7 +83,7 @@ class Import_model extends CI_Model
 		$total_columns = count($array[0]);//var_dump($array);die();
 		
 		//if products exist in array
-		if(($total_rows > 0) && ($total_columns == 20))
+		if(($total_rows > 0) && ($total_columns == 22))
 		{
 			$items['modified_by'] = $this->session->userdata('personnel_id');
 			$response = '
@@ -91,6 +94,8 @@ class Import_model extends CI_Model
 						  <th>Member Number</th>
 						  <th>First Name</th>
 						  <th>Other Names</th>
+						  <th>Loan Balance</th>
+						  <th>Savings Balance</th>
 						  <th>Comment</th>
 						</tr>
 					  </thead>
@@ -120,6 +125,8 @@ class Import_model extends CI_Model
 				$individual_document_number = $array[$r][17];
 				$items['document_place'] = $array[$r][18];
 				$items['individual_type_id'] = $array[$r][19];
+				$items['outstanding_loan'] = $array[$r][20];
+				$items['total_savings'] = $array[$r][21];
 				$items['created'] = date('Y-m-d H:i:s');
 				$items['modified_by'] = $this->session->userdata('personnel_id');
 				$items['created_by'] = $this->session->userdata('personnel_id');
@@ -233,6 +240,8 @@ class Import_model extends CI_Model
 							<td>'.$items['individual_number'].'</td>
 							<td>'.$items['individual_fname'].'</td>
 							<td>'.$items['individual_mname'].' '.$items['individual_lname'].'</td>
+							<td>'.$items['outstanding_loan'].'</td>
+							<td>'.$items['total_savings'].'</td>
 							<td>'.$comment.'</td>
 						</tr> 
 				';
@@ -458,18 +467,78 @@ class Import_model extends CI_Model
 		$title = 'Member Loans Import Template';
 		$count=1;
 		$row_count=0;
-		$report[$row_count][0] = 'Member Number';
-		$report[$row_count][1] = 'Loan Type ('.$plans.')';
-		$report[$row_count][2] = 'Applicaton date (i.e. YYYY-MM-DD)';
-		$report[$row_count][3] = 'Loan Amount';
-		$report[$row_count][4] = 'Loan Purpose';
-		$report[$row_count][5] = 'Number of Repayments';
-		$report[$row_count][6] = 'Grace Period';
-		$report[$row_count][7] = 'Loan Status (Pending approval, Approved, Disbursed, Disapproved)';
-		$report[$row_count][8] = 'Approved Amount';
-		$report[$row_count][9] = 'Approved Date';
-		$report[$row_count][10] = 'Disbursed Amount';
-		$report[$row_count][11] = 'Disbursed Date';
+		$cell = 0;
+		$report[$row_count][$cell] = 'Member Number';
+		$cell++;
+		$report[$row_count][$cell] = 'Loan Type ('.$plans.')';
+		$cell++;
+		$report[$row_count][$cell] = 'Applicaton date (i.e. YYYY-MM-DD)';
+		$cell++;
+		$report[$row_count][$cell] = 'Loan Amount';
+		$cell++;
+		$report[$row_count][$cell] = 'Loan Purpose';
+		$cell++;
+		$report[$row_count][$cell] = 'Repayments';
+		$cell++;
+		$report[$row_count][$cell] = 'Number of Repayments';
+		$cell++;
+		$report[$row_count][$cell] = 'Grace Period';
+		$cell++;
+		$report[$row_count][$cell] = 'Loan Status (Pending approval, Approved, Disbursed, Disapproved)';
+		$cell++;
+		$report[$row_count][$cell] = 'Approved Amount';
+		$cell++;
+		$report[$row_count][$cell] = 'Approved Date';
+		$cell++;
+		$report[$row_count][$cell] = 'Disbursed Amount';
+		$cell++;
+		$report[$row_count][$cell] = 'Disbursed Date';
+		$cell++;
+		$report[$row_count][$cell] = 'Repayment';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 1';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 1';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 2';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 2';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 3';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 3';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 4';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 4';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 5';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 5';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 6';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 6';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 7';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 7';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 8';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 8';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 9';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 9';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 10';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 10';
+		$cell++;
+		$report[$row_count][$cell] = 'Guarantor 11';
+		$cell++;
+		$report[$row_count][$cell] = 'Guaranteed amount 11';
 		
 		$row_count++;
 		
@@ -517,7 +586,7 @@ class Import_model extends CI_Model
 		$total_columns = count($array[0]);//var_dump($array);die();
 		
 		//if products exist in array
-		if(($total_rows > 0) && ($total_columns == 38))
+		if(($total_rows > 0) && ($total_columns == 36))
 		{
 			$items['modified_by'] = $this->session->userdata('personnel_id');
 			$response = '
@@ -545,7 +614,6 @@ class Import_model extends CI_Model
 				$items['proposed_amount'] = $array[$r][3];
 				$items['purpose'] = $array[$r][4];
 				$items['proposed_repayment_amount'] = $array[$r][5];
-				
 				$items['no_of_repayments'] = $array[$r][6];
 				$items['grace_period'] = $array[$r][7];
 				$items['created'] = date('Y-m-d H:i:s');
@@ -559,12 +627,10 @@ class Import_model extends CI_Model
 				$items['approved_date'] = date('Y-m-d',strtotime($array[$r][10]));
 				$items['disbursed_amount'] = $array[$r][11];
 				$items['disbursed_date'] = date('Y-m-d',strtotime($array[$r][12]));
-				$outstanding_loan = $array[$r][13];
-				$total_savings = $array[$r][14];
-				$items['repayment_amount'] = $array[$r][15];
+				$items['repayment_amount'] = $array[$r][13];
 				
 				//guarantors
-				$marker = 16;
+				$marker = 14;
 				for($s = 1; $s < 12; $s++)
 				{
 					$guarantor['guarantor'.$s] = $array[$r][$marker];
@@ -931,7 +997,7 @@ class Import_model extends CI_Model
 						$comment .= '<br/>Loan payment successfully added to the database';
 						$class = 'success';
 						
-						if($items['payment_date'] == '2015-01-30')
+						/*if($items['payment_date'] == '2015-01-30')
 						{
 							//save balance bf
 							if(!empty($balance_bf) && ($balance_bf > 0))
@@ -955,7 +1021,7 @@ class Import_model extends CI_Model
 								$comment .= '<br/>Balance bf not added';
 								$class = 'warning';
 							}
-						}
+						}*/
 					}
 					
 					else

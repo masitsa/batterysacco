@@ -16,9 +16,9 @@
  
  */
 
-class AfricasTalkingGatewayException extends Exception{}
+class AfricastalkinggatewayException extends Exception{}
 
-class AfricasTalkingGateway
+class Africastalkinggateway
 {
   protected $_username;
   protected $_apiKey;
@@ -63,7 +63,7 @@ class AfricasTalkingGateway
   public function sendMessage($to_, $message_, $from_ = null, $bulkSMSMode_ = 1, Array $options_ = array())
   {
     if ( strlen($to_) == 0 || strlen($message_) == 0 ) {
-      throw new AfricasTalkingGatewayException('Please supply both to and message parameters');
+      throw new AfricastalkinggatewayException('Please supply both to and message parameters');
     }
     
     $params = array(
@@ -91,7 +91,7 @@ class AfricasTalkingGateway
 							if ( in_array($key, $allowedKeys) && strlen($value) > 0 ) {
 	  					$params[$key] = $value;
 							} else {
-	  					throw new AfricasTalkingGatewayException("Invalid key in options array: [$key]");
+	  					throw new AfricastalkinggatewayException("Invalid key in options array: [$key]");
 							}
       }
     }
@@ -106,7 +106,7 @@ class AfricasTalkingGateway
     		return $responseObject->SMSMessageData->Recipients;
     }
     
-    throw new AfricasTalkingGatewayException($this->_responseBody);
+    throw new AfricastalkinggatewayException($this->_responseBody);
   }
   
 
@@ -122,7 +122,7 @@ class AfricasTalkingGateway
       return $responseObject->SMSMessageData->Messages;
     }
     
-    throw new AfricasTalkingGatewayException($this->_responseBody);    
+    throw new AfricastalkinggatewayException($this->_responseBody);    
   }
   
   
@@ -131,7 +131,7 @@ class AfricasTalkingGateway
   {
   	
   	if ( strlen($phoneNumber_) == 0 || strlen($shortCode_) == 0 || strlen($keyword_) == 0 ) {
-      throw new AfricasTalkingGatewayException('Please supply phoneNumber, shortCode and keyword');
+      throw new AfricastalkinggatewayException('Please supply phoneNumber, shortCode and keyword');
     }
     
     $params = array(
@@ -147,7 +147,7 @@ class AfricasTalkingGateway
     $this->executePOST();
     
      if ( $this->_responseInfo['http_code'] != self::HTTP_CODE_CREATED )
-     	throw new AfricasTalkingGatewayException($this->_responseBody);
+     	throw new AfricastalkinggatewayException($this->_responseBody);
      
     		return json_decode($this->_responseBody);
   }
@@ -155,7 +155,7 @@ class AfricasTalkingGateway
   public function deleteSubscription($phoneNumber_, $shortCode_, $keyword_)
   {
     if ( strlen($phoneNumber_) == 0 || strlen($shortCode_) == 0 || strlen($keyword_) == 0 ) {
-      throw new AfricasTalkingGatewayException('Please supply phoneNumber, shortCode and keyword');
+      throw new AfricastalkinggatewayException('Please supply phoneNumber, shortCode and keyword');
     }
     
     $params = array(
@@ -171,7 +171,7 @@ class AfricasTalkingGateway
     $this->executePOST();
     
     if ( $this->_responseInfo['http_code'] != self::HTTP_CODE_CREATED )
-    	throw new AfricasTalkingGatewayException($this->_responseBody);
+    	throw new AfricastalkinggatewayException($this->_responseBody);
      
     	return json_decode($this->_responseBody);
      
@@ -190,7 +190,7 @@ class AfricasTalkingGateway
       return $responseObject->responses;
     }
     
-    throw new AfricasTalkingGatewayException($this->_responseBody);
+    throw new AfricastalkinggatewayException($this->_responseBody);
   }
   
   
@@ -198,7 +198,7 @@ class AfricasTalkingGateway
   public function call($from_, $to_)
   {
     if ( strlen($from_) == 0 || strlen($to_) == 0 ) {
-      throw new AfricasTalkingGatewayException('Please supply both from and to parameters');
+      throw new AfricastalkinggatewayException('Please supply both from and to parameters');
     }
     
     $params = array(
@@ -214,10 +214,10 @@ class AfricasTalkingGateway
      
     if(($responseObject = json_decode($this->_responseBody)) !== null) {
   	 	if($responseObject->Status != "Success")
-  		 	throw new AfricasTalkingGatewayException($responseObject->ErrorMessage);
+  		 	throw new AfricastalkinggatewayException($responseObject->ErrorMessage);
   		}
   		else
-  		  throw new AfricasTalkingGatewayException($this->_responseBody);
+  		  throw new AfricastalkinggatewayException($this->_responseBody);
   }
   
   public function getNumQueuedCalls($phoneNumber_, $queueName = null) 
@@ -235,10 +235,10 @@ class AfricasTalkingGateway
   	if(($responseObject = json_decode($this->_responseBody)) !== null) {
   	 	if($responseObject->Status == "Success")
   				return $responseObject->NumQueued;
-  			throw new AfricasTalkingGatewayException($responseObject->ErrorMessage);
+  			throw new AfricastalkinggatewayException($responseObject->ErrorMessage);
   		}
   		
-  	throw new AfricasTalkingGatewayException($this->_responseBody);
+  	throw new AfricastalkinggatewayException($this->_responseBody);
   }
 
 		
@@ -256,10 +256,10 @@ class AfricasTalkingGateway
   	
   	if(($responseObject = json_decode($this->_responseBody)) !== null) {
   	 	if($responseObject->Status != "Success")
-  		 	throw new AfricasTalkingGatewayException($responseObject->ErrorMessage);
+  		 	throw new AfricastalkinggatewayException($responseObject->ErrorMessage);
   		}
   		else
-  		  throw new AfricasTalkingGatewayException($this->_responseBody);
+  		  throw new AfricastalkinggatewayException($this->_responseBody);
   }
   
   
@@ -280,10 +280,10 @@ class AfricasTalkingGateway
   		if(count($responseObject->responses) > 0)
   			return $responseObject->responses;
   			
-  		throw new AfricasTalkingGatewayException($responseObject->errorMessage);
+  		throw new AfricastalkinggatewayException($responseObject->errorMessage);
   	}
   	
-  	throw new AfricasTalkingGatewayException($this->_responseBody);
+  	throw new AfricastalkinggatewayException($this->_responseBody);
   }
 
   //User info method
@@ -298,7 +298,7 @@ class AfricasTalkingGateway
     	 return $responseObject->UserData;
     	}
     	
-     throw new AfricasTalkingGatewayException($this->_responseBody);
+     throw new AfricastalkinggatewayException($this->_responseBody);
   }
   
   private function executeGet ()

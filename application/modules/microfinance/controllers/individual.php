@@ -124,7 +124,8 @@ class Individual extends microfinance
 	public function add_individual() 
 	{
 		//form validation rules
-		$this->form_validation->set_rules('individual_onames', 'Other Names', 'required|xss_clean');
+		$this->form_validation->set_rules('individual_lname', 'Last Name', 'required|xss_clean');
+		$this->form_validation->set_rules('individual_mname', 'Middle Name', 'xss_clean');
 		$this->form_validation->set_rules('individual_fname', 'First Name', 'required|xss_clean');
 		$this->form_validation->set_rules('individual_dob', 'Date of Birth', 'xss_clean');
 		$this->form_validation->set_rules('individual_email', 'Email', 'valid_email|is_unique[individual.individual_email]|xss_clean');
@@ -505,7 +506,8 @@ class Individual extends microfinance
 		}
 		
 		//form validation rules
-		$this->form_validation->set_rules('individual_onames', 'Other Names', 'required|xss_clean');
+		$this->form_validation->set_rules('individual_lname', 'Last Name', 'required|xss_clean');
+		$this->form_validation->set_rules('individual_mname', 'Middle Name', 'xss_clean');
 		$this->form_validation->set_rules('individual_fname', 'First Name', 'required|xss_clean');
 		$this->form_validation->set_rules('individual_dob', 'Date of Birth', 'xss_clean');
 		$this->form_validation->set_rules('individual_email', 'Email', 'valid_email|exists[individual.individual_email]|xss_clean');

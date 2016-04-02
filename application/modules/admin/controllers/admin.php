@@ -107,7 +107,7 @@ class Admin extends MX_Controller
         // Send the message
 		try 
 		{
-        	$results = $this->africastalkinggateway->sendMessage('+254770827872', 'Halo Martin. I am sending this message from the ERP');
+        	$results = $this->africastalkinggateway->sendMessage('+254726149351', 'Halo Martin. I am sending this message from the ERP');
 			
 			//var_dump($results);die();
 			foreach($results as $result) {
