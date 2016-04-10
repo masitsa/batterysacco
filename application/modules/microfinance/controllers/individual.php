@@ -1095,5 +1095,34 @@ class Individual extends microfinance
 		
 		$this->index();
 	}
+	
+	public function search_member_numer($individual_id)
+	{
+		$individual_number = $this->input->post('individual_number');
+		if(!empty($individual_number))
+		{
+			$this->db->where('individual_number', $individual_number);
+			$query = $this->db->get('individual');
+			
+			if($query->num_rows() > 0)
+			{
+				$row = $query->row();
+				$individual_id = $row->individual_id;
+				redirect('microfinance/edit-individual/'.$individual_id);
+			}
+			
+			else
+			{
+				$this->session->set_userdata('error_message', 'Member not found');
+				redirect('microfinance/edit-individual/'.$individual_id);
+			}
+		}
+			
+		else
+		{
+			$this->session->set_userdata('error_message', 'Please enter a member number');
+			redirect('microfinance/edit-individual/'.$individual_id);
+		}
+	}
 }
 ?>

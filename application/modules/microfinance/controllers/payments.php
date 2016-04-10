@@ -283,12 +283,12 @@ class Payments extends microfinance {
 
 
 	}
-	public function delete_individual_payment($id)
+	public function delete_individual_payment($id, $individual_id)
 	{
-		if($individual_id = $this->payments_model->delete_individual_payment($id))
+		if($this->payments_model->delete_individual_payment($id))
 		{
 			$this->session->set_userdata('success_message', 'Individuals payment has been deleted');
-			redirect('microfinance/show-individual-payment/'.$individual_id['individual_id']).'';
+			redirect('microfinance/edit-individual/'.$individual_id);
 			// print_r ($group_id);
 		}
 		
@@ -296,7 +296,7 @@ class Payments extends microfinance {
 		{			
 
 			$this->session->set_userdata('error_message', 'Individuals payment could not be deleted');
-			redirect('microfinance/show-individual-payment/'.$individual_id['individual_id']).'';
+			redirect('microfinance/edit-individual/'.$individual_id);
 			// echo $group_id;
 		}
 		

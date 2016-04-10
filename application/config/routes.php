@@ -339,6 +339,7 @@ $route['microfinance/activate-position/(:num)/(:num)'] = 'microfinance/individua
 $route['microfinance/deactivate-position/(:num)/(:num)'] = 'microfinance/individual/deactivate_position/$1/$2';
 $route['microfinance/delete-emergency/(:num)/(:num)'] = 'microfinance/individual/delete_emergency/$1/$2';
 $route['microfinance/add-savings-payment/(:num)'] = 'microfinance/payments/add_individual_payment/$1';
+$route['microfinance/delete-savings-payment/(:num)/(:num)'] = 'microfinance/payments/delete_individual_payment/$1/$2';
 $route['microfinance/add-loan-payment/(:num)'] = 'microfinance/payments/add_loan_payment/$1';
 
 /*

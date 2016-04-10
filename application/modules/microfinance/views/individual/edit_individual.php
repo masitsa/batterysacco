@@ -33,7 +33,17 @@ $v_data['total_savings'] = $row->total_savings;
 	                </div>
                 </header>
                 <div class="panel-body">
-                
+                    <form action="<?php echo site_url().'microfinance/individual/search_member_numer/'.$individual_id;?>" style="margin-bottom:20px;">
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+                            	<input type="text" class="form-control" placeholder="Search member number" name="individual_number" />
+                            </div>
+                            <div class="col-md-3">
+                                    <a href="<?php echo site_url();?>microfinance/individual" class="btn btn-sm btn-info pull-right">Back to individuals</a>
+                            </div>
+                        </div>
+                    </form>
                 	<?php
 					$validation_errors = validation_errors();
 					if(!empty($validation_errors))

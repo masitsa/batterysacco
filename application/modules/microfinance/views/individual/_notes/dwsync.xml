@@ -14,4 +14,6 @@
 <file name="print_statement.php" server="omnis.co.ke/public_html/batterysacco/" local="131015766639913333" remote="131015694600000000" Dst="0" />
 <file name="all_individual.php" server="omnis.co.ke/batterysacco/" local="131030242734250161" remote="131030177400000000" Dst="0" />
 <file name="add_individual.php" server="omnis.co.ke/batterysacco/" local="131030252635848202" remote="131030181000000000" Dst="0" />
+<file name="print_statement.php" server="omnis.co.ke/batterysacco/" local="131040738692675430" remote="131040666600000000" Dst="0" />
+<file name="edit_individual.php" server="omnis.co.ke/batterysacco/" local="131040805159406810" remote="131040732600000000" Dst="0" />
 </dwsync>

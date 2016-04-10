@@ -111,11 +111,11 @@ class Payments_model extends CI_Model {
 		}
 	}
 	public function delete_individual_payment($id)
-	{	
-		$individual_id = $this->get_individual_id_by_paymentsid($id);
-		if($this->db->delete('individual_payments', array('id' => $id)))
+	{
+		$this->db->where(array('savings_payment_id' => $id));
+		if($this->db->delete('savings_payment'))
 		{
-			return $individual_id;
+			return TRUE;
 		}
 		else{
 			return FALSE;

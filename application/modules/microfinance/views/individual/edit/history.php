@@ -7,6 +7,7 @@
     	<?php if(!isset($print)){?>
     	<a href="<?php echo site_url().'microfinance/individual/print_statement/'.$individual_id;?>" target="_blank" class="btn btn-primary">Print</a>
     	<a href="<?php echo site_url().'microfinance/individual/download_statement/'.$individual_id;?>" class="btn btn-danger">Download</a>
+    	<a href="<?php echo site_url().'send-statement/'.$individual_id;?>" class="btn btn-success">SMS Statement</a>
         <?php }?>
     	<!-- Adding Errors -->
     	<table class="table table-striped table-hover table-condensed">

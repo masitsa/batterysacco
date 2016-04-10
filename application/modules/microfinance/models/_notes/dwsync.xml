@@ -12,6 +12,7 @@
 <file name="savings_plan_model.php" server="omnis.co.ke/public_html/batterysacco/" local="130874451000000000" remote="131014687800000000" Dst="0" />
 <file name="untitled.html" server="omnis.co.ke/public_html/batterysacco/" local="131010632239214851" remote="131014687800000000" Dst="0" />
 <file name="group_model.php" server="omnis.co.ke/public_html/batterysacco/" local="130888729149391922" remote="131014687800000000" Dst="0" />
-<file name="messaging_model.php" server="omnis.co.ke/batterysacco/" local="131030294735813547" remote="131030222400000000" Dst="0" />
+<file name="messaging_model.php" server="omnis.co.ke/batterysacco/" local="131040716249315302" remote="131040643800000000" Dst="0" />
 <file name="individual_model.php" server="omnis.co.ke/batterysacco/" local="131030251508132771" remote="131030181000000000" Dst="0" />
+<file name="payments_model.php" server="omnis.co.ke/batterysacco/" local="131040754872151802" remote="131040682800000000" Dst="0" />
 </dwsync>
