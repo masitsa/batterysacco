@@ -295,183 +295,236 @@ $no_of_repayments = set_value('no_of_repayments');
 $grace_period = set_value('grace_period');
 
 ?>
-          <section class="panel">
-                <header class="panel-heading">
-                    <h2 class="panel-title">Loans details</h2>
-                </header>
-                <div class="panel-body">
-                <!-- Adding Errors -->
+	<section class="panel">
+		<header class="panel-heading">
+			<h2 class="panel-title">Loans Application</h2>
+		</header>
+		<div class="panel-body">
+		<!-- Adding Errors -->
             
             
             <?php echo form_open('microfinance/loan-application/'.$individual_id, array("class" => "form-horizontal", "role" => "form"));?>
-<div class="row">
-	<div class="col-md-6">
-        <div class="form-group">
-            <label class="col-lg-5 control-label">Loan type: </label>
-            
-            <div class="col-lg-7">
-            	<select class="form-control" name="loans_plan_id" id="update_loan_plan">
-                	<option value="">--Select loan type--</option>
-                	<?php
-                    	if($loans_plans->num_rows() > 0)
-						{
-							$loans_plan = $loans_plans->result();
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-lg-5 control-label">Loan type: </label>
 							
-							foreach($loans_plan as $res)
-							{
-								$db_loans_plan_id = $res->loans_plan_id;
-								$loans_plan_name = $res->loans_plan_name;
-								
-								if($db_loans_plan_id == $loans_plan_id)
-								{
-									echo '<option value="'.$db_loans_plan_id.'" selected>'.$loans_plan_name.'</option>';
-								}
-								
-								else
-								{
-									echo '<option value="'.$db_loans_plan_id.'">'.$loans_plan_name.'</option>';
-								}
-							}
-						}
-					?>
-                </select>
-                <br/>
-                <div id="loan_details"></div>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-lg-5 control-label">Requested loan amount: </label>
-            
-            <div class="col-lg-7">
-            	<input type="text" class="form-control" name="proposed_amount" placeholder="Requested loan amount" value="<?php echo $proposed_amount;?>">
-            </div>
-        </div>
-        
-        
-    </div>
-     
-	<div class="col-md-6">
-        
-        <div class="form-group">
-            <label class="col-lg-5 control-label">Loan purpose: </label>
-            
-            <div class="col-lg-7">
-            	<input type="text" class="form-control" name="purpose" placeholder="Loan purpose" value="<?php echo $purpose;?>">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-lg-5 control-label">Number of repayments: </label>
-            
-            <div class="col-lg-7">
-            	<input type="text" class="form-control" name="no_of_repayments" placeholder="Number of repayments" value="<?php echo $no_of_repayments;?>">
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="col-lg-5 control-label">Grace period: </label>
-            
-            <div class="col-lg-7">
-            	<input type="text" class="form-control" name="grace_period" placeholder="Grace period" value="<?php echo $grace_period;?>">
-            </div>
-        </div>
-        
-    	<div class="form-group">
-            <label class="col-lg-5 control-label">Application date: </label>
-            
-            <div class="col-lg-7">
-            	<div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </span>
-                    <input data-format="yyyy-MM-dd" type="text" data-plugin-datepicker class="form-control" name="application_date" placeholder="Application date" value="<?php echo $application_date;?>">
-                </div>
-            </div>
-        </div>
-        
-	</div>
-</div>
-<div class="row" style="margin-top:10px;">
-	<div class="col-md-12">
-        <div class="form-actions center-align">
-            <button class="btn btn-primary" type="submit">
-               	Apply for loan
-            </button>
-        </div>
-    </div>
-</div>
+							<div class="col-lg-7">
+								<select class="form-control" name="loans_plan_id" id="update_loan_plan">
+									<option value="">--Select loan type--</option>
+									<?php
+										if($loans_plans->num_rows() > 0)
+										{
+											$loans_plan = $loans_plans->result();
+											
+											foreach($loans_plan as $res)
+											{
+												$db_loans_plan_id = $res->loans_plan_id;
+												$loans_plan_name = $res->loans_plan_name;
+												
+												if($db_loans_plan_id == $loans_plan_id)
+												{
+													echo '<option value="'.$db_loans_plan_id.'" selected>'.$loans_plan_name.'</option>';
+												}
+												
+												else
+												{
+													echo '<option value="'.$db_loans_plan_id.'">'.$loans_plan_name.'</option>';
+												}
+											}
+										}
+									?>
+								</select>
+								<br/>
+								<div id="loan_details"></div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-lg-5 control-label">Requested loan amount: </label>
+							
+							<div class="col-lg-7">
+								<input type="text" class="form-control" name="proposed_amount" placeholder="Requested loan amount" value="<?php echo $proposed_amount;?>">
+							</div>
+						</div>
+						
+						
+					</div>
+				   
+					<div class="col-md-6">
+						
+						<div class="form-group">
+							<label class="col-lg-5 control-label">Loan purpose: </label>
+							
+							<div class="col-lg-7">
+								<input type="text" class="form-control" name="purpose" placeholder="Loan purpose" value="<?php echo $purpose;?>">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-lg-5 control-label">Number of repayments: </label>
+							
+							<div class="col-lg-7">
+								<input type="text" class="form-control" name="no_of_repayments" placeholder="Number of repayments" value="<?php echo $no_of_repayments;?>">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-lg-5 control-label">Grace period: </label>
+							
+							<div class="col-lg-7">
+								<input type="text" class="form-control" name="grace_period" placeholder="Grace period" value="<?php echo $grace_period;?>">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-lg-5 control-label">Application date: </label>
+							
+							<div class="col-lg-7">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</span>
+									<input data-format="yyyy-MM-dd" type="text" data-plugin-datepicker class="form-control" name="application_date" placeholder="Application date" value="<?php echo $application_date;?>">
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="row" style="margin-top:10px;">
+					<div class="col-md-12">
+						<div class="form-actions center-align">
+							<button class="btn btn-primary" type="submit">
+								Apply for loan
+							</button>
+						</div>
+					</div>
+				</div>
             <?php 
 				echo form_close();
 			?>
-			
-            <h4>Loan payments</h4>
+		</div>
+	</section>
+
+
+<div class ="row">
+	<div class = "col-md-6">
+		<section class="panel">
+			<header class="panel-heading">
+				<h2 class="panel-title">Loan payments</h2>
+			</header>
+			<div class="panel-body">
             
-            <?php echo form_open('microfinance/add-loan-payment/'.$individual_id, array("class" => "form-horizontal", "role" => "form"));?>
-<div class="row">
-	<div class="col-md-4">
-        
-        <div class="form-group">
-            <label class="col-lg-5 control-label">Payment amount: </label>
-            
-            <div class="col-lg-7">
-            	<input type="text" class="form-control" name="payment_amount" placeholder="Payment amount">
-            </div>
-        </div>
-        
-        
+				<?php echo form_open('microfinance/add-loan-payment/'.$individual_id, array("class" => "form-horizontal", "role" => "form"));?>
+					
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Payment amount: </label>
+					
+					<div class="col-lg-7">
+						<input type="text" class="form-control" name="payment_amount" placeholder="Payment amount">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Interest amount: </label>
+					
+					<div class="col-lg-7">
+						<input type="text" class="form-control" name="payment_interest" placeholder="Interest amount">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-lg-5 control-label">Payment date: </label>
+					
+					<div class="col-lg-7">
+						<div class="input-group">
+							<span class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							</span>
+							<input data-format="yyyy-MM-dd" type="text" data-plugin-datepicker class="form-control" name="payment_date" placeholder="Payment date">
+						</div>
+					</div>
+				</div>
+				<div class="form-actions center-align">
+					<button class="btn btn-primary" type="submit">
+						Add payment
+					</button>
+				</div>
+
+				<?php 
+					echo form_close();
+				?>
+			</div>
+		</section>
     </div>
     
-	<div class="col-md-4">
+	<div class = "col-md-6">
+		<section class="panel">
+			<header class="panel-heading">
+				<h2 class="panel-title">Cheque Disbursement</h2>
+			</header>
+		<div class="panel-body">
+		<?php echo form_open('microfinance/add-cheque-disbursed/'.$individual_id, array("class" => "form-horizontal", "role" => "form"));?>
         
         <div class="form-group">
-            <label class="col-lg-5 control-label">Interest amount: </label>
+            <label class="col-lg-5 control-label">Cheque Number: </label>
             
             <div class="col-lg-7">
-            	<input type="text" class="form-control" name="payment_interest" placeholder="Interest amount">
+            	<input type="text" class="form-control" name="cheque_number" placeholder="Cheque Number" value="<?php echo $purpose;?>">
             </div>
         </div>
         
-        
-    </div>
-     
-	<div class="col-md-4">
+        <div class="form-group">
+            <label class="col-lg-5 control-label">Cheque Amount: </label>
+            
+            <div class="col-lg-7">
+            	<input type="text" class="form-control" name="cheque_amount" placeholder="Cheque Amount" value="<?php echo $no_of_repayments;?>">
+            </div>
+        </div>
     	<div class="form-group">
-            <label class="col-lg-5 control-label">Payment date: </label>
+            <label class="col-lg-5 control-label">Disbursement Date: </label>
             
             <div class="col-lg-7">
             	<div class="input-group">
                     <span class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                     </span>
-                    <input data-format="yyyy-MM-dd" type="text" data-plugin-datepicker class="form-control" name="payment_date" placeholder="Payment date">
+                    <input data-format="yyyy-MM-dd" type="text" data-plugin-datepicker class="form-control" name="disbursement_date" placeholder="Disbursement Date" value="<?php echo $application_date;?>">
                 </div>
             </div>
         </div>
-        
+    
+		<div class="row" style="margin-top:10px;">
+			<div class="col-md-12">
+				<div class="form-actions center-align">
+					<button class="btn btn-primary" type="submit">
+						Add Disbursement
+					</button>
+				</div>
+			</div>
+		</div>
+		<?php 
+			echo form_close();
+		?>
 	</div>
+	</section>
 </div>
-<div class="row" style="margin-top:10px;">
-	<div class="col-md-12">
-        <div class="form-actions center-align">
-            <button class="btn btn-primary" type="submit">
-               	Add payment
-            </button>
-        </div>
-    </div>
-</div>
-            <?php 
-				echo form_close();
-			?>
-			
-            <h4>Loans</h4>
+</div>      
+
+<div class="row">
+	<div class = "col-md-12">
+		<section class="panel">
+			<header class="panel-heading">
+				<h2 class="panel-title">Loans</h2>
+			</header>
+			<div class="panel-body">
             <?php 
 				echo $result;
-			?>
-            
-                    
-                </div>
-            </section>
+			?>  
+			</div>
+         </section>
+    </div>
+</div>
 
 <script type="text/javascript">
 	$(document).on("change","select#update_loan_plan",function(e)

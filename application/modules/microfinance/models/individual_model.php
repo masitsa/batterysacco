@@ -60,6 +60,29 @@ class Individual_model extends CI_Model
 	*	Retrieve all individual
 	*
 	*/
+
+	public function add_cheque_disbursement($individual_id)
+	{
+		$data = array(
+			'created'=> date('Y-m-d H:i:s'),
+			'deleted' => 0,
+			'deleted_on'=> date('Y-m-d H:i:s'),
+			'individual_id'=>$individual_id,
+			'created_by'=> $this->session->userdata('personnel_id'),
+			'modified_by'=> $this->session->userdata('personnel_id'),
+			'deleted_by'=> $this->session->userdata('personnel_id'),
+			'cheque_number'=>$this->input->post('cheque_number'),
+			'cheque_amount'=>$this->input->post('cheque_amount'),
+			'dibursement_date'=>$this->input->post('disbursement_date')
+			);
+			if($this->db->insert('disbursement', $data))
+		{
+			return $this->db->insert_id();
+		}
+		else{
+			return FALSE;
+		}
+	}
 	public function all_individual($individual_id = NULL)
 	{
 		$where = 'individual_status = 0';
@@ -756,13 +779,22 @@ class Individual_model extends CI_Model
 		}
 	}
 	
+	public function get_loan_repayment_amount($individual_id)
+	{
+		$this->db->from('savings_withdrawal');
+		$this->db->select('savings_withdrawal.*');
+		$this->db->where('individual_id = '.$individual_id);
+		$query = $this->db->get();
+		
+		return $query;
+	}
 	public function get_individual_loans($individual_id)
 	{
-		$this->db->from('individual_loan');
-		$this->db->select('individual_loan.*, loans_plan.loans_plan_name');
+		$this->db->from('individual_loan, disbursement');
+		$this->db->select('individual_loan.*, loans_plan.loans_plan_name, disbursement.cheque_amount');
 		$this->db->join('loans_plan', 'loans_plan.loans_plan_id = individual_loan.loans_plan_id', 'left');
 		$this->db->order_by('disbursed_date', 'ASC');
-		$this->db->where('individual_loan.individual_id = '.$individual_id);
+		$this->db->where('individual_loan.individual_id = disbursement.individual_id ='.$individual_id);
 		$query = $this->db->get();
 		
 		return $query;
@@ -1058,7 +1090,31 @@ class Individual_model extends CI_Model
 	*	@param int $individual_id
 	*
 	*/
+	
+	public function get_savings_withdrawals($individual_id)
+	{
+		//retrieve all users
+		$this->db->from('savings_payment');
+		$this->db->select('*');
+		$this->db->where('savings_payment.individual_id = '.$individual_id.' AND savings_payment.savings_payment_delete = 0 AND payment_type = 1');
+		$this->db->order_by('payment_date', 'DESC');
+		$query = $this->db->get();
+		
+		return $query;
+	}
+	
 	public function get_savings_payments($individual_id)
+	{
+		//retrieve all users
+		$this->db->from('savings_payment');
+		$this->db->select('*');
+		$this->db->where('savings_payment.individual_id = '.$individual_id.' AND savings_payment.savings_payment_delete = 0 AND savings_payment.payment_type= 0');
+		$this->db->order_by('payment_date', 'ASC');
+		$query = $this->db->get();
+		
+		return $query;
+	}
+	public function get_all_savings_payments($individual_id)
 	{
 		//retrieve all users
 		$this->db->from('savings_payment');
@@ -1069,6 +1125,7 @@ class Individual_model extends CI_Model
 		
 		return $query;
 	}
+	
 	
 	public function get_individual_types()
 	{

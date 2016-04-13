@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="import_individuals.php" server="omnis.co.ke/public_html/mfi/" local="130971425185833590" remote="130971352800000000" Dst="0" />
-<file name="import_savings.php" server="omnis.co.ke/public_html/mfi/" local="130971457926231605" remote="130971385800000000" Dst="0" />
-<file name="import_loans.php" server="omnis.co.ke/public_html/mfi/" local="130971458169292935" remote="130971385800000000" Dst="0" />
-<file name="import_loan_payments.php" server="omnis.co.ke/public_html/mfi/" local="130971457722015978" remote="130971385800000000" Dst="0" />
+<file name="import_individuals.php" server="omnis.co.ke/public_html/mfi/" local="130971425185833590" remote="130971352800000000" />
+<file name="import_loans.php" server="omnis.co.ke/public_html/mfi/" local="130971458169292935" remote="130971385800000000" />
+<file name="import_loan_payments.php" server="omnis.co.ke/public_html/mfi/" local="130971457722015978" remote="130971385800000000" />
 </dwsync>

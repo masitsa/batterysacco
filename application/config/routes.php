@@ -325,6 +325,7 @@ $route['microfinance/add-individual'] = 'microfinance/individual/add_individual'
 $route['microfinance/edit-individual/(:num)'] = 'microfinance/individual/edit_individual/$1';
 $route['microfinance/update-individual/(:num)'] = 'microfinance/individual/edit_about/$1';
 $route['microfinance/update-individual-document/(:num)'] = 'microfinance/individual/upload_indivudual_documents/$1';
+$route['microfinance/individual/search-member-numer/(:num)']='microfinance/individual/search_member_numer/$1';
 $route['microfinance/update-individual-other-document/(:num)'] = 'microfinance/individual/upload_indivudual_other_documents/$1';
 $route['microfinance/update-emergency/(:num)'] = 'microfinance/individual/edit_emergency/$1';
 $route['microfinance/add-position/(:num)'] = 'microfinance/individual/add_position/$1';
@@ -340,7 +341,12 @@ $route['microfinance/deactivate-position/(:num)/(:num)'] = 'microfinance/individ
 $route['microfinance/delete-emergency/(:num)/(:num)'] = 'microfinance/individual/delete_emergency/$1/$2';
 $route['microfinance/add-savings-payment/(:num)'] = 'microfinance/payments/add_individual_payment/$1';
 $route['microfinance/delete-savings-payment/(:num)/(:num)'] = 'microfinance/payments/delete_individual_payment/$1/$2';
+$route['microfinance/add-cheque-disbursed/(:num)']='microfinance/individual/add_cheque_disbursement/$1';
 $route['microfinance/add-loan-payment/(:num)'] = 'microfinance/payments/add_loan_payment/$1';
+
+
+// withdrawal routes
+$route['microfinance/add-individual-withdrawal/(:num)'] = 'microfinance/withdrawals/add_individual_withdrawal/$1';
 
 /*
 *	Microfinance Routes
@@ -567,6 +573,11 @@ $route['import/savings'] = 'microfinance/import/import_savings';
 $route['import/savings-template'] = 'microfinance/import/import_savings_template';
 $route['import/import-savings'] = 'microfinance/import/do_savings_import';
 
+
+//cheque_disbursements import
+$route['import/cheque-disbursements']='microfinance/import/import_cheque_disbursements';
+$route['import/cheques-disbursement-template']='microfinance/import/import_cheque_disbursed_template';
+$route['import/import-cheque-disbursements']='microfinance/import/do_disbursement_import';
 /*
 *	Loans import Routes
 */

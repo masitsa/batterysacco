@@ -30,8 +30,7 @@ $today = date('jS F Y H:i a',strtotime(date("Y:m:d h:i:s")));
         <!-- IE Support -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="<?php echo base_url()."assets/themes/porto-admin/1.4.1/";?>assets/vendor/bootstrap/css/bootstrap.css" media="all"/>
-        <link rel="stylesheet" href="<?php echo base_url()."assets/themes/porto-admin/1.4.1/";?>assets/stylesheets/theme-custom.css" media="all"/>
+       
         <style type="text/css">
 			.receipt_spacing{letter-spacing:0px; font-size: 12px;}
 			.center-align{margin:0 auto; text-align:center;}
@@ -56,10 +55,12 @@ $today = date('jS F Y H:i a',strtotime(date("Y:m:d h:i:s")));
 			img.logo{max-height:70px; margin:0 auto;}
 			.panel, .table{margin-bottom:0;}
 		</style>
+         <link rel="stylesheet" href="<?php echo base_url()."assets/themes/porto-admin/1.4.1/";?>assets/vendor/bootstrap/css/bootstrap.css" media="all"/>
+        <link rel="stylesheet" href="<?php echo base_url()."assets/themes/porto-admin/1.4.1/";?>assets/stylesheets/theme-custom.css" media="all"/>
     </head>
     <body class="receipt_spacing">
     	<div class="row">
-        	<div class="col-xs-12">
+        	<div class="col-xs-12 center-align">
             	<img src="<?php echo base_url().'assets/logo/'.$contacts['logo'];?>" alt="<?php echo $contacts['company_name'];?>" class="img-responsive logo"/>
             </div>
         </div>
@@ -82,18 +83,16 @@ $today = date('jS F Y H:i a',strtotime(date("Y:m:d h:i:s")));
         
         <!-- Patient Details -->
     	<div class="row receipt_bottom_border" style="margin-bottom: 10px;">
-        	<div class="col-md-4 pull-left">
+        	<div class="col-md-6">
             	<div class="row">
-                	<div class="col-md-12">
+                	<div class="col-md-6">
                     	
                     	<div class="title-item">Member Name:</div>
                         
                     	<?php echo $individual_fname.' '.$individual_mname.' '.$individual_lname; ?>
                     </div>
-                </div>
-            	
-            	<div class="row">
-                	<div class="col-md-12">
+               
+                	<div class="col-md-6">
                     	<div class="title-item">Member Number:</div> 
                         
                     	<?php echo $individual_number; ?>
@@ -102,7 +101,7 @@ $today = date('jS F Y H:i a',strtotime(date("Y:m:d h:i:s")));
             
             </div>
             
-        	<div class="col-md-4 pull-right">
+        	<div class="col-md-6 ">
             	<div class="row">
                 	<div class="col-md-12">
                     	<div class="title-item">Statement Date:</div>
@@ -112,7 +111,7 @@ $today = date('jS F Y H:i a',strtotime(date("Y:m:d h:i:s")));
                 </div>
             </div>
         </div>
-        
+        </div>
     	<div class="row receipt_bottom_border">
         	<div class="col-md-12 center-align">
             	<strong>PARTICULARS</strong>
@@ -120,7 +119,7 @@ $today = date('jS F Y H:i a',strtotime(date("Y:m:d h:i:s")));
         </div>
         
     	<div class="row">
-        	<div class="col-md-12">
+        	<div class="col-md-10">
             	
                 <?php echo $this->load->view('edit/history', $v_data, TRUE);?>
                 

@@ -27,7 +27,6 @@
             	<tr>
                     <td></td>
                     <td>Savings balance b/f</td>
-                    <td></td>
                     <td><?php echo number_format($total_savings, 2);?></td>
                     <td></td>
                 </tr> 
@@ -37,35 +36,51 @@
 				$total_credit = $running_balance = $total_savings;
                 $result = '';
 				
-				if($savings_payments->num_rows() > 0)
+				if($all_savings_payments->num_rows() > 0)
                 {
                     $count = 1;
                     $total_debit = 0;
                     $total_payments = 0;
-                    foreach ($savings_payments->result() as $row2)
+                    foreach ($all_savings_payments->result() as $row2)
                     {
                         $savings_payment_id = $row2->savings_payment_id;
                         $payment_amount = $row2->payment_amount;
                         $payment_date = $row2->payment_date;
-                        $total_payments += $payment_amount;
-                        $running_balance += $payment_amount;
-                        
+						$payment_type = $row2->payment_type;
+						$debit = $credit= '';
+						if ($payment_type == 1)
+						{
+						$debit = $payment_amount;
+						}
+						else
+						{
+						 $credit = $payment_amount;
+						}
+						$payments = $this->individual_model->get_loan_payments($individual_id);
+						
+						$running_balance =+ $running_balance;						
 						if($payment_amount > 0)
 						{
 							$count++;
+							$running_balance = +$running_balance;
+							$total_payments = $total_payments + $credit - $debit;
+							if ($running_balance > 0)
+							{
+							}
 							$result .= 
 							'
 								<tr>
 									<td>'.date('d M Y',strtotime($payment_date)).' </td>
 									<td>Shares deposit</td>
-									<td></td>
-									<td>'.number_format($payment_amount, 2).'</td>
-									<td>'.number_format($running_balance, 2).'</td>
+									<td>'.$debit.'</td>
+									<td>'.$credit.'</td>
+									<td>'.number_format($total_payments, 2).'</td>
 								</tr> 
 							';
-							$total_credit += $payment_amount;
+							$total_credit = $total_payments;
 						}
-                    }
+				
+					}	
                         
                     //display loan
                     $result .= 
@@ -124,6 +139,7 @@
             <?php
 			$last_date = '';
 			$payments = $this->individual_model->get_loan_payments($individual_id);
+			
 			$result = '';
 			$count = 1;
 			$total_debit = $running_balance = $outstanding_loan;
@@ -141,6 +157,7 @@
 					$proposed_amount = $row->proposed_amount;
 					$approved_amount = $row->approved_amount;
 					$disbursed_amount = $row->disbursed_amount;
+					$cheque_amount = $row->cheque_amount;
 					$purpose = $row->purpose;
 					$installment_type_duration = $row->installment_type_duration;
 					$no_of_repayments = $row->no_of_repayments;
@@ -152,6 +169,7 @@
 					$created_by = $row->created_by;
 					$approved_by = $row->approved_by;
 					$disbursed_by = $row->disbursed_by;
+					$payment_amount = $row->repayment_amount;
 					$loans_count++;
 					
 					//get all loan deductions before date
@@ -200,7 +218,7 @@
 							<tr>
 								<td>'.date('d M Y',strtotime($disbursed)).' </td>
 								<td>'.$loans_plan_name.' disbursed</td>
-								<td>'.number_format($disbursed_amount, 2).'</td>
+								<td>'.number_format($cheque_amount, 2).'</td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -218,7 +236,7 @@
 							foreach ($payments->result() as $row2)
 							{
 								$loan_payment_id = $row2->loan_payment_id;
-								$personnel_fname = $row2->personnel_fname;
+									$personnel_fname = $row2->personnel_fname;
 								$personnel_onames = $row2->personnel_onames;
 								$payment_amount = $row2->payment_amount;
 								$payment_interest = $row2->payment_interest;
