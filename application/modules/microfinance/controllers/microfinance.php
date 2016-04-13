@@ -17,6 +17,7 @@ class Microfinance extends MX_Controller
 		$this->load->model('savings_plan_model');
 		$this->load->model('loans_plan_model');
 		$this->load->model('payments_model');
+		$this->load->model('withdrawals_model');
 		$this->load->model('hr/personnel_model');
 		if(!$this->auth_model->check_login())
 		{

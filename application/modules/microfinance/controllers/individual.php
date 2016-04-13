@@ -1,6 +1,12 @@
 <?php   if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 require_once "./application/modules/microfinance/controllers/microfinance.php";
+		
+// include autoloader
+require_once "./application/libraries/dompdf/autoload.inc.php";
+	
+// reference the Dompdf namespace
+use Dompdf\Dompdf;
 
 class Individual extends microfinance 
 {
@@ -110,6 +116,7 @@ class Individual extends microfinance
 		$v_data['query'] = $query;
 		$v_data['all_individual'] = $this->individual_model->all_individual();
 		$v_data['individual_types'] = $this->individual_model->get_individual_types();
+			
 		$v_data['page'] = $page;
 		$data['content'] = $this->load->view('individual/all_individual', $v_data, true);
 		
@@ -185,6 +192,7 @@ class Individual extends microfinance
 		//open the add new individual
 		$data['title'] = 'Edit individual';
 		$v_data['title'] = $data['title'];
+		$v_data['withdrawal_type'] = $this->withdrawals_model->get_withdrawal_type();
 		$v_data['individual'] = $this->individual_model->get_individual($individual_id);
 		$row = $v_data['individual']->row();
 		
@@ -238,17 +246,22 @@ class Individual extends microfinance
 		$v_data['titles'] = $this->individual_model->get_title();
 		$v_data['genders'] = $this->individual_model->get_gender();
 		$v_data['job_titles_query'] = $this->individual_model->get_job_titles();
+		$v_data['payments'] = $this->individual_model->get_loan_payments($individual_id);
 		$v_data['savings_payments'] = $this->individual_model->get_savings_payments($individual_id);
 		$v_data['emergency_contacts'] = $this->individual_model->get_emergency_contacts($individual_id);
 		$v_data['dependants'] = $this->individual_model->get_individual_dependants($individual_id);
 		$v_data['jobs'] = $this->individual_model->get_individual_jobs($individual_id);
 		$v_data['individual_savings'] = $this->individual_model->get_individual_savings_plans($individual_id);
+		$v_data['savings_withdrawal_amount']= $this->individual_model->get_loan_repayment_amount($individual_id);
 		$v_data['individual_loan'] = $this->individual_model->get_individual_loans($individual_id);
 		$v_data['individual_identifications'] = $this->individual_model->get_individual_identifications($individual_id);
 		$v_data['individual_other_documents'] = $this->individual_model->get_document_uploads($individual_id);
+		$v_data['all_savings_payments'] = $this->individual_model->get_all_savings_payments($individual_id);
 		$v_data['savings_plans'] = $this->savings_plan_model->all_savings_plan();
 		$v_data['loans_plans'] = $this->loans_plan_model->all_loans_plan();
 		$v_data['parent_sections'] = $this->sections_model->all_parent_sections('section_position');
+		$v_data['savings_withdrawals'] = $this->individual_model->get_savings_withdrawals($individual_id);
+		$v_data['withdrawal_type'] = $this->withdrawals_model->get_withdrawal_type();
 		$data['content'] = $this->load->view('individual/edit_individual', $v_data, true);
 		
 		$this->load->view('admin/templates/general_page', $data);
@@ -260,11 +273,12 @@ class Individual extends microfinance
 		$v_data['savings_payments'] = $this->individual_model->get_savings_payments($individual_id);
 		$v_data['individual_loan'] = $this->individual_model->get_individual_loans($individual_id);
 		$v_data['contacts'] = $this->site_model->get_contacts();
-		$this->load->view('individual/print_statement', $v_data);
+		$this->load->view('individual/print_statement', $v_data);	
 	}
 	
 	public function download_statement($individual_id)
 	{
+		//$this->load->helper(array('dompdf', 'pdfFilePath'));
 		$v_data['individual'] = $this->individual_model->get_individual($individual_id);
 		$v_data['savings_payments'] = $this->individual_model->get_savings_payments($individual_id);
 		$v_data['individual_loan'] = $this->individual_model->get_individual_loans($individual_id);
@@ -278,22 +292,35 @@ class Individual extends microfinance
 		$individual_mname = $row->individual_mname;
 		$individual_fname = $row->individual_fname;
 		$individual_number = $row->individual_number;
-		
-		//$data = array();
-        //load the view and saved it into $html variable
-        //$html=$this->load->view('welcome_message', $data, true);
+	
  
         //this the the PDF filename that user will get to download
         $pdfFilePath = $individual_fname." ".$individual_mname." ".$individual_lname." ".$individual_number." statement.pdf";
+		
+		// instantiate and use the dompdf class
+		$dompdf = new Dompdf();
+		$dompdf->loadHtml($html);
+		
+		// (Optional) Setup the paper size and orientation
+		$dompdf->setPaper('A4', 'potrait');
+		
+		// Render the HTML as PDF
+		$dompdf->render();
+		
+		// Output the generated PDF to Browser
+		$dompdf->stream();
  
         //load mPDF library
-        $this->load->library('m_pdf');
+        /*$this->load->library('dompdf');
  
        //generate the PDF from the given html
-        $this->m_pdf->pdf->WriteHTML($html);
+        $this->dompdf->pdf->WriteHTML($html);
  
         //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+        $this->dompdf->pdf->Output($pdfFilePath, "D");
+		
+		 $html = $this->load->view('individual/print_statement', $v_data, true);
+     pdf_create($html, 'filename');*/
 	}
 	
 	public function download_all_statements()
@@ -335,12 +362,13 @@ class Individual extends microfinance
 		 
 				//download it.
 				$this->m_pdf->pdf->Output($pdfFilePath, "D");*/
-				$this->load->helper(array('dompdf', 'file'));
+				//$this->load->library(array('dompdf_header', 'file'));
+				//$this->load->helper(array('dompdf', 'file'));
 				// page info here, db calls, etc.
 				//pdf_create($html, $pdfFilePath);
 				
-				$data = pdf_create($html, '', false);
-				write_file($pdfFilePath, $data);
+				pdf_create($html,$pdfFilePath , TRUE);
+				//write_file($pdfFilePath, $data);
 			}
 		}
 		
@@ -920,7 +948,27 @@ class Individual extends microfinance
 		$v_data['title'] = $data['title'];
 		echo $this->load->view('individual/get_guarantors', $v_data, true);
 	}
-	
+	public function add_cheque_disbursement($individual_id)
+	{
+		//form validation rules
+		$this->form_validation->set_rules('cheque_number', 'Cheque Number', 'required|xss_clean');
+		$this->form_validation->set_rules('cheque_amount', 'cheque Amount', 'required|xss_clean');
+		//if form conatins invalid data
+		if ($this->form_validation->run())
+		{
+			if($this->individual_model->add_cheque_disbursement($individual_id))
+			{
+				$this->session->set_userdata("success_message", "Cheque Disbursement added successfully");
+				redirect('microfinance/edit-individual/'.$individual_id);
+			}
+			
+			else
+			{
+				$this->session->set_userdata("error_message", "Could not add cheque. Please try again");
+			}
+		}
+		
+	}
 	public function add_loan_payment($individual_loan_id, $individual_id)
 	{
 		//form validation rules
@@ -1095,34 +1143,37 @@ class Individual extends microfinance
 		
 		$this->index();
 	}
-	
+
 	public function search_member_numer($individual_id)
 	{
-		$individual_number = $this->input->post('individual_number');
-		if(!empty($individual_number))
+		$this->form_validation->set_rules('individual_number', 'Member Number', 'trim|required|xss_clean');
+		if($this->form_validation->run())
 		{
-			$this->db->where('individual_number', $individual_number);
-			$query = $this->db->get('individual');
-			
-			if($query->num_rows() > 0)
+			$individual_number = $this->input->post('individual_number');
+			if(!empty($individual_number))
 			{
-				$row = $query->row();
-				$individual_id = $row->individual_id;
-				redirect('microfinance/edit-individual/'.$individual_id);
-			}
-			
-			else
-			{
-				$this->session->set_userdata('error_message', 'Member not found');
-				redirect('microfinance/edit-individual/'.$individual_id);
+				$this->db->where('individual_number', $individual_number);
+				$query = $this->db->get('individual');
+				
+				if($query->num_rows() > 0)
+				{
+					$row = $query->row();
+					$individual_id = $row->individual_id;
+				}
+				
+				else
+				{
+					$this->session->set_userdata('error_message', 'Member not found');
+				}
 			}
 		}
 			
 		else
 		{
-			$this->session->set_userdata('error_message', 'Please enter a member number');
-			redirect('microfinance/edit-individual/'.$individual_id);
+			$this->session->set_userdata('error_message', validation_errors());
 		}
+		
+		redirect('microfinance/edit-individual/'.$individual_id);
 	}
 }
 ?>

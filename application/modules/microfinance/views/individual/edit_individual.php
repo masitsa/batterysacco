@@ -33,14 +33,14 @@ $v_data['total_savings'] = $row->total_savings;
 	                </div>
                 </header>
                 <div class="panel-body">
-                    <form action="<?php echo site_url().'microfinance/individual/search_member_numer/'.$individual_id;?>" style="margin-bottom:20px;">
+                    <form action="<?php echo site_url().'microfinance/individual/search-member-numer/'.$individual_id;?>" style="margin-bottom:20px;" method="post">
                         <div class="row">
                             
                             <div class="col-md-6">
                             	<input type="text" class="form-control" placeholder="Search member number" name="individual_number" />
                             </div>
                             <div class="col-md-3">
-                                    <a href="<?php echo site_url();?>microfinance/individual" class="btn btn-sm btn-info pull-right">Back to individuals</a>
+                                    <button type="submit" class="btn btn-info btn-sm">Search</button>
                             </div>
                         </div>
                     </form>
@@ -87,6 +87,9 @@ $v_data['total_savings'] = $row->total_savings;
 									<li>
 										<a class="text-center" data-toggle="tab" href="#account"><i class="fa fa-money"></i> Savings</a>
 									</li>
+                                    <li>
+										<a class="text-center" data-toggle="tab" href="#withdrawals"><i class="fa fa-credit-card"></i> Withdrawals</a>
+									</li>
 									<li>
 										<a class="text-center" data-toggle="tab" href="#loans"><i class="fa fa-balance-scale"></i> Loans</a>
 									</li>
@@ -112,6 +115,9 @@ $v_data['total_savings'] = $row->total_savings;
 									</div>
 									<div class="tab-pane" id="account">
 										<?php echo $this->load->view('edit/savings', $v_data, TRUE);?>
+									</div>
+                                    <div class="tab-pane" id="withdrawals">
+										<?php echo $this->load->view('edit/withdrawals', $v_data, TRUE);?>
 									</div>
 									<div class="tab-pane" id="history">
 										<?php echo $this->load->view('edit/history', $v_data,  TRUE);?>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="all_individual.php" server="omnis.co.ke/public_html/mfi/" local="130971408520423375" remote="130971336600000000" Dst="0" />
-<file name="edit_individual.php" server="omnis.co.ke/public_html/mfi/" local="130971372771696722" remote="130971300600000000" Dst="0" />
-<file name="get_amortization_table.php" server="omnis.co.ke/public_html/mfi/" local="130971483653006410" remote="130971411600000000" Dst="0" />
-<file name="edit_individual.php" server="omnis.co.ke/public_html/batterysacco/" local="131013894263014087" remote="131014689000000000" Dst="0" />
-<file name="all_individual.php" server="omnis.co.ke/public_html/batterysacco/" local="131014747915128423" remote="131014675800000000" Dst="0" />
-<file name="add_guarantor.php" server="omnis.co.ke/public_html/batterysacco/" local="130934507812487614" remote="131014689000000000" Dst="0" />
-<file name="add_individual.php" server="omnis.co.ke/public_html/batterysacco/" local="130874451000000000" remote="131014689000000000" Dst="0" />
-<file name="add_loan_payment.php" server="omnis.co.ke/public_html/batterysacco/" local="130935395090151068" remote="131014689000000000" Dst="0" />
-<file name="get_guarantors.php" server="omnis.co.ke/public_html/batterysacco/" local="131012258666759723" remote="131014689000000000" Dst="0" />
-<file name="get_amortization_table.php" server="omnis.co.ke/public_html/batterysacco/" local="130971483653006410" remote="131014689000000000" Dst="0" />
-<file name="get_payments.php" server="omnis.co.ke/public_html/batterysacco/" local="131014767012652674" remote="131014695000000000" Dst="0" />
-<file name="print_statement.php" server="omnis.co.ke/public_html/batterysacco/" local="131015766639913333" remote="131015694600000000" Dst="0" />
-<file name="all_individual.php" server="omnis.co.ke/batterysacco/" local="131030242734250161" remote="131030177400000000" Dst="0" />
-<file name="add_individual.php" server="omnis.co.ke/batterysacco/" local="131030252635848202" remote="131030181000000000" Dst="0" />
-<file name="print_statement.php" server="omnis.co.ke/batterysacco/" local="131040738692675430" remote="131040666600000000" Dst="0" />
-<file name="edit_individual.php" server="omnis.co.ke/batterysacco/" local="131040805159406810" remote="131040732600000000" Dst="0" />
+<file name="all_individual.php" server="omnis.co.ke/public_html/mfi/" local="130971408520423375" remote="130971336600000000" />
+<file name="edit_individual.php" server="omnis.co.ke/public_html/mfi/" local="130971372771696722" remote="130971300600000000" />
+<file name="get_amortization_table.php" server="omnis.co.ke/public_html/mfi/" local="130971483653006410" remote="130971411600000000" />
+<file name="edit_individual.php" server="omnis.co.ke/public_html/batterysacco/" local="131013894263014087" remote="131014689000000000" />
+<file name="all_individual.php" server="omnis.co.ke/public_html/batterysacco/" local="131014747915128423" remote="131014675800000000" />
+<file name="add_guarantor.php" server="omnis.co.ke/public_html/batterysacco/" local="130934507812487614" remote="131014689000000000" />
+<file name="add_individual.php" server="omnis.co.ke/public_html/batterysacco/" local="130874451000000000" remote="131014689000000000" />
+<file name="add_loan_payment.php" server="omnis.co.ke/public_html/batterysacco/" local="130935395090151068" remote="131014689000000000" />
+<file name="get_guarantors.php" server="omnis.co.ke/public_html/batterysacco/" local="131012258666759723" remote="131014689000000000" />
+<file name="get_amortization_table.php" server="omnis.co.ke/public_html/batterysacco/" local="130971483653006410" remote="131014689000000000" />
+<file name="get_payments.php" server="omnis.co.ke/public_html/batterysacco/" local="131014767012652674" remote="131014695000000000" />
+<file name="print_statement.php" server="omnis.co.ke/public_html/batterysacco/" local="131015766639913333" remote="131015694600000000" />
+<file name="all_individual.php" server="omnis.co.ke/batterysacco/" local="131030242734250161" remote="131030177400000000" />
+<file name="add_individual.php" server="omnis.co.ke/batterysacco/" local="131030252635848202" remote="131030181000000000" />
+<file name="print_statement.php" server="omnis.co.ke/batterysacco/" local="131040738692675430" remote="131040666600000000" />
+<file name="edit_individual.php" server="omnis.co.ke/batterysacco/" local="131040805159406810" remote="131040732600000000" />
 </dwsync>
