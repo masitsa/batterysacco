@@ -144,33 +144,18 @@
 			$count = 1;
 			$total_debit = $running_balance = $outstanding_loan;
 			$total_credit = 0;
-			$total_loans = $individual_loan->num_rows();
-			$loans_count = 0;
+			$total_disbursments = $disbursments->num_rows();
+			$disbursments_count = 0;
 			
-            if($total_loans > 0)
+            if($total_disbursments > 0)
 			{
-				foreach ($individual_loan->result() as $row)
+				foreach ($disbursments->result() as $row)
 				{
-					$loans_plan_name = $row->loans_plan_name;
-					$individual_loan_status = $row->individual_loan_status;
-					$individual_loan_id = $row->individual_loan_id;
-					$proposed_amount = $row->proposed_amount;
-					$approved_amount = $row->approved_amount;
-					$disbursed_amount = $row->disbursed_amount;
+					$disbursement_date = $row->dibursement_date;
 					$cheque_amount = $row->cheque_amount;
-					$purpose = $row->purpose;
-					$installment_type_duration = $row->installment_type_duration;
-					$no_of_repayments = $row->no_of_repayments;
-					$interest_rate = $row->interest_rate;
-					$interest_id = $row->interest_id;
-					$grace_period = $row->grace_period;
-					$disbursed_date = date('jS d M Y',strtotime($row->disbursed_date));
-					$disbursed = $row->disbursed_date;
-					$created_by = $row->created_by;
-					$approved_by = $row->approved_by;
-					$disbursed_by = $row->disbursed_by;
-					$payment_amount = $row->repayment_amount;
-					$loans_count++;
+					$cheque_number = $row->cheque_number;
+					//$disbursed_date = date('jS d M Y',strtotime($disbursement_date));
+					$disbursments_count++;
 					
 					//get all loan deductions before date
 					if($payments->num_rows() > 0)
@@ -185,7 +170,7 @@
 							$created = date('jS M Y H:i:s',strtotime($row2->created));
 							$payment_date = $row2->payment_date;
 							
-							if(($payment_date <= $disbursed) && ($payment_date > $last_date) && ($payment_amount > 0))
+							if(($payment_date <= $disbursement_date) && ($payment_date > $last_date) && ($payment_amount > 0))
 							{
 								$count++;
 								$running_balance -= $payment_amount;
@@ -206,18 +191,18 @@
 						}
 					}
 					
-					//display loan if disbursed
-					if($individual_loan_status == 2)
+					//display disbursment if cheque amount > 0
+					if($cheque_amount > 0)
 					{
-						$running_balance += $disbursed_amount;
-						$total_debit += $disbursed_amount;
+						$running_balance += $cheque_amount;
+						$total_debit += $cheque_amount;
 						
 						$count++;
 						$result .= 
 						'
 							<tr>
-								<td>'.date('d M Y',strtotime($disbursed)).' </td>
-								<td>'.$loans_plan_name.' disbursed</td>
+								<td>'.date('d M Y',strtotime($disbursement_date)).' </td>
+								<td>Disbursed cheque'.$cheque_number.'</td>
 								<td>'.number_format($cheque_amount, 2).'</td>
 								<td></td>
 								<td></td>
@@ -228,7 +213,7 @@
 					}
 					
 					//check if there are any more payments
-					if($total_loans == $loans_count)
+					if($total_disbursments == $disbursments_count)
 					{
 						//get all loan deductions before date
 						if($payments->num_rows() > 0)
@@ -236,14 +221,14 @@
 							foreach ($payments->result() as $row2)
 							{
 								$loan_payment_id = $row2->loan_payment_id;
-									$personnel_fname = $row2->personnel_fname;
+								$personnel_fname = $row2->personnel_fname;
 								$personnel_onames = $row2->personnel_onames;
 								$payment_amount = $row2->payment_amount;
 								$payment_interest = $row2->payment_interest;
 								$created = date('jS M Y H:i:s',strtotime($row2->created));
 								$payment_date = $row2->payment_date;
 								
-								if(($payment_date > $disbursed) && ($payment_amount > 0))
+								if(($payment_date > $disbursement_date) && ($payment_amount > 0))
 								{
 									$count++;
 									$running_balance -= $payment_amount;
@@ -264,7 +249,7 @@
 							}
 						}
 					}
-					$last_date = $disbursed;
+					$last_date = $disbursement_date;
 				}
 			}
 			

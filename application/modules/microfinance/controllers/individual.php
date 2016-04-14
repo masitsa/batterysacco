@@ -257,6 +257,7 @@ class Individual extends microfinance
 		$v_data['individual_identifications'] = $this->individual_model->get_individual_identifications($individual_id);
 		$v_data['individual_other_documents'] = $this->individual_model->get_document_uploads($individual_id);
 		$v_data['all_savings_payments'] = $this->individual_model->get_all_savings_payments($individual_id);
+		$v_data['disbursments'] = $this->individual_model->get_disbursments($individual_id);
 		$v_data['savings_plans'] = $this->savings_plan_model->all_savings_plan();
 		$v_data['loans_plans'] = $this->loans_plan_model->all_loans_plan();
 		$v_data['parent_sections'] = $this->sections_model->all_parent_sections('section_position');

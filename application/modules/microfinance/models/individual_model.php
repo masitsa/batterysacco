@@ -788,13 +788,23 @@ class Individual_model extends CI_Model
 		
 		return $query;
 	}
+	public function get_disbursments($individual_id)
+	{
+		$this->db->from('disbursement');
+		$this->db->order_by('dibursement_date', 'ASC');
+		$this->db->where('disbursement.individual_id = '.$individual_id);
+		$query = $this->db->get();
+		
+		return $query;
+	}
+	
 	public function get_individual_loans($individual_id)
 	{
-		$this->db->from('individual_loan, disbursement');
-		$this->db->select('individual_loan.*, loans_plan.loans_plan_name, disbursement.cheque_amount');
+		$this->db->from('individual_loan');
+		$this->db->select('individual_loan.*, loans_plan.loans_plan_name');
 		$this->db->join('loans_plan', 'loans_plan.loans_plan_id = individual_loan.loans_plan_id', 'left');
 		$this->db->order_by('disbursed_date', 'ASC');
-		$this->db->where('individual_loan.individual_id = disbursement.individual_id ='.$individual_id);
+		$this->db->where('individual_loan.individual_id = '.$individual_id);
 		$query = $this->db->get();
 		
 		return $query;
