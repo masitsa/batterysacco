@@ -12824,3 +12824,1129 @@ DEBUG - 2016-04-13 15:58:00 --> UTF-8 Support Enabled
 DEBUG - 2016-04-13 15:58:00 --> URI Class Initialized
 DEBUG - 2016-04-13 15:58:00 --> Router Class Initialized
 ERROR - 2016-04-13 15:58:00 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:35:23 --> Config Class Initialized
+DEBUG - 2016-04-13 16:35:23 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:35:23 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:35:23 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:35:23 --> URI Class Initialized
+DEBUG - 2016-04-13 16:35:23 --> Router Class Initialized
+DEBUG - 2016-04-13 16:35:23 --> Output Class Initialized
+DEBUG - 2016-04-13 16:35:23 --> Security Class Initialized
+DEBUG - 2016-04-13 16:35:23 --> Input Class Initialized
+DEBUG - 2016-04-13 16:35:23 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:35:23 --> Language Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Language Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Config Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:35:24 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:35:24 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:35:24 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:35:24 --> Session Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:35:24 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Session routines successfully run
+DEBUG - 2016-04-13 16:35:24 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Email Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> Individual MX_Controller Initialized
+DEBUG - 2016-04-13 16:35:24 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:35:24 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:35:24 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 16:35:24 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 16:35:24 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 16:35:24 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:24 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 16:35:24 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 16:35:25 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 16:35:25 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 16:35:25 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 16:35:25 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 16:35:25 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 16:35:25 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 16:35:25 --> Model Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> Image Lib Class Initialized
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit/about.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit/emergency.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit/jobs.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit/uploads.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/get_payments.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/get_guarantors.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/get_amortization_table.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit/loans.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit/savings.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit/withdrawals.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit/history.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/microfinance/views/individual/edit_individual.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 16:35:25 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 16:35:25 --> Final output sent to browser
+DEBUG - 2016-04-13 16:35:25 --> Total execution time: 2.4947
+DEBUG - 2016-04-13 16:35:29 --> Config Class Initialized
+DEBUG - 2016-04-13 16:35:29 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:35:29 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:35:29 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:35:29 --> URI Class Initialized
+DEBUG - 2016-04-13 16:35:29 --> Router Class Initialized
+ERROR - 2016-04-13 16:35:29 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:29 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:30 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Router Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Output Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Security Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Input Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:45:30 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:45:30 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:45:30 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:45:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:45:30 --> Session Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:45:30 --> Encrypt Class Initialized
+ERROR - 2016-04-13 16:45:30 --> Session: HMAC mismatch. The session cookie data did not match what was expected.
+DEBUG - 2016-04-13 16:45:30 --> Session routines successfully run
+DEBUG - 2016-04-13 16:45:30 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Email Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Import MX_Controller Initialized
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:30 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Router Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Output Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Security Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Input Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:45:30 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:45:30 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:45:30 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:45:30 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:45:30 --> Session Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:45:30 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Session routines successfully run
+DEBUG - 2016-04-13 16:45:30 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Email Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> Auth MX_Controller Initialized
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:30 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:45:30 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 16:45:31 --> File loaded: application/modules/auth/views/templates/login.php
+DEBUG - 2016-04-13 16:45:31 --> Final output sent to browser
+DEBUG - 2016-04-13 16:45:31 --> Total execution time: 0.4397
+DEBUG - 2016-04-13 16:45:31 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:31 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Router Class Initialized
+ERROR - 2016-04-13 16:45:31 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:31 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:31 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Router Class Initialized
+ERROR - 2016-04-13 16:45:31 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:31 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:31 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:31 --> Router Class Initialized
+ERROR - 2016-04-13 16:45:31 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:31 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Router Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Hooks Class Initialized
+ERROR - 2016-04-13 16:45:31 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:31 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:31 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:31 --> Router Class Initialized
+ERROR - 2016-04-13 16:45:32 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:39 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:39 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Router Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Output Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Security Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Input Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:45:39 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:45:39 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:45:39 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:45:39 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:45:39 --> Session Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:45:39 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Session routines successfully run
+DEBUG - 2016-04-13 16:45:39 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Email Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Auth MX_Controller Initialized
+DEBUG - 2016-04-13 16:45:39 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:45:39 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:45:39 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Language file loaded: language/english/form_validation_lang.php
+DEBUG - 2016-04-13 16:45:39 --> XSS Filtering completed
+DEBUG - 2016-04-13 16:45:39 --> Unable to find validation rule: exists
+DEBUG - 2016-04-13 16:45:39 --> XSS Filtering completed
+DEBUG - 2016-04-13 16:45:39 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:39 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:39 --> Router Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Output Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Security Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Input Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:45:40 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:45:40 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:45:40 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:45:40 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:45:40 --> Session Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:45:40 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Session routines successfully run
+DEBUG - 2016-04-13 16:45:40 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Email Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Admin MX_Controller Initialized
+DEBUG - 2016-04-13 16:45:40 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 16:45:40 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:45:40 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:45:40 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/admin/models/reports_model.php
+DEBUG - 2016-04-13 16:45:40 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 16:45:40 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 16:45:40 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/admin/views/profile_page.php
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 16:45:40 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 16:45:40 --> Final output sent to browser
+DEBUG - 2016-04-13 16:45:40 --> Total execution time: 0.5174
+DEBUG - 2016-04-13 16:45:40 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:40 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:40 --> Router Class Initialized
+ERROR - 2016-04-13 16:45:40 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:44 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:44 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Router Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Output Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Security Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Input Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:45:44 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:45:44 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:45:44 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:45:44 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:45:44 --> Session Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:45:44 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Session routines successfully run
+DEBUG - 2016-04-13 16:45:44 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Email Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> Import MX_Controller Initialized
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/microfinance/models/import_model.php
+DEBUG - 2016-04-13 16:45:44 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/microfinance/views/import/import_cheque_disbursements.php
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 16:45:44 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 16:45:44 --> Final output sent to browser
+DEBUG - 2016-04-13 16:45:44 --> Total execution time: 0.8425
+DEBUG - 2016-04-13 16:45:45 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:45 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:45 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:45 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:45 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:45 --> Router Class Initialized
+ERROR - 2016-04-13 16:45:45 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:57 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:57 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Router Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Output Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Security Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Input Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:45:57 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Language Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:45:57 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:45:57 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:45:57 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:45:58 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:45:58 --> Session Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:45:58 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Session routines successfully run
+DEBUG - 2016-04-13 16:45:58 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Email Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Import MX_Controller Initialized
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/microfinance/models/import_model.php
+DEBUG - 2016-04-13 16:45:58 --> Model Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Upload Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Language file loaded: language/english/upload_lang.php
+ERROR - 2016-04-13 16:45:58 --> The filetype you are attempting to upload is not allowed.
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/microfinance/views/import/import_cheque_disbursements.php
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 16:45:58 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 16:45:58 --> Final output sent to browser
+DEBUG - 2016-04-13 16:45:58 --> Total execution time: 0.9321
+DEBUG - 2016-04-13 16:45:58 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:58 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:58 --> Router Class Initialized
+ERROR - 2016-04-13 16:45:58 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:45:59 --> Config Class Initialized
+DEBUG - 2016-04-13 16:45:59 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:45:59 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:45:59 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:45:59 --> URI Class Initialized
+DEBUG - 2016-04-13 16:45:59 --> Router Class Initialized
+ERROR - 2016-04-13 16:45:59 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:46:47 --> Config Class Initialized
+DEBUG - 2016-04-13 16:46:47 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:46:47 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:46:47 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:46:47 --> URI Class Initialized
+DEBUG - 2016-04-13 16:46:47 --> Router Class Initialized
+DEBUG - 2016-04-13 16:46:47 --> Output Class Initialized
+DEBUG - 2016-04-13 16:46:47 --> Security Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Input Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:46:48 --> Language Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Language Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Config Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:46:48 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:46:48 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:46:48 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:46:48 --> Session Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:46:48 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Session routines successfully run
+DEBUG - 2016-04-13 16:46:48 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Email Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Import MX_Controller Initialized
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> File loaded: application/modules/microfinance/models/import_model.php
+DEBUG - 2016-04-13 16:46:48 --> Model Class Initialized
+DEBUG - 2016-04-13 16:46:48 --> Upload Class Initialized
+DEBUG - 2016-04-13 16:46:49 --> File loaded: application/modules/microfinance/views/import/import_cheque_disbursements.php
+DEBUG - 2016-04-13 16:46:49 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 16:46:49 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 16:46:49 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 16:46:49 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 16:46:49 --> Final output sent to browser
+DEBUG - 2016-04-13 16:46:49 --> Total execution time: 1.9655
+DEBUG - 2016-04-13 16:46:50 --> Config Class Initialized
+DEBUG - 2016-04-13 16:46:50 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:46:50 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:46:50 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:46:50 --> URI Class Initialized
+DEBUG - 2016-04-13 16:46:50 --> Router Class Initialized
+ERROR - 2016-04-13 16:46:50 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 16:48:57 --> Config Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:48:57 --> URI Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Router Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Output Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Security Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Input Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 16:48:57 --> Language Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Language Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Config Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Loader Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 16:48:57 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 16:48:57 --> Database Driver Class Initialized
+ERROR - 2016-04-13 16:48:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 16:48:57 --> Session Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 16:48:57 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Session routines successfully run
+DEBUG - 2016-04-13 16:48:57 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Pagination Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Email Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Controller Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Import MX_Controller Initialized
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/microfinance/models/import_model.php
+DEBUG - 2016-04-13 16:48:57 --> Model Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/microfinance/views/import/import_loan_payments.php
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 16:48:57 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 16:48:57 --> Final output sent to browser
+DEBUG - 2016-04-13 16:48:57 --> Total execution time: 0.6498
+DEBUG - 2016-04-13 16:48:57 --> Config Class Initialized
+DEBUG - 2016-04-13 16:48:57 --> Hooks Class Initialized
+DEBUG - 2016-04-13 16:48:58 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 16:48:58 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 16:48:58 --> URI Class Initialized
+DEBUG - 2016-04-13 16:48:58 --> Router Class Initialized
+ERROR - 2016-04-13 16:48:58 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 17:22:36 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:36 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:22:37 --> URI Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Router Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Output Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Security Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Input Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 17:22:37 --> Language Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Language Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Loader Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 17:22:37 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 17:22:37 --> Database Driver Class Initialized
+ERROR - 2016-04-13 17:22:37 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 17:22:37 --> Session Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 17:22:37 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Session routines successfully run
+DEBUG - 2016-04-13 17:22:37 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Pagination Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Email Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Controller Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> Creditors MX_Controller Initialized
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/administration/models/reports_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/accounts/models/payroll_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/admin/models/branches_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/accounts/models/petty_cash_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/accounts/models/accounts_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/reception/models/reception_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/reception/models/database.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/accounts/models/hospital_accounts_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:37 --> File loaded: application/modules/accounts/models/creditors_model.php
+DEBUG - 2016-04-13 17:22:37 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:38 --> File loaded: application/modules/accounts/views/creditors/creditors.php
+DEBUG - 2016-04-13 17:22:38 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 17:22:38 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 17:22:38 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 17:22:38 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 17:22:38 --> Final output sent to browser
+DEBUG - 2016-04-13 17:22:38 --> Total execution time: 1.2673
+DEBUG - 2016-04-13 17:22:38 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:38 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:22:38 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:22:38 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:22:38 --> URI Class Initialized
+DEBUG - 2016-04-13 17:22:38 --> Router Class Initialized
+ERROR - 2016-04-13 17:22:38 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 17:22:39 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:39 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:22:39 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:22:39 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:22:39 --> URI Class Initialized
+DEBUG - 2016-04-13 17:22:39 --> Router Class Initialized
+ERROR - 2016-04-13 17:22:39 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 17:22:45 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:22:45 --> URI Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Router Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Output Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Security Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Input Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 17:22:45 --> Language Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Language Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Loader Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 17:22:45 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 17:22:45 --> Database Driver Class Initialized
+ERROR - 2016-04-13 17:22:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 17:22:45 --> Session Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 17:22:45 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Session routines successfully run
+DEBUG - 2016-04-13 17:22:45 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Pagination Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Email Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Controller Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> Individual MX_Controller Initialized
+DEBUG - 2016-04-13 17:22:45 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 17:22:45 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 17:22:45 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 17:22:45 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 17:22:45 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 17:22:45 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 17:22:45 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:45 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 17:22:46 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 17:22:46 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 17:22:46 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 17:22:46 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 17:22:46 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 17:22:46 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 17:22:46 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> Image Lib Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/microfinance/views/individual/all_individual.php
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 17:22:46 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 17:22:46 --> Final output sent to browser
+DEBUG - 2016-04-13 17:22:46 --> Total execution time: 0.8846
+DEBUG - 2016-04-13 17:22:46 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:22:46 --> URI Class Initialized
+DEBUG - 2016-04-13 17:22:46 --> Router Class Initialized
+ERROR - 2016-04-13 17:22:46 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 17:22:49 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:22:49 --> URI Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Router Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Output Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Security Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Input Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 17:22:49 --> Language Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Language Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Loader Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 17:22:49 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 17:22:49 --> Database Driver Class Initialized
+ERROR - 2016-04-13 17:22:49 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 17:22:49 --> Session Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 17:22:49 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Session routines successfully run
+DEBUG - 2016-04-13 17:22:49 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Pagination Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Email Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Controller Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> Individual MX_Controller Initialized
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:49 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 17:22:49 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 17:22:50 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 17:22:50 --> Model Class Initialized
+DEBUG - 2016-04-13 17:22:50 --> Image Lib Class Initialized
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit/about.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit/emergency.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit/jobs.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit/uploads.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit/loans.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit/savings.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit/withdrawals.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit/history.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/microfinance/views/individual/edit_individual.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 17:22:50 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 17:22:50 --> Final output sent to browser
+DEBUG - 2016-04-13 17:22:50 --> Total execution time: 1.1042
+DEBUG - 2016-04-13 17:22:50 --> Config Class Initialized
+DEBUG - 2016-04-13 17:22:50 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:22:50 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:22:50 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:22:50 --> URI Class Initialized
+DEBUG - 2016-04-13 17:22:50 --> Router Class Initialized
+ERROR - 2016-04-13 17:22:50 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 17:23:03 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:23:03 --> URI Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Router Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Output Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Security Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Input Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 17:23:03 --> Language Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Language Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Loader Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 17:23:03 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 17:23:03 --> Database Driver Class Initialized
+ERROR - 2016-04-13 17:23:03 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 17:23:03 --> Session Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 17:23:03 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Session routines successfully run
+DEBUG - 2016-04-13 17:23:03 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Pagination Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Email Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Controller Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Individual MX_Controller Initialized
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 17:23:03 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> Image Lib Class Initialized
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit/about.php
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit/emergency.php
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit/jobs.php
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit/uploads.php
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit/loans.php
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit/savings.php
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit/withdrawals.php
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit/history.php
+DEBUG - 2016-04-13 17:23:03 --> File loaded: application/modules/microfinance/views/individual/edit_individual.php
+DEBUG - 2016-04-13 17:23:04 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 17:23:04 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 17:23:04 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 17:23:04 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 17:23:04 --> Final output sent to browser
+DEBUG - 2016-04-13 17:23:04 --> Total execution time: 1.0130
+DEBUG - 2016-04-13 17:23:04 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:04 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:23:04 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:23:04 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:23:04 --> URI Class Initialized
+DEBUG - 2016-04-13 17:23:04 --> Router Class Initialized
+ERROR - 2016-04-13 17:23:04 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 17:23:14 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:14 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:23:14 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:23:14 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:23:14 --> URI Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Router Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Output Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Security Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Input Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 17:23:15 --> Language Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Language Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Loader Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 17:23:15 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 17:23:15 --> Database Driver Class Initialized
+ERROR - 2016-04-13 17:23:15 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 17:23:15 --> Session Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 17:23:15 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Session routines successfully run
+DEBUG - 2016-04-13 17:23:15 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Pagination Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Email Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Controller Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Individual MX_Controller Initialized
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 17:23:15 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Image Lib Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit/about.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit/emergency.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit/jobs.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit/uploads.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit/loans.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit/savings.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit/withdrawals.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit/history.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/microfinance/views/individual/edit_individual.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 17:23:15 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 17:23:15 --> Final output sent to browser
+DEBUG - 2016-04-13 17:23:15 --> Total execution time: 0.8807
+DEBUG - 2016-04-13 17:23:15 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:23:15 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:23:15 --> URI Class Initialized
+DEBUG - 2016-04-13 17:23:16 --> Router Class Initialized
+ERROR - 2016-04-13 17:23:16 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 17:23:19 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:19 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:23:19 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:23:19 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:23:19 --> URI Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Router Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Output Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Security Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Input Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 17:23:20 --> Language Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Language Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Loader Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 17:23:20 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 17:23:20 --> Database Driver Class Initialized
+ERROR - 2016-04-13 17:23:20 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 17:23:20 --> Session Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 17:23:20 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Session routines successfully run
+DEBUG - 2016-04-13 17:23:20 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Pagination Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Email Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Controller Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Individual MX_Controller Initialized
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 17:23:20 --> Model Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> Image Lib Class Initialized
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit/about.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit/emergency.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit/jobs.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit/uploads.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/get_payments.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/get_guarantors.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/get_amortization_table.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit/loans.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit/savings.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit/withdrawals.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit/history.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/microfinance/views/individual/edit_individual.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 17:23:20 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 17:23:20 --> Final output sent to browser
+DEBUG - 2016-04-13 17:23:21 --> Total execution time: 1.0510
+DEBUG - 2016-04-13 17:23:21 --> Config Class Initialized
+DEBUG - 2016-04-13 17:23:21 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:23:21 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:23:21 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:23:21 --> URI Class Initialized
+DEBUG - 2016-04-13 17:23:21 --> Router Class Initialized
+ERROR - 2016-04-13 17:23:21 --> 404 Page Not Found --> 
+DEBUG - 2016-04-13 17:33:35 --> Config Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:33:35 --> URI Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Router Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Output Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Security Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Input Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Global POST and COOKIE data sanitized
+DEBUG - 2016-04-13 17:33:35 --> Language Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Language Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Config Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Loader Class Initialized
+DEBUG - 2016-04-13 17:33:35 --> Helper loaded: url_helper
+DEBUG - 2016-04-13 17:33:35 --> Helper loaded: form_helper
+DEBUG - 2016-04-13 17:33:35 --> Database Driver Class Initialized
+ERROR - 2016-04-13 17:33:36 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead C:\xampp\htdocs\batterysacco\system\database\drivers\mysql\mysql_driver.php 92
+DEBUG - 2016-04-13 17:33:36 --> Session Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> Helper loaded: string_helper
+DEBUG - 2016-04-13 17:33:36 --> Encrypt Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> Session routines successfully run
+DEBUG - 2016-04-13 17:33:36 --> Form Validation Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> Pagination Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> Email Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> Controller Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> Individual MX_Controller Initialized
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/auth/models/auth_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/site/models/site_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/admin/models/users_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/admin/models/sections_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/admin/models/file_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/admin/models/admin_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/models/individual_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/models/group_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/models/savings_plan_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/models/loans_plan_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/models/payments_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/models/withdrawals_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/hr/models/personnel_model.php
+DEBUG - 2016-04-13 17:33:36 --> Model Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> Image Lib Class Initialized
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit/about.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit/emergency.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit/jobs.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit/uploads.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/get_payments.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/get_guarantors.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/get_amortization_table.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit/loans.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit/savings.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit/withdrawals.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit/history.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/microfinance/views/individual/edit_individual.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/admin/views/includes/header.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/admin/views/includes/top_navigation.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/admin/views/includes/sidebar.php
+DEBUG - 2016-04-13 17:33:36 --> File loaded: application/modules/admin/views/templates/general_page.php
+DEBUG - 2016-04-13 17:33:36 --> Final output sent to browser
+DEBUG - 2016-04-13 17:33:36 --> Total execution time: 1.1081
+DEBUG - 2016-04-13 17:33:37 --> Config Class Initialized
+DEBUG - 2016-04-13 17:33:37 --> Hooks Class Initialized
+DEBUG - 2016-04-13 17:33:37 --> Utf8 Class Initialized
+DEBUG - 2016-04-13 17:33:37 --> UTF-8 Support Enabled
+DEBUG - 2016-04-13 17:33:37 --> URI Class Initialized
+DEBUG - 2016-04-13 17:33:37 --> Router Class Initialized
+ERROR - 2016-04-13 17:33:37 --> 404 Page Not Found --> 
