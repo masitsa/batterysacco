@@ -321,6 +321,7 @@ class Import_model extends CI_Model
 		$report[$row_count][1] = 'Disbursement date (i.e. YYYY-MM-DD)';
 		$report[$row_count][2] = 'Cheque Amount';
 		$report[$row_count][3] = 'Member Number';
+		$report[$row_count][4] = 'Type';
 		
 		$row_count++;
 		
@@ -504,7 +505,7 @@ class Import_model extends CI_Model
 		$total_columns = count($array[0]);//var_dump($array);die();
 		
 		//if products exist in array
-		if(($total_rows > 0) && ($total_columns == 4))
+		if(($total_rows > 0) && ($total_columns == 5))
 		{
 			$item['modified_by'] = $this->session->userdata('personnel_id');
 			$response = '
@@ -517,6 +518,7 @@ class Import_model extends CI_Model
 						  <th>Member Number</th>
 						  <th>Disbursement Date</th>
 						  <th>Cheque Amount</th>
+						  <th>Type</th>
 						  <th>Comment</th>
 						</tr>
 					  </thead>
@@ -530,6 +532,7 @@ class Import_model extends CI_Model
 				$item['dibursement_date'] = date('Y-m-d',strtotime($array[$r][1]));
 				$item['cheque_amount'] = $array[$r][2];
 				$item['cheque_number'] = $array[$r][0];
+				$item['description'] = $array[$r][4];
 				$item['created'] = date('Y-m-d H:i:s');
 				$item['modified'] = date('Y-m-d H:i:s');
 				$item['created_by'] = $this->session->userdata('personnel_id');
@@ -583,6 +586,7 @@ class Import_model extends CI_Model
 							<td>'.$member_number.'</td>
 							<td>'.$item['dibursement_date'].'</td>
 							<td>'.$item['cheque_amount'].'</td>
+							<td>'.$item['description'].'</td>
 							<td>'.$comment.'</td>
 						</tr> 
 				';

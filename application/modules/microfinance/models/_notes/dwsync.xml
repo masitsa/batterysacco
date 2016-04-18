@@ -15,4 +15,6 @@
 <file name="messaging_model.php" server="omnis.co.ke/batterysacco/" local="131040716249315302" remote="131040643800000000" Dst="-1" />
 <file name="individual_model.php" server="omnis.co.ke/batterysacco/" local="131050316609167750" remote="131050244400000000" Dst="0" />
 <file name="payments_model.php" server="omnis.co.ke/batterysacco/" local="131040754872151802" remote="131040682800000000" Dst="-1" />
+<file name="import_model.php" server="omnis.co.ke/batterysacco/" local="131051100450008181" remote="131051030400000000" Dst="0" />
+<file name="import_model.php" server="ftp.omnis.co.ke/exico/" local="131051100450008181" remote="131051031600000000" Dst="0" />
 </dwsync>
