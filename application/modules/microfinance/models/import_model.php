@@ -309,8 +309,9 @@ class Import_model extends CI_Model
 		$this->excel->addArray ( $report );
 		$this->excel->generateXML ($title);
 	}
-		function import_cheque_disbursed_template()
-		{
+	
+	function import_cheque_disbursed_template()
+	{
 		$this->load->library('Excel');
 		
 		$title = 'Cheque Disbursement Import Template';
@@ -328,7 +329,8 @@ class Import_model extends CI_Model
 		//create the excel document
 		$this->excel->addArray ( $report );
 		$this->excel->generateXML ($title);
-		}
+	}
+		
 	public function import_csv_savings($upload_path)
 	{
 		//load the file model
@@ -1243,6 +1245,171 @@ class Import_model extends CI_Model
 		else
 		{
 			$return['response'] = 'Loans data not found ';
+			$return['check'] = FALSE;
+		}
+		
+		return $return;
+	}
+	
+	/*
+	*	Import withdrawals template
+	*
+	*/
+	function import_withdrawals_template()
+	{
+		$this->load->library('Excel');
+		
+		$title = 'Savings Withdrawals Import Template';
+		$count=1;
+		$row_count=0;
+		$report[$row_count][0] = 'Member Number';
+		$report[$row_count][1] = 'Withdrawal Date (i.e. YYYY-MM-DD)';
+		$report[$row_count][2] = 'Withdrawal Amount';
+		$report[$row_count][3] = 'Cheque Number';
+		$report[$row_count][4] = 'Description';
+		
+		$row_count++;
+		
+		//create the excel document
+		$this->excel->addArray ( $report );
+		$this->excel->generateXML ($title);
+	}
+	
+	public function import_csv_withdrawals($upload_path)
+	{
+		//load the file model
+		$this->load->model('admin/file_model');
+		/*
+			-----------------------------------------------------------------------------------------
+			Upload csv
+			-----------------------------------------------------------------------------------------
+		*/
+		$response = $this->file_model->upload_csv($upload_path, 'import_csv');
+		
+		if($response['check'])
+		{
+			$file_name = $response['file_name'];
+			
+			$array = $this->file_model->get_array_from_csv($upload_path.'/'.$file_name);
+			//var_dump($array); die();
+			$response2 = $this->sort_withdrawal_data($array);
+		
+			if($this->file_model->delete_file($upload_path."\\".$file_name, $upload_path))
+			{
+			}
+			
+			return $response2;
+		}
+		
+		else
+		{
+			$this->session->set_userdata('error_message', $response['error']);
+			return FALSE;
+		}
+	}
+	public function sort_withdrawal_data($array)
+	{
+		//count total rows
+		$total_rows = count($array);
+		$total_columns = count($array[0]);//var_dump($array);die();
+		
+		//if products exist in array
+		if(($total_rows > 0) && ($total_columns == 5))
+		{
+			$items['created_by'] = $items['modified_by'] = $this->session->userdata('personnel_id');
+			$response = '
+				<table class="table table-hover table-bordered ">
+					  <thead>
+						<tr>
+						  <th>#</th>
+						  <th>Withdrawal Date</th>
+						  <th>Member Number</th>
+						  <th>Member Name</th>
+						  <th>Withdrawal Amount</th>
+						  <th>Cheque Number</th>
+						  <th>Description</th>
+						  <th>Comment</th>
+						</tr>
+					  </thead>
+					  <tbody>
+			';
+			$comment = '';
+			
+			//retrieve the data from array
+			for($r = 1; $r < $total_rows; $r++)
+			{
+				$individual_number = $array[$r][0];
+				$items['payment_date'] = date('Y-m-d',strtotime($array[$r][1]));
+				$items['payment_amount'] = $array[$r][2];
+				$items['cheque_number'] = $array[$r][3];
+				$items['description'] = $array[$r][4];
+				$items['payment_type'] = 1;
+				$items['created'] = date('Y-m-d H:i:s');
+				$items['created_by'] = $this->session->userdata('personnel_id');
+				$items['modified_by'] = $this->session->userdata('personnel_id');
+				$comment = '';
+				
+				//get member
+				$where = 'individual.individual_number = \''.$individual_number.'\'';//echo $where; die();
+				$this->db->where($where);
+				$this->db->select('*');
+				$query = $this->db->get('individual');
+				if($query->num_rows() > 0)
+				{
+					$row = $query->row();
+					
+					$individual_id = $row->individual_id;
+					$individual_id = $row->individual_id;
+					$individual_id = $row->individual_id;
+					$member_name = $row->individual_fname.' '.$row->individual_mname.' '.$row->individual_lname;
+					$items['individual_id'] = $individual_id;
+					//$items2['individual_savings_status'] = 1;
+					
+					//save loan repayment
+					if($this->db->insert('savings_payment', $items))
+					{
+						$comment .= '<br/>Withdrawal successfully added to the database';
+						$class = 'success';
+					}
+					
+					else
+					{
+						$comment .= '<br/>Internal error. Could not add withdrawal to the database. Please contact the site administrator';
+						$class = 'warning';
+					}
+				}
+				
+				else
+				{
+					$comment .= '<br/>Member not found. Please ensure that the member has been added '.$individual_number;
+					$member_name = '';
+					$class = 'danger';
+				}
+				
+				$response .= '
+					
+						<tr class="'.$class.'">
+							<td>'.$r.'</td>
+							<td>'.$items['payment_date'].'</td>
+							<td>'.$individual_number.'</td>
+							<td>'.$member_name.'</td>
+							<td>'.$items['payment_amount'].'</td>
+							<td>'.$items['description'].'</td>
+							<td>'.$comment.'</td>
+						</tr> 
+				';
+			}
+			
+			$response .= '</table>';
+			
+			$return['response'] = $response;
+			$return['check'] = TRUE;
+		}
+		
+		//if no products exist
+		else
+		{
+			$return['response'] = 'Withdrawals data not found ';
 			$return['check'] = FALSE;
 		}
 		

@@ -27,19 +27,19 @@
             	<tr>
                     <td></td>
                     <td>Savings balance b/f</td>
-                    <td><?php echo number_format($total_savings, 2);?></td>
                     <td></td>
+                    <td><?php echo number_format($total_savings, 2);?></td>
                 </tr> 
                 
 				<?php
                 //get all savings before date
 				$total_credit = $running_balance = $total_savings;
                 $result = '';
+                $total_debit = $total_credit = 0;
 				
 				if($all_savings_payments->num_rows() > 0)
                 {
                     $count = 1;
-                    $total_debit = 0;
                     $total_payments = 0;
                     foreach ($all_savings_payments->result() as $row2)
                     {
@@ -47,23 +47,30 @@
                         $payment_amount = $row2->payment_amount;
                         $payment_date = $row2->payment_date;
 						$payment_type = $row2->payment_type;
+						$description = $row2->description;
+						$cheque_number = $row2->cheque_number;
 						$debit = $credit= '';
+						if(empty($description))
+						{
+							$description = 'Shares deposit';
+						}
 						if ($payment_type == 1)
 						{
-						$debit = $payment_amount;
+							$debit = number_format($payment_amount, 2);
+							$running_balance -= $debit;
+							$total_credit += $debit;	
 						}
 						else
 						{
-						 $credit = $payment_amount;
+						 	$credit = number_format($payment_amount, 2);
+							$running_balance += $credit;
+							$total_credit += $credit;	
 						}
 						$payments = $this->individual_model->get_loan_payments($individual_id);
-						
-						$running_balance =+ $running_balance;						
+											
 						if($payment_amount > 0)
 						{
 							$count++;
-							$running_balance = +$running_balance;
-							$total_payments = $total_payments + $credit - $debit;
 							if ($running_balance > 0)
 							{
 							}
@@ -71,13 +78,13 @@
 							'
 								<tr>
 									<td>'.date('d M Y',strtotime($payment_date)).' </td>
-									<td>Shares deposit</td>
+									<td>'.$description.' '.$cheque_number.'</td>
 									<td>'.$debit.'</td>
 									<td>'.$credit.'</td>
-									<td>'.number_format($total_payments, 2).'</td>
+									<td>'.number_format($running_balance, 2).'</td>
 								</tr> 
 							';
-							$total_credit = $total_payments;
+							
 						}
 				
 					}	
@@ -90,7 +97,7 @@
                             <th>Total</th>
                             <td></td>
                             <td></td>
-                            <th>'.number_format($total_credit, 2).'</th>
+                            <th>'.number_format(($running_balance), 2).'</th>
                         </tr>
                     ';
                 }

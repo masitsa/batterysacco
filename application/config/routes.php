@@ -593,6 +593,13 @@ $route['import/loan-payments-template'] = 'microfinance/import/import_loan_payme
 $route['import/import-loan-payments'] = 'microfinance/import/do_loan_payments_import';
 
 /*
+*	Loans import Routes
+*/
+$route['import/withdrawals'] = 'microfinance/import/import_withdrawals';
+$route['import/withdrawals-template'] = 'microfinance/import/import_withdrawals_template';
+$route['import/import-withdrawals'] = 'microfinance/import/do_withdrawals_import';
+
+/*
 *	MFI Reports Routes
 */
 $route['mfi-reports/dashboard'] = 'microfinance/reports/dashboard';
