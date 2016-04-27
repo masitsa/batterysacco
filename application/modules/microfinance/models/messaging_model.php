@@ -23,117 +23,71 @@ class Messaging_model extends CI_Model
 		
 		//last transaction date
 		$last_transaction_date = '';
-
-		// savings
-		if($savings_payments->num_rows() > 0)
-        {
-            foreach ($savings_payments->result() as $row2)
-            {
-                $savings_payment_id = $row2->savings_payment_id;
-                $payment_amount = $row2->payment_amount;
-                $payment_date = $row2->payment_date;
-				
-				if(empty($last_transaction_date))
+		if(!empty($individual_phone))
+		{
+			// savings
+			if($savings_payments->num_rows() > 0)
+			{
+				foreach ($savings_payments->result() as $row2)
 				{
-					$last_transaction_date = $payment_date;
-				}
-				
-				else
-				{
-					if($last_transaction_date < $payment_date)
+					$savings_payment_id = $row2->savings_payment_id;
+					$payment_amount = $row2->payment_amount;
+					$payment_date = $row2->payment_date;
+					
+					if(empty($last_transaction_date))
 					{
 						$last_transaction_date = $payment_date;
 					}
-				}
-                
-				if($payment_amount > 0)
-				{
-					$total_savings += $payment_amount;
-				}
-            }
-            
-        }
-
-        // get loan balance 
-		$last_date = '';
-		$payments = $this->individual_model->get_loan_payments($individual_id);
-		$result = '';
-		$count = 1;
-		$total_debit = $running_balance = $outstanding_loan;
-		$total_credit = 0;
-		$total_loans = $individual_loan->num_rows();
-		$loans_count = 0;
-		
-		if($total_loans > 0)
-		{
-			foreach ($individual_loan->result() as $row)
-			{
-				$loans_plan_name = $row->loans_plan_name;
-				$individual_loan_status = $row->individual_loan_status;
-				$individual_loan_id = $row->individual_loan_id;
-				$proposed_amount = $row->proposed_amount;
-				$approved_amount = $row->approved_amount;
-				$disbursed_amount = $row->disbursed_amount;
-				$purpose = $row->purpose;
-				$installment_type_duration = $row->installment_type_duration;
-				$no_of_repayments = $row->no_of_repayments;
-				$interest_rate = $row->interest_rate;
-				$interest_id = $row->interest_id;
-				$grace_period = $row->grace_period;
-				$disbursed_date = date('jS d M Y',strtotime($row->disbursed_date));
-				$disbursed = $row->disbursed_date;
-				$created_by = $row->created_by;
-				$approved_by = $row->approved_by;
-				$disbursed_by = $row->disbursed_by;
-				$loans_count++;
-				
-				//get all loan deductions before date
-				if($payments->num_rows() > 0)
-				{
-					foreach ($payments->result() as $row2)
+					
+					else
 					{
-						$loan_payment_id = $row2->loan_payment_id;
-						$personnel_fname = $row2->personnel_fname;
-						$personnel_onames = $row2->personnel_onames;
-						$payment_amount = $row2->payment_amount;
-						$payment_interest = $row2->payment_interest;
-						$created = date('jS M Y H:i:s',strtotime($row2->created));
-						$payment_date = $row2->payment_date;
-						
-						if(($payment_date <= $disbursed) && ($payment_date > $last_date) && ($payment_amount > 0))
+						if($last_transaction_date < $payment_date)
 						{
-							$count++;
-							$running_balance -= $payment_amount;
-							$total_credit += $payment_amount;
-				
-							if(empty($last_transaction_date))
-							{
-								$last_transaction_date = $payment_date;
-							}
-							
-							else
-							{
-								if($last_transaction_date < $payment_date)
-								{
-									$last_transaction_date = $payment_date;
-								}
-							}
+							$last_transaction_date = $payment_date;
 						}
+					}
+					
+					if($payment_amount > 0)
+					{
+						$total_savings += $payment_amount;
 					}
 				}
 				
-				//display loan if disbursed
-				if($individual_loan_status == 2)
+			}
+	
+			// get loan balance 
+			$last_date = '';
+			$payments = $this->individual_model->get_loan_payments($individual_id);
+			$result = '';
+			$count = 1;
+			$total_debit = $running_balance = $outstanding_loan;
+			$total_credit = 0;
+			$total_loans = $individual_loan->num_rows();
+			$loans_count = 0;
+			
+			if($total_loans > 0)
+			{
+				foreach ($individual_loan->result() as $row)
 				{
-					$running_balance += $disbursed_amount;
-					$total_debit += $disbursed_amount;
+					$loans_plan_name = $row->loans_plan_name;
+					$individual_loan_status = $row->individual_loan_status;
+					$individual_loan_id = $row->individual_loan_id;
+					$proposed_amount = $row->proposed_amount;
+					$approved_amount = $row->approved_amount;
+					$disbursed_amount = $row->disbursed_amount;
+					$purpose = $row->purpose;
+					$installment_type_duration = $row->installment_type_duration;
+					$no_of_repayments = $row->no_of_repayments;
+					$interest_rate = $row->interest_rate;
+					$interest_id = $row->interest_id;
+					$grace_period = $row->grace_period;
+					$disbursed_date = date('jS d M Y',strtotime($row->disbursed_date));
+					$disbursed = $row->disbursed_date;
+					$created_by = $row->created_by;
+					$approved_by = $row->approved_by;
+					$disbursed_by = $row->disbursed_by;
+					$loans_count++;
 					
-					$count++;
-				}
-				
-				//check if there are any more payments
-				if($total_loans == $loans_count)
-				{
 					//get all loan deductions before date
 					if($payments->num_rows() > 0)
 					{
@@ -147,12 +101,12 @@ class Messaging_model extends CI_Model
 							$created = date('jS M Y H:i:s',strtotime($row2->created));
 							$payment_date = $row2->payment_date;
 							
-							if(($payment_date > $disbursed) && ($payment_amount > 0))
+							if(($payment_date <= $disbursed) && ($payment_date > $last_date) && ($payment_amount > 0))
 							{
 								$count++;
 								$running_balance -= $payment_amount;
 								$total_credit += $payment_amount;
-				
+					
 								if(empty($last_transaction_date))
 								{
 									$last_transaction_date = $payment_date;
@@ -168,54 +122,111 @@ class Messaging_model extends CI_Model
 							}
 						}
 					}
-				}
-				$last_date = $disbursed;
-			}
-		}
-		
-		else
-		{
-			//get all loan deductions before date
-			if($payments->num_rows() > 0)
-			{
-				foreach ($payments->result() as $row2)
-				{
-					$loan_payment_id = $row2->loan_payment_id;
-					$personnel_fname = $row2->personnel_fname;
-					$personnel_onames = $row2->personnel_onames;
-					$payment_amount = $row2->payment_amount;
-					$payment_interest = $row2->payment_interest;
-					$created = date('jS M Y H:i:s',strtotime($row2->created));
-					$payment_date = $row2->payment_date;
-					$running_balance -= $payment_amount;
 					
-					$count++;
-					if($payment_amount > 0)
+					//display loan if disbursed
+					if($individual_loan_status == 2)
 					{
-						$total_credit += $payment_amount;
-				
-						if(empty($last_transaction_date))
-						{
-							$last_transaction_date = $payment_date;
-						}
+						$running_balance += $disbursed_amount;
+						$total_debit += $disbursed_amount;
 						
-						else
+						$count++;
+					}
+					
+					//check if there are any more payments
+					if($total_loans == $loans_count)
+					{
+						//get all loan deductions before date
+						if($payments->num_rows() > 0)
 						{
-							if($last_transaction_date < $payment_date)
+							foreach ($payments->result() as $row2)
+							{
+								$loan_payment_id = $row2->loan_payment_id;
+								$personnel_fname = $row2->personnel_fname;
+								$personnel_onames = $row2->personnel_onames;
+								$payment_amount = $row2->payment_amount;
+								$payment_interest = $row2->payment_interest;
+								$created = date('jS M Y H:i:s',strtotime($row2->created));
+								$payment_date = $row2->payment_date;
+								
+								if(($payment_date > $disbursed) && ($payment_amount > 0))
+								{
+									$count++;
+									$running_balance -= $payment_amount;
+									$total_credit += $payment_amount;
+					
+									if(empty($last_transaction_date))
+									{
+										$last_transaction_date = $payment_date;
+									}
+									
+									else
+									{
+										if($last_transaction_date < $payment_date)
+										{
+											$last_transaction_date = $payment_date;
+										}
+									}
+								}
+							}
+						}
+					}
+					$last_date = $disbursed;
+				}
+			}
+			
+			else
+			{
+				//get all loan deductions before date
+				if($payments->num_rows() > 0)
+				{
+					foreach ($payments->result() as $row2)
+					{
+						$loan_payment_id = $row2->loan_payment_id;
+						$personnel_fname = $row2->personnel_fname;
+						$personnel_onames = $row2->personnel_onames;
+						$payment_amount = $row2->payment_amount;
+						$payment_interest = $row2->payment_interest;
+						$created = date('jS M Y H:i:s',strtotime($row2->created));
+						$payment_date = $row2->payment_date;
+						$running_balance -= $payment_amount;
+						
+						$count++;
+						if($payment_amount > 0)
+						{
+							$total_credit += $payment_amount;
+					
+							if(empty($last_transaction_date))
 							{
 								$last_transaction_date = $payment_date;
+							}
+							
+							else
+							{
+								if($last_transaction_date < $payment_date)
+								{
+									$last_transaction_date = $payment_date;
+								}
 							}
 						}
 					}
 				}
 			}
+			$loan_balance = number_format($total_debit - $total_credit, 0);
+			
+			$base_url = str_replace("http://", "", site_url());
+			$base_url = str_replace("https://", "", $base_url);
+			
+			$contacts = $this->site_model->get_contacts();
+			
+			$message = 'Hello '.$individual_fname.'. Total Savings KES. '.number_format($total_savings).' Loan balance KES. '.$loan_balance.' as at '.date('jS M Y',strtotime($last_transaction_date)).'. View full statement at '.$base_url.'member-login '.$contacts['company_name'];
+			$response = $this->sms($individual_phone,$message);
+			return $response;
 		}
-		$loan_balance = number_format($total_debit - $total_credit, 0);
-
 		
-		$message = 'Hello '.$individual_fname.'. Total Savings KES. '.number_format($total_savings).' Loan balance KES. '.$loan_balance.' as at '.date('jS M Y',strtotime($last_transaction_date)).'. For any queries,contact Battery Sacco. Thank you.';
-		$response = $this->sms($individual_phone,$message);
-		return $response;
+		else
+		{
+			return 'Member phone number not found';
+		}
 	}
 
 	public function sms($phone,$message)
@@ -268,13 +279,30 @@ class Messaging_model extends CI_Model
 				{
 					$number = $result->number;
 					$status = $result->status;
+					$messageId = $result->messageId;
+					$cost = $result->cost;
 					// status is either "Success" or "error message"
 					// echo " Number: " .$result->number;
 					// echo " Status: " .$result->status;
 					// echo " MessageId: " .$result->messageId;
 					// echo " Cost: "   .$result->cost."\n";
 				}
-				return $status.' sent to '.$number;
+				$save_data = array(
+					"sms_result_message" => $actual_message,
+					"sms_result_phone" => $phone_number,
+					"message_id" => $messageId,
+					"sms_result_cost" => $cost,
+					"created" => date('Y-m-d H:i:s')
+				);
+					
+				if($this->db->insert('sms_result', $save_data))
+				{
+					return $status.' sent to '.$number;
+				}
+				else
+				{
+					return $status.' sent to '.$number.'. Response not saved';
+				}
 			}
 			
 			catch(AfricasTalkingGatewayException $e)

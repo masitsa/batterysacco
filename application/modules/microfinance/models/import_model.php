@@ -1415,5 +1415,163 @@ class Import_model extends CI_Model
 		
 		return $return;
 	}
+	/*
+	*	Import individuals template
+	*
+	*/
+	function import_individual_contacts_template()
+	{
+		$this->load->library('Excel');
+		
+		$title = 'Individual Members Contact Import Template';
+		$count=1;
+		$row_count=0;
+		
+		$report[$row_count][0] = 'Member Number';
+		$report[$row_count][1] = 'Primary Phone Number';
+		$report[$row_count][2] = 'Alternate Phone Number';
+		$report[$row_count][3] = 'Primary Email';
+		$report[$row_count][4] = 'Other Email';
+		
+		$row_count++;
+		
+		//create the excel document
+		$this->excel->addArray ( $report );
+		$this->excel->generateXML ($title);
+	}
+	
+	public function import_csv_individual_contacts($upload_path)
+	{
+		//load the file model
+		$this->load->model('admin/file_model');
+		/*
+			-----------------------------------------------------------------------------------------
+			Upload csv
+			-----------------------------------------------------------------------------------------
+		*/
+		$response = $this->file_model->upload_csv($upload_path, 'import_csv');
+		
+		if($response['check'])
+		{
+			$file_name = $response['file_name'];
+			
+			$array = $this->file_model->get_array_from_csv($upload_path.'/'.$file_name);
+			//var_dump($array); die();
+			$response2 = $this->sort_individual_contact_data($array);
+		
+			if($this->file_model->delete_file($upload_path."\\".$file_name, $upload_path))
+			{
+			}
+			
+			return $response2;
+		}
+		
+		else
+		{
+			$this->session->set_userdata('error_message', $response['error']);
+			return FALSE;
+		}
+	}
+	public function sort_individual_contact_data($array)
+	{
+		//count total rows
+		$total_rows = count($array);
+		$total_columns = count($array[0]);//var_dump($array);die();
+		
+		//if products exist in array
+		if(($total_rows > 0) && ($total_columns == 5))
+		{
+			$items['modified_by'] = $this->session->userdata('personnel_id');
+			$response = '
+				<table class="table table-hover table-bordered ">
+					  <thead>
+						<tr>
+						  <th>#</th>
+						  <th>Member Number</th>
+						  <th>Primary Phone</th>
+						  <th>Secondary Phone</th>
+						  <th>Primary Email</th>
+						  <th>Secondary Email</th>
+						  <th>Comment</th>
+						</tr>
+					  </thead>
+					  <tbody>
+			';
+			
+			//retrieve the data from array
+			for($r = 1; $r < $total_rows; $r++)
+			{
+				$current_individual_number = $array[$r][0];
+				$items['individual_phone'] = $array[$r][1];
+				$items['individual_phone2'] = $array[$r][2];
+				$items['individual_email'] = strtolower($array[$r][3]);
+				$items['individual_email2'] = strtolower($array[$r][4]);
+				$items['modified_by'] = $this->session->userdata('personnel_id');
+				$comment = '';
+				
+				if(!empty($current_individual_number))
+				{
+					// check if the number already exists
+					if($this->check_current_number_exisits($current_individual_number))
+					{
+						// number exisits
+						//update individual in the db
+						$this->db->where('individual_number', $current_individual_number);
+						if($this->db->update('individual', $items))
+						{
+							$comment .= '<br/>Member successfully added to the database';
+							$class = 'success';
+						}
+						
+						else
+						{
+							$comment .= '<br/>Internal error. Could not add member to the database. Please contact the site administrator';
+							$class = 'warning';
+						}
+					}
+					else
+					{
+						//number exists
+						$comment .= '<br/>Duplicate member number entered';
+						$class = 'danger';
+					}
+				}
+				
+				else
+				{
+					$comment .= '<br/>Not saved ensure you have a member number entered';
+					$class = 'danger';
+				}
+				
+				
+				$response .= '
+					
+						<tr class="'.$class.'">
+							<td>'.$r.'</td>
+							<td>'.$current_individual_number.'</td>
+							<td>'.$items['individual_phone'].'</td>
+							<td>'.$items['individual_phone2'].'</td>
+							<td>'.$items['individual_email'].'</td>
+							<td>'.$items['individual_email2'].'</td>
+							<td>'.$comment.'</td>
+						</tr> 
+				';
+			}
+			
+			$response .= '</table>';
+			
+			$return['response'] = $response;
+			$return['check'] = TRUE;
+		}
+		
+		//if no products exist
+		else
+		{
+			$return['response'] = 'Member data not found ';
+			$return['check'] = FALSE;
+		}
+		
+		return $return;
+	}
 }
 ?>

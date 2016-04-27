@@ -46,8 +46,15 @@ $route['404_override'] = '';
 /*
 *	Auth Routes
 */
+$route['member-login'] = 'auth/login_member';
+$route['member-logout'] = 'auth/logout_member';
+$route['member-activation'] = 'auth/activate_member';
+$route['member-dashboard'] = 'microfinance/member/individual_account';
 $route['login'] = 'auth/login_user';
 $route['logout-admin'] = 'auth/logout';
+$route['member-login-mobile'] = 'mobile/auth/login_member';
+$route['mobile-member-login'] = 'mobile/auth/login_member';
+$route['mobile-member-dashboard'] = 'mobile/member/individual_account';
 
 /*
 *	Admin Routes
@@ -347,6 +354,7 @@ $route['microfinance/add-loan-payment/(:num)'] = 'microfinance/payments/add_loan
 
 // withdrawal routes
 $route['microfinance/add-individual-withdrawal/(:num)'] = 'microfinance/withdrawals/add_individual_withdrawal/$1';
+$route['microfinance/delete-individual-withdrawal/(:num)/(:num)'] = 'microfinance/withdrawals/delete_individual_withdrawal/$1/$2';
 
 /*
 *	Microfinance Routes

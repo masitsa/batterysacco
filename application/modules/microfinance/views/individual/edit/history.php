@@ -4,11 +4,22 @@
         <h2 class="panel-title">Savings Account Statement</h2>
     </header>
     <div class="panel-body">
+    	<?php
+        if(isset($member_account) && ($member_account == TRUE))
+		{
+			?>
+    		<a href="<?php echo site_url().'microfinance/member/print_statement';?>" target="_blank" class="btn btn-primary">Print</a>
+            <?php
+		}
+		
+		else
+		{
+		?>
     	<?php if(!isset($print)){?>
     	<a href="<?php echo site_url().'microfinance/individual/print_statement/'.$individual_id;?>" target="_blank" class="btn btn-primary">Print</a>
     	<a href="<?php echo site_url().'microfinance/individual/download_statement/'.$individual_id;?>" class="btn btn-danger">Download</a>
     	<a href="<?php echo site_url().'send-statement/'.$individual_id;?>" class="btn btn-success">SMS Statement</a>
-        <?php }?>
+        <?php }}?>
     	<!-- Adding Errors -->
     	<table class="table table-striped table-hover table-condensed">
             <thead>
@@ -57,14 +68,14 @@
 						if ($payment_type == 1)
 						{
 							$debit = number_format($payment_amount, 2);
-							$running_balance -= $debit;
-							$total_credit += $debit;	
+							$running_balance -= $payment_amount;
+							$total_debit += $payment_amount;	
 						}
 						else
 						{
 						 	$credit = number_format($payment_amount, 2);
-							$running_balance += $credit;
-							$total_credit += $credit;	
+							$running_balance += $payment_amount;
+							$total_credit += $payment_amount;	
 						}
 						$payments = $this->individual_model->get_loan_payments($individual_id);
 											
@@ -209,7 +220,7 @@
 						'
 							<tr>
 								<td>'.date('d M Y',strtotime($disbursement_date)).' </td>
-								<td>Disbursed cheque'.$cheque_number.'</td>
+								<td>Disbursed cheque '.$cheque_number.'</td>
 								<td>'.number_format($cheque_amount, 2).'</td>
 								<td></td>
 								<td></td>

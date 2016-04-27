@@ -113,5 +113,124 @@ class Auth_model extends CI_Model
 	public function get_personnel_roles($personnel_id)
 	{
 	}
+	
+	/*
+	*	Validate a individual's login request
+	*
+	*/
+	public function validate_individual()
+	{
+		//select the individual by username from the database
+		$this->db->select('*');
+		$this->db->where(
+			array(
+				'individual_username' => $this->input->post('individual_username'), 
+				'individual_status' => 1, 
+				'individual_password' => md5($this->input->post('individual_password'))
+			)
+		);
+		
+		$query = $this->db->get('individual');
+		
+		//if individual exists
+		if ($query->num_rows() > 0)
+		{
+			$result = $query->result();
+
+			// get an active branch
+
+			//$branch_details = $this->get_active_branch();
+
+			//create individual's login session
+			$newdata = array(
+                   'member_login_status'     	=> TRUE,
+                   'first_name'     			=> $result[0]->individual_surname,
+                   'username'     				=> $result[0]->individual_username,
+                   'individual_id'  			=> $result[0]->individual_id
+               );
+
+			$this->session->set_userdata($newdata);
+			
+			//update individual's last login date time
+			$this->update_individual_login($result[0]->individual_id);
+			return TRUE;
+		}
+		
+		//if individual doesn't exist
+		else
+		{
+			return FALSE;
+		}
+	}
+	
+	/*
+	*	Update individual's last login date
+	*
+	*/
+	private function update_individual_login($individual_id)
+	{
+		$data['last_login'] = date('Y-m-d H:i:s');
+		$this->db->where('individual_id', $individual_id);
+		$this->db->update('individual', $data); 
+	}
+	
+	/*
+	*	Activate an individual
+	*
+	*/
+	public function activate_individual()
+	{
+		$individual_number = $this->input->post('individual_number');
+		$individual_username = $this->input->post('individual_username');
+		$individual_email = $this->input->post('individual_email');
+		$individual_phone = $this->input->post('individual_phone');
+		
+		//create individual's password
+		$password = $this->auth_model->create_password($individual_number);
+		
+		//update other details
+		$update_data = array(
+				'individual_username' => $individual_username,
+				'individual_phone' => $individual_phone,
+				'individual_status' => 1, 
+				'individual_password' => md5($password)
+			);
+		
+		if(!empty($individual_email))
+		{
+			$update_data['individual_email'] = $individual_email;
+		}
+		//select the individual by username from the database
+		$this->db->where('individual_number', $individual_number);
+		if($this->db->update('individual', $update_data))
+		{
+			//SMS password to member
+			if($this->messaging_model->sms($individual_phone, 'Your account has been activated. Please log in at www.omnis.co.ke/batterysacco/member-login with your username and this password: '.$password))
+			{
+				return TRUE;
+			}
+			
+			else
+			{
+				return FALSE;
+			}
+		}
+		
+		else
+		{
+			return FALSE;
+		}
+	}
+	
+	/*
+	*	Create an individual's password
+	*
+	*/
+	public function create_password($individual_number)
+	{
+		$new_password = substr(md5(date('Y-m-d H:i:s').$individual_number), 0, 8);
+		
+		return $new_password;
+	}
 }
 ?>

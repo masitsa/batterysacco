@@ -3,10 +3,10 @@
 require_once "./application/modules/microfinance/controllers/microfinance.php";
 		
 // include autoloader
-require_once "./application/libraries/dompdf/autoload.inc.php";
+//require_once "./application/libraries/dompdf/autoload.inc.php";
 	
 // reference the Dompdf namespace
-use Dompdf\Dompdf;
+//use Dompdf\Dompdf;
 
 class Individual extends microfinance 
 {
@@ -270,6 +270,8 @@ class Individual extends microfinance
 	
 	public function print_statement($individual_id)
 	{
+		$v_data['all_savings_payments'] = $this->individual_model->get_all_savings_payments($individual_id);
+		$v_data['disbursments'] = $this->individual_model->get_disbursments($individual_id);
 		$v_data['individual'] = $this->individual_model->get_individual($individual_id);
 		$v_data['savings_payments'] = $this->individual_model->get_savings_payments($individual_id);
 		$v_data['individual_loan'] = $this->individual_model->get_individual_loans($individual_id);
@@ -280,6 +282,8 @@ class Individual extends microfinance
 	public function download_statement($individual_id)
 	{
 		//$this->load->helper(array('dompdf', 'pdfFilePath'));
+		$v_data['all_savings_payments'] = $this->individual_model->get_all_savings_payments($individual_id);
+		$v_data['disbursments'] = $this->individual_model->get_disbursments($individual_id);
 		$v_data['individual'] = $this->individual_model->get_individual($individual_id);
 		$v_data['savings_payments'] = $this->individual_model->get_savings_payments($individual_id);
 		$v_data['individual_loan'] = $this->individual_model->get_individual_loans($individual_id);
@@ -299,7 +303,7 @@ class Individual extends microfinance
         $pdfFilePath = $individual_fname." ".$individual_mname." ".$individual_lname." ".$individual_number." statement.pdf";
 		
 		// instantiate and use the dompdf class
-		$dompdf = new Dompdf();
+		/*$dompdf = new Dompdf();
 		$dompdf->loadHtml($html);
 		
 		// (Optional) Setup the paper size and orientation
@@ -309,19 +313,13 @@ class Individual extends microfinance
 		$dompdf->render();
 		
 		// Output the generated PDF to Browser
-		$dompdf->stream();
+		$dompdf->stream();*/
  
         //load mPDF library
-        /*$this->load->library('dompdf');
- 
-       //generate the PDF from the given html
-        $this->dompdf->pdf->WriteHTML($html);
- 
-        //download it.
-        $this->dompdf->pdf->Output($pdfFilePath, "D");
+        $this->load->library('mpdf');
 		
-		 $html = $this->load->view('individual/print_statement', $v_data, true);
-     pdf_create($html, 'filename');*/
+		$this->mpdf->WriteHTML($html);
+		$this->mpdf->Output();
 	}
 	
 	public function download_all_statements()

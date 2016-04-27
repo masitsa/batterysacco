@@ -119,7 +119,7 @@ $today = date('jS F Y H:i a',strtotime(date("Y:m:d h:i:s")));
         </div>
         
     	<div class="row">
-        	<div class="col-md-10">
+        	<div class="col-md-12">
             	
                 <?php echo $this->load->view('edit/history', $v_data, TRUE);?>
                 

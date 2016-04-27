@@ -956,6 +956,32 @@ class CI_Form_validation {
 		
 		return $query->num_rows() === 0;
     }
+	
+	// --------------------------------------------------------------------
+
+	/**
+	 * Exists in the database
+	 *
+	 * @access	public
+	 * @param	string
+	 * @param	field
+	 * @return	bool
+	 */
+	public function exists($str, $field)
+	{
+		list($table, $field)=explode('.', $field);
+		$query = $this->CI->db->limit(1)->get_where($table, array($field => $str));
+		
+		if($query->num_rows() > 0)
+		{
+			return TRUE;
+		}
+		
+		else
+		{
+			return FALSE;
+		}
+    }
 
 	// --------------------------------------------------------------------
 

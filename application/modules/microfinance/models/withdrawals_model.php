@@ -145,7 +145,7 @@ class Withdrawals_model extends CI_Model {
 	}
 	public function delete_individual_withdrawal($savings_withdrawal_id)
 	{	
-		if($this->db->delete('savings_withdrawal', array('savings_withdrawal_id' => $savings_withdrawal_id)))
+		if($this->db->delete('savings_payment', array('savings_payment_id' => $savings_withdrawal_id)))
 		{
 			return TRUE;
 		}

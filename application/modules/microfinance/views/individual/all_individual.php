@@ -223,7 +223,10 @@
 								}
 								?>
                             	<div class="row" style="margin-bottom:20px;">
-                                    <div class="col-lg-2 col-lg-offset-6">
+                                    <div class="col-lg-3 col-lg-offset-3">
+                                        <a href="<?php echo site_url();?>microfinance/messaging/send_bulk_statements" class="btn btn-sm btn-warning pull-right">Send Bulk SMS Statements</a>
+                                    </div>
+                                    <div class="col-lg-2">
                                         <a href="<?php echo site_url();?>microfinance/individual/download_all_statements" class="btn btn-sm btn-danger pull-right">Download Statement</a>
                                     </div>
                                     <div class="col-lg-2">

@@ -444,5 +444,79 @@ class Import extends microfinance
 		$data['content'] = $this->load->view('import/import_withdrawals', $v_data, true);
 		$this->load->view('admin/templates/general_page', $data);
 	}
+    
+	/*
+	*
+	*	import individual
+	*
+	*/
+	function import_individual_contacts()
+	{
+		$v_data['title'] = $data['title'] = $this->site_model->display_page_title();
+		
+		$data['content'] = $this->load->view('import/import_individual_contacts', $v_data, true);
+		$this->load->view('admin/templates/general_page', $data);
+	}
+    
+	/*
+	*
+	*	import individual template
+	*
+	*/
+	function import_individual_contacts_template()
+	{
+		//export products template in excel 
+		$this->import_model->import_individual_contacts_template();
+	}
+    
+	/*
+	*
+	*	Do the actual individual import
+	*
+	*/
+	function do_individual_contacts_import()
+	{
+		if(isset($_FILES['import_csv']))
+		{
+			if(is_uploaded_file($_FILES['import_csv']['tmp_name']))
+			{
+				//import products from excel 
+				$response = $this->import_model->import_csv_individual_contacts($this->csv_path);
+				
+				if($response == FALSE)
+				{
+					$v_data['import_response_error'] = 'Something went wrong. Please try again.';
+				}
+				
+				else
+				{
+					if($response['check'])
+					{
+						$v_data['import_response'] = $response['response'];
+					}
+					
+					else
+					{
+						$v_data['import_response_error'] = $response['response'];
+					}
+				}
+			}
+			
+			else
+			{
+				$v_data['import_response_error'] = 'Please select a file to import.';
+			}
+		}
+		
+		else
+		{
+			$v_data['import_response_error'] = 'Please select a file to import.';
+		}
+		
+		$v_data['title'] = $data['title'] = $this->site_model->display_page_title();
+		
+		$data['content'] = $this->load->view('import/import_individual_contacts', $v_data, true);
+		$this->load->view('admin/templates/general_page', $data);
+	}
 }
 ?>
