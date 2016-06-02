@@ -45,7 +45,7 @@ class Withdrawals_model extends CI_Model {
 	public function add_individual_withdrawal($individual_id)
 	{
 		$withdrawal_type_id = $this->input->post('withdrawal_type_id');
-		$items['payment_type'] = $this->input->post('withdrawal_type_id');
+		$items['payment_type'] = 1;
 		//$items['document_number'] = $this->input->post('document_number');
 		$items['payment_date'] = $this->input->post('withdrawal_date');
 		$items['payment_amount'] = $this->input->post('withdrawal_amount');
@@ -57,7 +57,6 @@ class Withdrawals_model extends CI_Model {
 		
 		if($this->db->insert('savings_payment', $items))
 		{
-			
 			if ($withdrawal_type_id == 1)
 			{
 				//$loan_items['document_number'] = $this->input->post('document_number');

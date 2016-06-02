@@ -322,7 +322,8 @@ class Import_model extends CI_Model
 		$report[$row_count][1] = 'Disbursement date (i.e. YYYY-MM-DD)';
 		$report[$row_count][2] = 'Cheque Amount';
 		$report[$row_count][3] = 'Member Number';
-		$report[$row_count][4] = 'Type';
+		$report[$row_count][4] = 'Description';
+		$report[$row_count][5] = 'Type (Loan Disbursment, Shares Refund)';
 		
 		$row_count++;
 		
@@ -520,6 +521,7 @@ class Import_model extends CI_Model
 						  <th>Member Number</th>
 						  <th>Disbursement Date</th>
 						  <th>Cheque Amount</th>
+						  <th>Description</th>
 						  <th>Type</th>
 						  <th>Comment</th>
 						</tr>
@@ -535,6 +537,7 @@ class Import_model extends CI_Model
 				$item['cheque_amount'] = $array[$r][2];
 				$item['cheque_number'] = $array[$r][0];
 				$item['description'] = $array[$r][4];
+				$type = strtolower(ucwords($array[$r][5]));
 				$item['created'] = date('Y-m-d H:i:s');
 				$item['modified'] = date('Y-m-d H:i:s');
 				$item['created_by'] = $this->session->userdata('personnel_id');
@@ -558,16 +561,52 @@ class Import_model extends CI_Model
 					$individual_lname = $row->individual_lname;
 					
 					$member_name = $individual_lname.' '.$individual_fname.' '.$individual_mname;
-					if($this->db->insert('disbursement', $item))
+					
+					if($type == 'Loan Disbursment')
 					{
-						$comment .= '<br/>Cheque successfully added to the database';
-						$class = 'success';
+						if($this->db->insert('disbursement', $item))
+						{
+							$comment .= '<br/>Loan disbursment cheque successfully added to the database';
+							$class = 'success';
+						}
+						
+						else
+						{
+							$comment .= '<br/>Internal error. Could not add cheque to the database. Please contact the site administrator';
+							$class = 'warning';
+						}
+					}
+					
+					else if($type == 'Shares Refund')
+					{
+						$items_shares['payment_type'] = 1;
+						$items_shares['payment_date'] = $item['dibursement_date'];
+						$items_shares['payment_amount'] = $item['cheque_amount'];
+						$items_shares['description'] = $item['description'];
+						$items_shares['created'] = date('Y-m-d H:i:s');
+						$items_shares['created_by'] = $this->session->userdata('personnel_id');
+						$items_shares['modified_by'] = $this->session->userdata('personnel_id');
+						$items_shares['branch_code'] = $this->session->userdata('branch_code');
+						$items_shares['individual_id'] = $individual_id;
+						
+						if($this->db->insert('savings_payment', $items_shares))
+						{
+							$comment .= '<br/>Shares refund cheque successfully added to the database';
+							$class = 'success';
+						}
+						
+						else
+						{
+							$comment .= '<br/>Internal error. Could not add cheque to the database. Please contact the site administrator';
+							$class = 'warning';
+						}
 					}
 					
 					else
 					{
-						$comment .= '<br/>Internal error. Could not add cheque to the database. Please contact the site administrator';
-						$class = 'warning';
+						$comment .= '<br/>Disbursment type not found. Please specify either Loan Disbursment or Shares Refund';
+						$member_name = '';
+						$class = 'danger';
 					}
 				}
 				
