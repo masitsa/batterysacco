@@ -994,71 +994,16 @@ class Import_model extends CI_Model
 	{
 		$this->load->library('Excel');
 		
-		//get active loans
-		/*$this->db->where('individual_loan.individual_loan_status = 2 AND individual_loan.individual_id = individual.individual_id');
-		$this->db->select('individual_loan.individual_loan_id, individual.individual_number, individual.individual_fname, individual.individual_mname, individual.individual_lname, individual_loan.disbursed_amount, individual_loan.disbursed_date');
-		$query = $this->db->get('individual_loan, individual');*/
-		
 		$title = 'Member Loans Payments Import Template';
 		$count=1;
 		$row_count=0;
-		/*$report[$row_count][0] = 'Member Number';
-		$report[$row_count][1] = 'Member Name';
-		$report[$row_count][2] = 'Disbursed amount';
-		$report[$row_count][3] = 'Disbursed Date';
-		$report[$row_count][4] = 'Payment Date (i.e. YYYY-MM-DD)';
-		$report[$row_count][5] = 'Payment Amount';
-		$report[$row_count][6] = 'Payment Interest';*/
 		$report[$row_count][0] = 'Member Number';
 		$report[$row_count][1] = 'Payment Date (i.e. YYYY-MM-DD)';
-		$report[$row_count][2] = 'Payment Amount';
-		$report[$row_count][3] = 'Payment Interest';
-		$report[$row_count][4] = 'Balance BF';
-		$report[$row_count][5] = 'Savings';
-		$report[$row_count][6] = 'Savings BF';
+		$report[$row_count][2] = 'Loan Repayment Amount';
+		$report[$row_count][3] = 'Loan Repayment Interest';
+		$report[$row_count][4] = 'Savings';
 		
 		$row_count++;
-		
-		/*if($query->num_rows() > 0)
-		{
-			foreach($query->result() as $row)
-			{
-				$individual_loan_id = $row->individual_loan_id;
-				$individual_number = $row->individual_number;
-				$individual_fname = $row->individual_fname;
-				$individual_mname = $row->individual_mname;
-				$individual_lname = $row->individual_lname;
-				$disbursed_amount = $row->disbursed_amount;
-				$disbursed_date = date('jS M Y',strtotime($row->disbursed_date));
-				
-				//check loan payments
-				$this->db->where('loan_payment.individual_loan_id = '.$individual_loan_id);
-				$this->db->select('SUM(loan_payment.payment_amount) AS total_payments');
-				$query2 = $this->db->get('loan_payment');
-				$total_payments = 0;
-				
-				if($query2->num_rows() > 0)
-				{
-					$row2 = $query2->row();
-					$total_payments = $row2->total_payments;
-				}
-				
-				//display only if payments are incomplete
-				if($disbursed_amount > $total_payments)
-				{
-					$report[$row_count][0] = $individual_number;
-					$report[$row_count][1] = $individual_fname.' '.$individual_mname.' '.$individual_lname;
-					$report[$row_count][2] = $disbursed_amount;
-					$report[$row_count][3] = $disbursed_date;
-					$row_count++;
-				}
-			}
-		}
-		
-		else
-		{
-			$report[$row_count][0] = 'No active loans found. Please ensure you have added loans and disbursed them.';
-		}*/
 		
 		//create the excel document
 		$this->excel->addArray ( $report );
@@ -1104,7 +1049,7 @@ class Import_model extends CI_Model
 		$total_columns = count($array[0]);//var_dump($array);die();
 		
 		//if products exist in array
-		if(($total_rows > 0) && ($total_columns == 7))
+		if(($total_rows > 0) && ($total_columns == 5))
 		{
 			$items['modified_by'] = $this->session->userdata('personnel_id');
 			$response = '
@@ -1115,11 +1060,9 @@ class Import_model extends CI_Model
 						  <th>Payment Date</th>
 						  <th>Member Number</th>
 						  <th>Member Name</th>
-						  <th>Balance BF</th>
-						  <th>Payment Amount</th>
-						  <th>Interest Amount</th>
+						  <th>Loan Repayment Amount</th>
+						  <th>Loan Repayment Interest Amount</th>
 						  <th>Savings Amount</th>
-						  <th>Savings BF</th>
 						  <th>Comment</th>
 						</tr>
 					  </thead>
@@ -1134,9 +1077,7 @@ class Import_model extends CI_Model
 				$items['payment_date'] = $items2['payment_date'] = date('Y-m-d',strtotime($array[$r][1]));
 				$items['payment_amount'] = $array[$r][2];
 				$items['payment_interest'] = $array[$r][3];
-				$balance_bf = $array[$r][4];
-				$items2['payment_amount'] = $array[$r][5];
-				$savings_bf = $array[$r][6];
+				$items2['payment_amount'] = $array[$r][4];
 				$items['created'] = $items2['created'] = date('Y-m-d H:i:s');
 				$items['created_by'] = $items2['created_by'] = $this->session->userdata('personnel_id');
 				$items['modified_by'] = $items2['modified_by'] = $this->session->userdata('personnel_id');
@@ -1163,32 +1104,6 @@ class Import_model extends CI_Model
 					{
 						$comment .= '<br/>Loan payment successfully added to the database';
 						$class = 'success';
-						
-						/*if($items['payment_date'] == '2015-01-30')
-						{
-							//save balance bf
-							if(!empty($balance_bf) && ($balance_bf > 0))
-							{
-								$items3['outstanding_loan'] = $balance_bf;
-							}
-							
-							if(!empty($savings_bf) && ($savings_bf > 0))
-							{
-								$items3['total_savings'] = $savings_bf;
-							}
-							
-							$this->db->where('individual_id', $individual_id);
-							if($this->db->update('individual', $items3))
-							{
-								$comment .= '<br/>Balance bf added successfully';
-							}
-							
-							else
-							{
-								$comment .= '<br/>Balance bf not added';
-								$class = 'warning';
-							}
-						}*/
 					}
 					
 					else
@@ -1225,11 +1140,9 @@ class Import_model extends CI_Model
 							<td>'.$items['payment_date'].'</td>
 							<td>'.$individual_number.'</td>
 							<td>'.$member_name.'</td>
-							<td>'.$balance_bf.'</td>
 							<td>'.$items['payment_amount'].'</td>
 							<td>'.$items['payment_interest'].'</td>
 							<td>'.$items2['payment_amount'].'</td>
-							<td>'.$savings_bf.'</td>
 							<td>'.$comment.'</td>
 						</tr> 
 				';
@@ -1532,7 +1445,7 @@ class Import_model extends CI_Model
 					else
 					{
 						//number exists
-						$comment .= '<br/>Duplicate member number entered';
+						$comment .= '<br/>Member not found';
 						$class = 'danger';
 					}
 				}
