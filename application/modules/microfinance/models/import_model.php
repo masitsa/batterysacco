@@ -508,7 +508,7 @@ class Import_model extends CI_Model
 		$total_columns = count($array[0]);//var_dump($array);die();
 		
 		//if products exist in array
-		if(($total_rows > 0) && ($total_columns == 5))
+		if(($total_rows > 0) && ($total_columns == 6))
 		{
 			$item['modified_by'] = $this->session->userdata('personnel_id');
 			$response = '
@@ -537,7 +537,7 @@ class Import_model extends CI_Model
 				$item['cheque_amount'] = $array[$r][2];
 				$item['cheque_number'] = $array[$r][0];
 				$item['description'] = $array[$r][4];
-				$type = strtolower(ucwords($array[$r][5]));
+				$type = ucwords(strtolower($array[$r][5]));
 				$item['created'] = date('Y-m-d H:i:s');
 				$item['modified'] = date('Y-m-d H:i:s');
 				$item['created_by'] = $this->session->userdata('personnel_id');
@@ -564,16 +564,28 @@ class Import_model extends CI_Model
 					
 					if($type == 'Loan Disbursment')
 					{
-						if($this->db->insert('disbursement', $item))
+						$this->db->where('cheque_number', $item['cheque_number']);
+						$query = $this->db->get('disbursement');
+						
+						if($query->num_rows == 0)
 						{
-							$comment .= '<br/>Loan disbursment cheque successfully added to the database';
-							$class = 'success';
+							if($this->db->insert('disbursement', $item))
+							{
+								$comment .= '<br/>Loan disbursment cheque successfully added to the database';
+								$class = 'success';
+							}
+							
+							else
+							{
+								$comment .= '<br/>Internal error. Could not add cheque to the database. Please contact the site administrator';
+								$class = 'warning';
+							}
 						}
 						
 						else
 						{
-							$comment .= '<br/>Internal error. Could not add cheque to the database. Please contact the site administrator';
-							$class = 'warning';
+							$comment .= '<br/>Unable to add disbursment. Duplicate cheque number '.$item['cheque_number'];
+							$class = 'danger';
 						}
 					}
 					
@@ -589,16 +601,28 @@ class Import_model extends CI_Model
 						$items_shares['branch_code'] = $this->session->userdata('branch_code');
 						$items_shares['individual_id'] = $individual_id;
 						
-						if($this->db->insert('savings_payment', $items_shares))
+						$this->db->where('cheque_number', $item['cheque_number']);
+						$query = $this->db->get('savings_payment');
+						
+						if($query->num_rows == 0)
 						{
-							$comment .= '<br/>Shares refund cheque successfully added to the database';
-							$class = 'success';
+							if($this->db->insert('savings_payment', $items_shares))
+							{
+								$comment .= '<br/>Shares refund cheque successfully added to the database';
+								$class = 'success';
+							}
+							
+							else
+							{
+								$comment .= '<br/>Internal error. Could not add cheque to the database. Please contact the site administrator';
+								$class = 'warning';
+							}
 						}
 						
 						else
 						{
-							$comment .= '<br/>Internal error. Could not add cheque to the database. Please contact the site administrator';
-							$class = 'warning';
+							$comment .= '<br/>Unable to add disbursment. Duplicate cheque number '.$item['cheque_number'];
+							$class = 'danger';
 						}
 					}
 					
@@ -628,6 +652,7 @@ class Import_model extends CI_Model
 							<td>'.$item['dibursement_date'].'</td>
 							<td>'.$item['cheque_amount'].'</td>
 							<td>'.$item['description'].'</td>
+							<td>'.$type.'</td>
 							<td>'.$comment.'</td>
 						</tr> 
 				';
