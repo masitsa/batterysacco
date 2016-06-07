@@ -1,207 +1,46 @@
 <?php
-
-class Reports_model extends CI_Model 
-{
-	public function get_total_members($month = NULL, $year = NULL)
-	{
-		/*if($month == NULL)
+		
+		$result = '';
+		
+		//if users exist display them
+		if ($query->num_rows() > 0)
 		{
-			$date = date('Y-m-d');
-		}
-		if($where == NULL)
-		{
-			$where = 'individual.created = \''.$date.'\'';
-		}
-		
-		else
-		{
-			$where .= ' AND individual.created = \''.$date.'\' ';
-		}*/
-		
-		$this->db->select('COUNT(individual.individual_id) AS individuals_total');
-		//$this->db->where($where);
-		$query = $this->db->get('individual');
-		
-		$result = $query->row();
-		
-		return $result->individuals_total;
-	}
-	
-	public function month_interest_payments($month = NULL, $year = NULL)
-	{
-		if($month == NULL)
-		{
-			$month = date('m');
-			$year = date('Y');
-		}
-		//select the user by email from the database
-		$this->db->select('SUM(payment_interest) AS total_amount');
-		$this->db->where('MONTH(payment_date) = \''.$month.'\' AND YEAR(payment_date) = \''.$year.'\'');
-		$this->db->from('loan_payment');
-		$query = $this->db->get();
-		
-		$result = $query->row();
-		
-		return $result->total_amount;
-	}
-	
-	public function month_loan_payments($month = NULL, $year = NULL)
-	{
-		if($month == NULL)
-		{
-			$month = date('m');
-			$year = date('Y');
-		}
-		//select the user by email from the database
-		$this->db->select('SUM(payment_amount) AS total_amount');
-		$this->db->where('MONTH(payment_date) = \''.$month.'\' AND YEAR(payment_date) = \''.$year.'\'');
-		$this->db->from('loan_payment');
-		$query = $this->db->get();
-		
-		$result = $query->row();
-		
-		return $result->total_amount;
-	}
-	
-	public function month_savings_payments($month = NULL, $year = NULL)
-	{
-		if($month == NULL)
-		{
-			$month = date('m');
-			$year = date('Y');
-		}
-		//select the user by email from the database
-		$this->db->select('SUM(payment_amount) AS total_amount');
-		$this->db->where('MONTH(payment_date) = \''.$month.'\' AND YEAR(payment_date) = \''.$year.'\'');
-		$this->db->from('savings_payment');
-		$query = $this->db->get();
-		
-		$result = $query->row();
-		
-		return $result->total_amount;
-	}
-	
-	public function get_loan_type_total($loan_type_id, $date = NULL)
-	{
-		if($date == NULL)
-		{
-			$date = date('Y-m-d');
-		}
-		
-		$table = 'individual_loan';
-		
-		$where = 'individual_loan.individual_loan_status = '.$loan_type_id;
-		
-		/*$visit_search = $this->session->userdata('all_departments_search');
-		if(!empty($visit_search))
-		{
-			$where = 'individual_loans.individual_loan_status = '.$loan_type_id.' '. $visit_search;
-			$table .= ', visit';
-		}*/
-		
-		$this->db->select('COUNT(individual_loan_id) AS service_total');
-		$this->db->where($where);
-		$query = $this->db->get($table);
-		
-		$result = $query->row();
-		$total = $result->service_total;;
-		
-		if($total == NULL)
-		{
-			$total = 0;
-		}
-		
-		return $total;
-	}
-	
-	public function get_all_loan_types()
-	{
-		$this->db->select('*');
-		$this->db->order_by('loan_type_name');
-		$query = $this->db->get('loan_type');
-		
-		return $query;
-	}
-	
-	public function get_all_applications($date = NULL)
-	{
-		if($date == NULL)
-		{
-			$date = date('Y-m-d');
-		}
-		$where = 'individual.individual_id = individual_loan.individual_id AND individual_loan.individual_loan_status <> 2';
-		
-		$this->db->select('individual_loan.*, individual.*');
-		$this->db->where($where);
-		$query = $this->db->get('individual_loan, individual');
-		
-		return $query;
-	}
-	
-	public function get_all_sessions($date = NULL)
-	{
-		if($date == NULL)
-		{
-			$date = date('Y-m-d');
-		}
-		$where = 'personnel.personnel_id = session.personnel_id AND session.session_name_id = session_name.session_name_id AND session_time LIKE \''.$date.'%\'';
-		
-		$this->db->select('session_name_name, session_time, personnel_fname, personnel_onames');
-		$this->db->where($where);
-		$this->db->order_by('session_time', 'DESC');
-		$query = $this->db->get('session, session_name, personnel');
-		
-		return $query;
-	}
-
-	public function export_member_balances()
-	{
-		$this->load->library('excel');
-		
-		//get all transactions
-		$individual_balance_search = $this->session->userdata('individual_balance_search');
-		//$where = '(visit_type_id <> 2 OR visit_type_id <> 1) AND individual_delete = '.$delete;
-		$where = 'individual.individual_id > 0 AND individual_type.individual_type_id = individual.individual_type_id';
-		if(!empty($individual_balance_search))
-		{
-			$where .= $individual_balance_search;
-		}
-		
-		$table = 'individual,individual_type';
-		
-		
-		$this->db->where($where);
-		$this->db->order_by('individual.individual_lname', 'ASC');
-		$this->db->select('*');
-		$individual_query = $this->db->get($table);
-		
-		$title = 'Individual Member Balances';
-		
-		if($individual_query->num_rows() > 0)
-		{
-			$count_items = 0;
-			/*
-				-----------------------------------------------------------------------------------------
-				Document Header
-				-----------------------------------------------------------------------------------------
-			*/
-
-			$row_count = 0;
-			$report[$row_count][0] = '#';
-			$report[$row_count][1] = 'Member Number';
-			$report[$row_count][2] = 'Member Type';
-			$report[$row_count][3] = 'Member Name';
-			$report[$row_count][4] = 'Share Balance';
-			$report[$row_count][5] = 'Last Share Contribution Date';
-			$report[$row_count][6] = 'Loan Balance';
-			$report[$row_count][6] = 'Last Repayment Date';
-			//get & display all services
+			$count_individual = $page;
 			
-			//display all patient data in the leftmost columns
-			foreach($individual_query->result() as $row)
+			$result .= 
+			'
+			<table class="table table-bordered table-striped table-condensed">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Member number</th>
+						<th>Member Type</th>
+						<th>Member Name</th>
+						<th>Share Balance</th>
+						<th>Last Share Contribution Date</th>
+						<th>Loan Balance</th>
+						<th>Last Repayment Date</th>
+
+					</tr>
+				</thead>
+				  <tbody>
+				  
+			';
+			
+			//get all administrators
+			$administrators = $this->users_model->get_active_users();
+			if ($administrators->num_rows() > 0)
 			{
-				$count_items++;
-				$row_count++;
+				$admins = $administrators->result();
+			}
+			
+			else
+			{
+				$admins = NULL;
+			}
+			
+			foreach ($query->result() as $row)
+			{
 				$individual_id = $row->individual_id;
 				$individual_fname = $row->individual_fname;
 				$individual_mname = $row->individual_mname;
@@ -224,7 +63,29 @@ class Reports_model extends CI_Model
 				$individual_loan = $this->individual_model->get_individual_loans($individual_id);
 
 				
+				//status
+				if($individual_status == 1)
+				{
+					$status = 'Active';
+				}
+				else
+				{
+					$status = 'Disabled';
+				}
 				
+				//create deactivated status display
+				if($individual_status == 0)
+				{
+					$status = '<span class="label label-default">Deactivated</span>';
+					$button = '<a class="btn btn-info" href="'.site_url().'microfinance/activate-individual/'.$individual_id.'" onclick="return confirm(\'Do you want to activate '.$individual_name.'?\');" title="Activate '.$individual_name.'"><i class="fa fa-thumbs-up"></i></a>';
+				}
+				//create activated status display
+				else if($individual_status == 1)
+				{
+					$status = '<span class="label label-success">Active</span>';
+					$button = '<a class="btn btn-default" href="'.site_url().'microfinance/deactivate-individual/'.$individual_id.'" onclick="return confirm(\'Do you want to deactivate '.$individual_name.'?\');" title="Deactivate '.$individual_name.'"><i class="fa fa-thumbs-down"></i></a>';
+				}
+
 
 
 				// savings
@@ -261,6 +122,7 @@ class Reports_model extends CI_Model
 				$last_date = '';
 				$payments = $this->individual_model->get_loan_payments($individual_id);
 			
+				$counter = 1;
 				$total_debit = $running_balance = $outstanding_loan;
 				$total_credit = 0;
 				$total_loans = $individual_loan->num_rows();
@@ -304,6 +166,7 @@ class Reports_model extends CI_Model
 								
 								if(($payment_date <= $disbursed) && ($payment_date > $last_date) && ($payment_amount > 0))
 								{
+									$counter++;
 									$running_balance -= $payment_amount;
 									$total_credit += $payment_amount;
 						
@@ -410,24 +273,70 @@ class Reports_model extends CI_Model
 				}
 				$loan_balance = number_format($total_debit - $total_credit, 0);
 				
-				
-				//display the patient data
-				$report[$row_count][0] = $count_items;
-				$report[$row_count][1] = $individual_number;
-				$report[$row_count][2] = $individual_type_name;
-				$report[$row_count][3] = $individual_name;
-				$report[$row_count][4] = number_format($total_savings,0);
-				$report[$row_count][5] = $last_transaction_date;
-				$report[$row_count][6] = $loan_balance;
-				$report[$row_count][7] = $last_date;
-					
-				
-				
+				$count_individual++;
+				$result .= 
+				'
+					<tr>
+						<td>'.$count_individual.'</td>
+						<td>'.$individual_number.'</td>
+						<td>'.$individual_type_name.'</td>
+						<td>'.$individual_lname.' '.$individual_fname.' '.$individual_mname.'</td>
+						<td>'.number_format($total_savings,0).'</td>
+						<td>'.$last_transaction_date.'</td>
+						<td>'.$loan_balance.'</td>
+						<td>'.$last_date.'</td>
+					</tr> 
+				';
 			}
+			
+			$result .= 
+			'
+						  </tbody>
+						</table>
+			';
 		}
 		
-		//create the excel document
-		$this->excel->addArray ( $report );
-		$this->excel->generateXML ($title);
-	}
-}
+		else
+		{
+			$result .= "There are no individuals";
+		}
+?>
+
+
+<section class="panel">
+	<header class="panel-heading">						
+		<h2 class="panel-title"><?php echo $title;?></h2>
+	</header>
+	<div class="panel-body">
+    	<?php
+        $success = $this->session->userdata('success_message');
+
+		if(!empty($success))
+		{
+			echo '<div class="alert alert-success"> <strong>Success!</strong> '.$success.' </div>';
+			$this->session->unset_userdata('success_message');
+		}
+		
+		$error = $this->session->userdata('error_message');
+		
+		if(!empty($error))
+		{
+			echo '<div class="alert alert-danger"> <strong>Oh snap!</strong> '.$error.' </div>';
+			$this->session->unset_userdata('error_message');
+		}
+		?>
+    	<div class="row " style="margin-bottom:20px;">
+            <div class="col-lg-2 col-lg-offset-8 pull-right">
+                <a href="<?php echo site_url();?>export-individual-balances" class="btn btn-sm btn-success pull-right">Export Loan Balances</a>
+            </div>
+        </div>
+		<div class="table-responsive">
+        	
+			<?php echo $result;?>
+	
+        </div>
+	</div>
+    <div class="panel-footer">
+    	<?php if(isset($links)){echo $links;}?>
+    </div>
+</section>

@@ -11,6 +11,7 @@ class Reports extends microfinance
 		
 		$this->csv_path = realpath(APPPATH . '../assets/csv');
 		$this->load->model('reports_model');
+		$this->load->model('individual_model');
 	}
 	
 	public function dashboard()
@@ -150,5 +151,96 @@ class Reports extends microfinance
 	public function loans()
 	{
 		
+	}
+	public function member_balances()
+	{
+
+		$individual_search = $this->session->userdata('individual_search');
+		//$where = '(visit_type_id <> 2 OR visit_type_id <> 1) AND individual_delete = '.$delete;
+		$where = 'individual.individual_id > 0 AND individual_type.individual_type_id = individual.individual_type_id';
+		if(!empty($individual_search))
+		{
+			$where .= $individual_search;
+		}
+		
+		$table = 'individual,individual_type';
+		//pagination
+		$segment = 3;
+		$this->load->library('pagination');
+		$config['base_url'] = site_url().'mfi-reports/member-balances';
+		$config['total_rows'] = $this->users_model->count_items($table, $where);
+		$config['uri_segment'] = $segment;
+		$config['per_page'] = 20;
+		$config['num_links'] = 5;
+		
+		$config['full_tag_open'] = '<ul class="pagination pull-right">';
+		$config['full_tag_close'] = '</ul>';
+		
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		
+		$config['next_tag_open'] = '<li>';
+		$config['next_link'] = 'Next';
+		$config['next_tag_close'] = '</span>';
+		
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_link'] = 'Prev';
+		$config['prev_tag_close'] = '</li>';
+		
+		$config['cur_tag_open'] = '<li class="active"><a href="#"';
+		$config['cur_tag_close'] = '</a></li>';
+		
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$this->pagination->initialize($config);
+		
+		$page = ($this->uri->segment($segment)) ? $this->uri->segment($segment) : 0;
+        $v_data["links"] = $this->pagination->create_links();
+		$query = $this->individual_model->get_all_individual($table, $where, $config["per_page"], $page, $order='individual_lname', $order_method = 'ASC');
+		
+		//change of order method 
+		if($order_method == 'DESC')
+		{
+			$order_method = 'ASC';
+		}
+		
+		else
+		{
+			$order_method = 'DESC';
+		}
+		
+		$data['title'] = 'Members';
+		
+		$search_title = $this->session->userdata('individual_search_title');
+			
+		if(!empty($search_title))
+		{
+			$v_data['title'] = 'Members filtered by :'.$search_title;
+		}
+		
+		else
+		{
+			$v_data['title'] = $data['title'];
+		}
+		
+		$v_data['order'] = $order;
+		$v_data['order_method'] = $order_method;
+		$v_data['query'] = $query;
+		$v_data['all_individual'] = $this->individual_model->all_individual();
+		$v_data['individual_types'] = $this->individual_model->get_individual_types();
+			
+		$v_data['page'] = $page;
+		$data['content'] = $this->load->view('reports/loan_balances', $v_data, true);
+		
+		$this->load->view('admin/templates/general_page', $data);
+		
+	}
+
+	public function export_balances()
+	{
+		$this->reports_model->export_member_balances();
 	}
 }

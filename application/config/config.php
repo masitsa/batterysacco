@@ -16,8 +16,8 @@
 | environments.
 |
 */
-#$config['base_url'] = 'http://localhost/batterysacco/';
-$config['base_url'] = 'http://omnis.co.ke/exico/';
+$config['base_url'] = 'http://localhost/batterysacco/';
+// $config['base_url'] = 'http://omnis.co.ke/exico/';
 #$config['base_url'] = 'http://159.203.78.242/';
 
 /*

@@ -617,3 +617,9 @@ $route['mfi-reports/dashboard'] = 'microfinance/reports/dashboard';
 *	MFI Messaging Routes
 */
 $route['send-statement/(:num)'] = 'microfinance/messaging/send_statement/$1';
+
+
+
+$route['mfi-reports/member-balances'] = 'microfinance/reports/member_balances';
+$route['mfi-reports/member-balances/(:num)'] = 'microfinance/reports/member_balances/$1';
+$route['export-individual-balances'] = 'microfinance/reports/export_balances';

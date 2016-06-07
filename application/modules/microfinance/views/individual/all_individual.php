@@ -51,6 +51,7 @@
 				$individual_number = $row->individual_number;
 				$individual_name = $individual_fname.' '.$individual_lname;
 				
+				
 				//status
 				if($individual_status == 1)
 				{
