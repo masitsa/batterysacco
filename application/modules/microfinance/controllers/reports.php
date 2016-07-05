@@ -154,7 +154,6 @@ class Reports extends microfinance
 	}
 	public function member_balances()
 	{
-
 		$individual_search = $this->session->userdata('individual_search');
 		//$where = '(visit_type_id <> 2 OR visit_type_id <> 1) AND individual_delete = '.$delete;
 		$where = 'individual.individual_id > 0 AND individual_type.individual_type_id = individual.individual_type_id';
@@ -190,7 +189,7 @@ class Reports extends microfinance
 		$config['prev_link'] = 'Prev';
 		$config['prev_tag_close'] = '</li>';
 		
-		$config['cur_tag_open'] = '<li class="active"><a href="#"';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
 		$config['cur_tag_close'] = '</a></li>';
 		
 		$config['num_tag_open'] = '<li>';

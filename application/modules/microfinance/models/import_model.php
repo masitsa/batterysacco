@@ -94,6 +94,7 @@ class Import_model extends CI_Model
 						  <th>Member Number</th>
 						  <th>First Name</th>
 						  <th>Other Names</th>
+						  <th>Phone</th>
 						  <th>Loan Balance</th>
 						  <th>Savings Balance</th>
 						  <th>Comment</th>
@@ -201,15 +202,35 @@ class Import_model extends CI_Model
 				$items['current_individual_number'] = $current_individual_number;*/
 				if(!empty($current_individual_number))
 				{
+					//echo $current_individual_number;die();
 					// check if the number already exists
 					if($this->check_current_number_exisits($current_individual_number))
 					{
+						//echo 'exists';die();
 						//number exists
-						$comment .= '<br/>Duplicate member number entered';
-						$class = 'danger';
+						/*$comment .= '<br/>Duplicate member number entered';
+						$class = 'danger';*/
+						$items_individual['individual_phone'] = $array[$r][10];
+						$items_individual['individual_phone2'] = $array[$r][11];
+						$items_individual['individual_email'] = $array[$r][12];
+						$items_individual['individual_email2'] = $array[$r][13];
+						$this->db->where('individual_number', $current_individual_number);
+						if($this->db->update('individual', $items_individual))
+						{
+							$comment .= '<br/>Member successfully updated';
+							$class = 'success';
+						}
+						
+						else
+						{
+							$comment .= '<br/>Internal error. Could not udpate member. Please contact the site administrator';
+							$class = 'danger';
+						}
+						
 					}
 					else
 					{
+						//echo 'doesnt exist';die();
 						// number does not exisit
 						//save product in the db
 						if($this->db->insert('individual', $items))
@@ -240,6 +261,7 @@ class Import_model extends CI_Model
 							<td>'.$items['individual_number'].'</td>
 							<td>'.$items['individual_fname'].'</td>
 							<td>'.$items['individual_mname'].' '.$items['individual_lname'].'</td>
+							<td>'.$items['individual_phone'].'</td>
 							<td>'.$items['outstanding_loan'].'</td>
 							<td>'.$items['total_savings'].'</td>
 							<td>'.$comment.'</td>

@@ -6,8 +6,6 @@ class Messaging_model extends CI_Model
 	public function send_statement($individual_id)
 	{
 		$individual_data = $this->individual_model->get_individual($individual_id);
-		$savings_payments = $this->individual_model->get_savings_payments($individual_id);
-		$individual_loan = $this->individual_model->get_individual_loans($individual_id);
 
 		$row = $individual_data->row();
 		$outstanding_loan = $row->outstanding_loan;
@@ -18,215 +16,60 @@ class Messaging_model extends CI_Model
 		$individual_email = $row->individual_email;
 		$individual_phone = $row->individual_phone;
 		$individual_number = $row->individual_number;
-		$outstanding_loan = $row->outstanding_loan;
-		$total_savings = $row->total_savings;
-		
-		//last transaction date
-		$last_transaction_date = '';
-		if(!empty($individual_phone))
-		{
-			// savings
-			if($savings_payments->num_rows() > 0)
-			{
-				foreach ($savings_payments->result() as $row2)
-				{
-					$savings_payment_id = $row2->savings_payment_id;
-					$payment_amount = $row2->payment_amount;
-					$payment_date = $row2->payment_date;
-					
-					if(empty($last_transaction_date))
-					{
-						$last_transaction_date = $payment_date;
-					}
-					
-					else
-					{
-						if($last_transaction_date < $payment_date)
-						{
-							$last_transaction_date = $payment_date;
-						}
-					}
-					
-					if($payment_amount > 0)
-					{
-						$total_savings += $payment_amount;
-					}
-				}
 				
-			}
-	
-			// get loan balance 
-			$last_date = '';
-			$payments = $this->individual_model->get_loan_payments($individual_id);
-			$result = '';
-			$count = 1;
-			$total_debit = $running_balance = $outstanding_loan;
-			$total_credit = 0;
-			$total_loans = $individual_loan->num_rows();
-			$loans_count = 0;
+		$individual_balance_data = $this->reports_model->get_individual_balance_data($individual_id, $total_savings, $outstanding_loan);
 			
-			if($total_loans > 0)
+		$base_url = str_replace("http://", "", site_url());
+		$base_url = str_replace("https://", "", $base_url);
+		
+		$contacts = $this->site_model->get_contacts();
+		$savings_balance = $individual_balance_data['running_balance_savings'];
+		$last_savings_date = $individual_balance_data['last_transaction_date'];
+		$loan_balance = $individual_balance_data['running_balance_loans'];
+		$last_loans_date = $individual_balance_data['last_loan_payment_date'];
+		$message = 'Hello '.$individual_fname.'.';
+		
+		//savings
+		$dates = explode("-",$last_savings_date);
+		$total = count($dates);
+		if($total > 0)
+		{
+			$last = $total-1;
+			$year = $dates[0];
+			if($year > 2015)
 			{
-				foreach ($individual_loan->result() as $row)
-				{
-					$loans_plan_name = $row->loans_plan_name;
-					$individual_loan_status = $row->individual_loan_status;
-					$individual_loan_id = $row->individual_loan_id;
-					$proposed_amount = $row->proposed_amount;
-					$approved_amount = $row->approved_amount;
-					$disbursed_amount = $row->disbursed_amount;
-					$purpose = $row->purpose;
-					$installment_type_duration = $row->installment_type_duration;
-					$no_of_repayments = $row->no_of_repayments;
-					$interest_rate = $row->interest_rate;
-					$interest_id = $row->interest_id;
-					$grace_period = $row->grace_period;
-					$disbursed_date = date('jS d M Y',strtotime($row->disbursed_date));
-					$disbursed = $row->disbursed_date;
-					$created_by = $row->created_by;
-					$approved_by = $row->approved_by;
-					$disbursed_by = $row->disbursed_by;
-					$loans_count++;
-					
-					//get all loan deductions before date
-					if($payments->num_rows() > 0)
-					{
-						foreach ($payments->result() as $row2)
-						{
-							$loan_payment_id = $row2->loan_payment_id;
-							$personnel_fname = $row2->personnel_fname;
-							$personnel_onames = $row2->personnel_onames;
-							$payment_amount = $row2->payment_amount;
-							$payment_interest = $row2->payment_interest;
-							$created = date('jS M Y H:i:s',strtotime($row2->created));
-							$payment_date = $row2->payment_date;
-							
-							if(($payment_date <= $disbursed) && ($payment_date > $last_date) && ($payment_amount > 0))
-							{
-								$count++;
-								$running_balance -= $payment_amount;
-								$total_credit += $payment_amount;
-					
-								if(empty($last_transaction_date))
-								{
-									$last_transaction_date = $payment_date;
-								}
-								
-								else
-								{
-									if($last_transaction_date < $payment_date)
-									{
-										$last_transaction_date = $payment_date;
-									}
-								}
-							}
-						}
-					}
-					
-					//display loan if disbursed
-					if($individual_loan_status == 2)
-					{
-						$running_balance += $disbursed_amount;
-						$total_debit += $disbursed_amount;
-						
-						$count++;
-					}
-					
-					//check if there are any more payments
-					if($total_loans == $loans_count)
-					{
-						//get all loan deductions before date
-						if($payments->num_rows() > 0)
-						{
-							foreach ($payments->result() as $row2)
-							{
-								$loan_payment_id = $row2->loan_payment_id;
-								$personnel_fname = $row2->personnel_fname;
-								$personnel_onames = $row2->personnel_onames;
-								$payment_amount = $row2->payment_amount;
-								$payment_interest = $row2->payment_interest;
-								$created = date('jS M Y H:i:s',strtotime($row2->created));
-								$payment_date = $row2->payment_date;
-								
-								if(($payment_date > $disbursed) && ($payment_amount > 0))
-								{
-									$count++;
-									$running_balance -= $payment_amount;
-									$total_credit += $payment_amount;
-					
-									if(empty($last_transaction_date))
-									{
-										$last_transaction_date = $payment_date;
-									}
-									
-									else
-									{
-										if($last_transaction_date < $payment_date)
-										{
-											$last_transaction_date = $payment_date;
-										}
-									}
-								}
-							}
-						}
-					}
-					$last_date = $disbursed;
-				}
+				$message .= ' Total Savings KES. '.number_format($savings_balance,0).' as at '.date('M Y',strtotime($last_savings_date));
 			}
-			
-			else
+		}
+		
+		//loans
+		$dates = explode(" ",$last_loans_date);
+		$total = count($dates);
+		if($total > 0)
+		{
+			$last = $total-1;
+			$year = $dates[$last];
+			if($year > 2015)
 			{
-				//get all loan deductions before date
-				if($payments->num_rows() > 0)
-				{
-					foreach ($payments->result() as $row2)
-					{
-						$loan_payment_id = $row2->loan_payment_id;
-						$personnel_fname = $row2->personnel_fname;
-						$personnel_onames = $row2->personnel_onames;
-						$payment_amount = $row2->payment_amount;
-						$payment_interest = $row2->payment_interest;
-						$created = date('jS M Y H:i:s',strtotime($row2->created));
-						$payment_date = $row2->payment_date;
-						$running_balance -= $payment_amount;
-						
-						$count++;
-						if($payment_amount > 0)
-						{
-							$total_credit += $payment_amount;
-					
-							if(empty($last_transaction_date))
-							{
-								$last_transaction_date = $payment_date;
-							}
-							
-							else
-							{
-								if($last_transaction_date < $payment_date)
-								{
-									$last_transaction_date = $payment_date;
-								}
-							}
-						}
-					}
-				}
+				$message .= ' Loan balance KES. '.number_format($loan_balance,0).' as at '.$last_loans_date;
 			}
-			$loan_balance = number_format($total_debit - $total_credit, 0);
-			
-			$base_url = str_replace("http://", "", site_url());
-			$base_url = str_replace("https://", "", $base_url);
-			
-			$contacts = $this->site_model->get_contacts();
-			
-			$message = 'Hello '.$individual_fname.'. Total Savings KES. '.number_format($total_savings).' Loan balance KES. '.$loan_balance.' as at '.date('jS M Y',strtotime($last_transaction_date)).'. View full statement at '.$base_url.'member-login '.$contacts['company_name'];
+		}
+		
+		//message signature
+		if($message != 'Hello '.$individual_fname.'.')
+		{
+			$message .= ' View full statement at '.$base_url.'member-login For enquiries contact moses@serenityservices.co.ke '.$contacts['company_name'];
 			$response = $this->sms($individual_phone,$message);
-			return $response;
 		}
 		
 		else
 		{
-			return 'Member phone number not found';
+			$response = 'Member phone number not found';
 		}
+		
+		//$message = 'Hello '.$individual_fname.'. Total Savings KES. '.number_format($individual_balance_data['running_balance_savings'],0).' as at '.date('d M Y',strtotime($individual_balance_data['last_transaction_date'])).' Loan balance KES. '.number_format($individual_balance_data['running_balance_loans'],0).' as at '.$individual_balance_data['last_loan_payment_date'].'. View full statement at '.$base_url.'member-login. For enquiries contact info@serenityservices.co.ke '.$contacts['company_name'];
+		//$response = $this->sms($individual_phone,$message);
+		return $response;
 	}
 
 	public function sms($phone,$message)

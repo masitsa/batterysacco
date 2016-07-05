@@ -194,7 +194,7 @@ class Reports_model extends CI_Model
 			$report[$row_count][4] = 'Share Balance';
 			$report[$row_count][5] = 'Last Share Contribution Date';
 			$report[$row_count][6] = 'Loan Balance';
-			$report[$row_count][6] = 'Last Repayment Date';
+			$report[$row_count][7] = 'Last Repayment Date';
 			//get & display all services
 			
 			//display all patient data in the leftmost columns
@@ -215,164 +215,138 @@ class Reports_model extends CI_Model
 				$individual_name = $individual_fname.' '.$individual_lname;
 				$outstanding_loan = $row->outstanding_loan;
 				$total_savings = $row->total_savings;
+				$individual_balance_data = $this->reports_model->get_individual_balance_data($individual_id, $total_savings, $outstanding_loan);
 				
-				//last transaction date
-				$last_transaction_date = '';
+				//display the patient data
+				$report[$row_count][0] = $count_items;
+				$report[$row_count][1] = $individual_number;
+				$report[$row_count][2] = $individual_type_name;
+				$report[$row_count][3] = $individual_name;
+				$report[$row_count][4] = number_format($individual_balance_data['running_balance_savings'],0);
+				$report[$row_count][5] = date('d M Y',strtotime($individual_balance_data['last_transaction_date']));
+				$report[$row_count][6] = number_format($individual_balance_data['running_balance_loans'],0);
+				$report[$row_count][7] = $individual_balance_data['last_loan_payment_date'];
+			}
+		}
+		
+		//create the excel document
+		$this->excel->addArray ( $report );
+		$this->excel->generateXML ($title);
+	}
+	
+	public function get_individual_balance_data($individual_id, $total_savings, $outstanding_loan)
+	{
+		//last transaction date
+		$last_transaction_date = '';
 
-				$individual_data = $this->individual_model->get_individual($individual_id);
-				$savings_payments = $this->individual_model->get_savings_payments($individual_id);
-				$individual_loan = $this->individual_model->get_individual_loans($individual_id);
-
-				
-				
-
-
-				// savings
-				if($savings_payments->num_rows() > 0)
+		$individual_data = $this->individual_model->get_individual($individual_id);
+		$all_savings_payments = $this->individual_model->get_savings_payments($individual_id);
+		$individual_loan = $this->individual_model->get_individual_loans($individual_id);
+		$payments = $this->individual_model->get_loan_payments($individual_id);
+		$disbursments = $this->individual_model->get_disbursments($individual_id);
+		
+		//get all savings before date
+		$total_credit = $running_balance = $total_savings;
+		$total_debit = $total_credit = $running_balance_savings = 0;
+		
+		if($all_savings_payments->num_rows() > 0)
+		{
+			$count = 1;
+			$total_payments = 0;
+			foreach ($all_savings_payments->result() as $row2)
+			{
+				$savings_payment_id = $row2->savings_payment_id;
+				$payment_amount = $row2->payment_amount;
+				$payment_date = $row2->payment_date;
+				$payment_type = $row2->payment_type;
+				$description = $row2->description;
+				$cheque_number = $row2->cheque_number;
+				$last_transaction_date = $payment_date;
+				$debit = $credit= '';
+				if(empty($description))
 				{
-					foreach ($savings_payments->result() as $row2)
+					$description = 'Shares deposit';
+				}
+				if ($payment_type == 1)
+				{
+					$debit = number_format($payment_amount, 2);
+					$running_balance -= $payment_amount;
+					$total_debit += $payment_amount;	
+				}
+				else
+				{
+					$credit = number_format($payment_amount, 2);
+					$running_balance += $payment_amount;
+					$total_credit += $payment_amount;	
+				}
+									
+				if($payment_amount > 0)
+				{
+					$count++;
+					if ($running_balance > 0)
 					{
-						$savings_payment_id = $row2->savings_payment_id;
+					}
+				}
+		
+			}
+			$running_balance_savings = $running_balance;
+		}
+		
+		/*****************
+		**	Loan Balance
+		*****************/
+		$last_loan_payment_date = '';
+		$last_date = '';
+		$count = 1;
+		$total_debit = $running_balance = $outstanding_loan;
+		$total_credit = $running_balance_loans = 0;
+		$total_disbursments = $disbursments->num_rows();
+		$disbursments_count = 0;
+		
+		if($total_disbursments > 0)
+		{
+			foreach ($disbursments->result() as $row)
+			{
+				$disbursement_date = $row->dibursement_date;
+				$cheque_amount = $row->cheque_amount;
+				$cheque_number = $row->cheque_number;
+				//$disbursed_date = date('jS d M Y',strtotime($disbursement_date));
+				$disbursments_count++;
+				
+				//get all loan deductions before date
+				if($payments->num_rows() > 0)
+				{
+					foreach ($payments->result() as $row2)
+					{
+						$loan_payment_id = $row2->loan_payment_id;
+						$personnel_fname = $row2->personnel_fname;
+						$personnel_onames = $row2->personnel_onames;
 						$payment_amount = $row2->payment_amount;
+						$payment_interest = $row2->payment_interest;
+						$created = date('jS M Y H:i:s',strtotime($row2->created));
 						$payment_date = $row2->payment_date;
 						
-						if(empty($last_transaction_date))
+						if(($payment_date <= $disbursement_date) && ($payment_date > $last_date) && ($payment_amount > 0))
 						{
-							$last_transaction_date = $payment_date;
-						}
-						
-						else
-						{
-							if($last_transaction_date < $payment_date)
-							{
-								$last_transaction_date = $payment_date;
-							}
-						}
-						
-						if($payment_amount > 0)
-						{
-							$total_savings += $payment_amount;
+							$last_loan_payment_date = date('d M Y',strtotime($payment_date));
+							$count++;
+							$running_balance -= $payment_amount;
+							$total_credit += $payment_amount;
 						}
 					}
-					
 				}
 				
-				// get loan balance 
-				$last_date = '';
-				$payments = $this->individual_model->get_loan_payments($individual_id);
-			
-				$total_debit = $running_balance = $outstanding_loan;
-				$total_credit = 0;
-				$total_loans = $individual_loan->num_rows();
-				$loans_count = 0;
-				
-				if($total_loans > 0)
+				//display disbursment if cheque amount > 0
+				if($cheque_amount > 0)
 				{
-					foreach ($individual_loan->result() as $row)
-					{
-						$loans_plan_name = $row->loans_plan_name;
-						$individual_loan_status = $row->individual_loan_status;
-						$individual_loan_id = $row->individual_loan_id;
-						$proposed_amount = $row->proposed_amount;
-						$approved_amount = $row->approved_amount;
-						$disbursed_amount = $row->disbursed_amount;
-						$purpose = $row->purpose;
-						$installment_type_duration = $row->installment_type_duration;
-						$no_of_repayments = $row->no_of_repayments;
-						$interest_rate = $row->interest_rate;
-						$interest_id = $row->interest_id;
-						$grace_period = $row->grace_period;
-						$disbursed_date = date('jS d M Y',strtotime($row->disbursed_date));
-						$disbursed = $row->disbursed_date;
-						$created_by = $row->created_by;
-						$approved_by = $row->approved_by;
-						$disbursed_by = $row->disbursed_by;
-						$loans_count++;
-						
-						//get all loan deductions before date
-						if($payments->num_rows() > 0)
-						{
-							foreach ($payments->result() as $row2)
-							{
-								$loan_payment_id = $row2->loan_payment_id;
-								$personnel_fname = $row2->personnel_fname;
-								$personnel_onames = $row2->personnel_onames;
-								$payment_amount = $row2->payment_amount;
-								$payment_interest = $row2->payment_interest;
-								$created = date('jS M Y H:i:s',strtotime($row2->created));
-								$payment_date = $row2->payment_date;
-								
-								if(($payment_date <= $disbursed) && ($payment_date > $last_date) && ($payment_amount > 0))
-								{
-									$running_balance -= $payment_amount;
-									$total_credit += $payment_amount;
-						
-									if(empty($last_transaction_date))
-									{
-										$last_transaction_date = $payment_date;
-									}
-									
-									else
-									{
-										if($last_transaction_date < $payment_date)
-										{
-											$last_transaction_date = $payment_date;
-										}
-									}
-								}
-							}
-						}
-						
-						//display loan if disbursed
-						if($individual_loan_status == 2)
-						{
-							$running_balance += $disbursed_amount;
-							$total_debit += $disbursed_amount;
-							
-						}
-						
-						//check if there are any more payments
-						if($total_loans == $loans_count)
-						{
-							//get all loan deductions before date
-							if($payments->num_rows() > 0)
-							{
-								foreach ($payments->result() as $row2)
-								{
-									$loan_payment_id = $row2->loan_payment_id;
-									$personnel_fname = $row2->personnel_fname;
-									$personnel_onames = $row2->personnel_onames;
-									$payment_amount = $row2->payment_amount;
-									$payment_interest = $row2->payment_interest;
-									$created = date('jS M Y H:i:s',strtotime($row2->created));
-									$payment_date = $row2->payment_date;
-									
-									if(($payment_date > $disbursed) && ($payment_amount > 0))
-									{
-										$running_balance -= $payment_amount;
-										$total_credit += $payment_amount;
-						
-										if(empty($last_transaction_date))
-										{
-											$last_transaction_date = $payment_date;
-										}
-										
-										else
-										{
-											if($last_transaction_date < $payment_date)
-											{
-												$last_transaction_date = $payment_date;
-											}
-										}
-									}
-								}
-							}
-						}
-						$last_date = $disbursed;
-					}
+					$running_balance += $cheque_amount;
+					$total_debit += $cheque_amount;
+					
+					$count++;
 				}
 				
-				else
+				//check if there are any more payments
+				if($total_disbursments == $disbursments_count)
 				{
 					//get all loan deductions before date
 					if($payments->num_rows() > 0)
@@ -386,48 +360,57 @@ class Reports_model extends CI_Model
 							$payment_interest = $row2->payment_interest;
 							$created = date('jS M Y H:i:s',strtotime($row2->created));
 							$payment_date = $row2->payment_date;
-							$running_balance -= $payment_amount;
 							
-							if($payment_amount > 0)
+							if(($payment_date > $disbursement_date) && ($payment_amount > 0))
 							{
+								$last_loan_payment_date = date('d M Y',strtotime($payment_date));
+								$count++;
+								$running_balance -= $payment_amount;
 								$total_credit += $payment_amount;
-						
-								if(empty($last_transaction_date))
-								{
-									$last_transaction_date = $payment_date;
-								}
-								
-								else
-								{
-									if($last_transaction_date < $payment_date)
-									{
-										$last_transaction_date = $payment_date;
-									}
-								}
 							}
 						}
 					}
 				}
-				$loan_balance = number_format($total_debit - $total_credit, 0);
-				
-				
-				//display the patient data
-				$report[$row_count][0] = $count_items;
-				$report[$row_count][1] = $individual_number;
-				$report[$row_count][2] = $individual_type_name;
-				$report[$row_count][3] = $individual_name;
-				$report[$row_count][4] = number_format($total_savings,0);
-				$report[$row_count][5] = $last_transaction_date;
-				$report[$row_count][6] = $loan_balance;
-				$report[$row_count][7] = $last_date;
-					
-				
-				
+				$last_date = $disbursement_date;
 			}
 		}
 		
-		//create the excel document
-		$this->excel->addArray ( $report );
-		$this->excel->generateXML ($title);
+		else
+		{
+			//get all loan deductions before date
+			if($payments->num_rows() > 0)
+
+			{
+				foreach ($payments->result() as $row2)
+				{
+					$loan_payment_id = $row2->loan_payment_id;
+					$personnel_fname = $row2->personnel_fname;
+	
+					$personnel_onames = $row2->personnel_onames;
+					$payment_amount = $row2->payment_amount;
+					$payment_interest = $row2->payment_interest;
+					$created = date('jS M Y H:i:s',strtotime($row2->created));
+					$payment_date = $row2->payment_date;
+					$running_balance -= $payment_amount;
+					
+					$count++;
+					if($payment_amount > 0)
+					{
+						$last_loan_payment_date = date('d M Y',strtotime($payment_date));
+						$total_credit += $payment_amount;
+					}
+				}
+			}
+		}
+		$running_balance_loans = $running_balance;
+		
+		$individual_balances = array(
+			'running_balance_savings' => $running_balance_savings,
+			'last_transaction_date' => $last_transaction_date,
+			'running_balance_loans' => $running_balance_loans,
+			'last_loan_payment_date' => $last_loan_payment_date,
+		);
+		
+		return $individual_balances;
 	}
 }

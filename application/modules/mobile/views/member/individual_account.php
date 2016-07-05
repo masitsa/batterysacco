@@ -10,6 +10,7 @@ $individual_phone = $row->individual_phone;
 $individual_number = $row->individual_number;
 $outstanding_loan = $row->outstanding_loan;
 $total_savings = $row->total_savings;
+
 ?>
 <div class="page" data-page="account">
     <div class="page-content">
@@ -39,10 +40,10 @@ $total_savings = $row->total_savings;
                                     <span class="sale-text">Savings balance b/f</span>
                                     <span class="sale-price"><?php echo number_format($total_savings, 2);?></span>
                                 </li>
-                                <li>
+                                <!--<li>
                                     <span class="sale-text">Running balance</span>
                                     <span class="sale-price"><?php echo number_format($total_savings, 2);?></span>
-                                </li>
+                                </li>-->
                                 <?php
                             }
                             
@@ -50,7 +51,6 @@ $total_savings = $row->total_savings;
                             $total_credit = $running_balance = $total_savings;
                             $result = '';
                             $total_debit = $total_credit = 0;
-                            
                             if($all_savings_payments->num_rows() > 0)
                             {
                                 $count = 1;
@@ -95,14 +95,15 @@ $total_savings = $row->total_savings;
                                             <span class="sale-text"><?php echo $description.' '.$cheque_number;?></span>
                                             <span class="sale-price"><?php echo $amount;?></span>
                                         </li>
-                                        <li>
-                                            <span class="sale-text">Running balance</span>
-                                            <span class="sale-price"><?php echo number_format($running_balance, 2);?></span>
-                                        </li>
                                         <?php
                                     }
-                            
                                 }
+                            	?>
+                                <li>
+                                    <span class="sale-text">Savings balance</span>
+                                    <span class="sale-price"><?php echo number_format($running_balance, 2);?></span>
+                                </li>
+                                <?php
                             }
                             ?>
                         </ul>
@@ -125,10 +126,10 @@ $total_savings = $row->total_savings;
                                     <span class="sale-text">Loan balance b/f</span>
                                     <span class="sale-price"><?php echo number_format($outstanding_loan, 2);?></span>
                                 </li>
-                                <li>
+                                <!--<li>
                                     <span class="sale-text">Running balance</span>
                                     <span class="sale-price"><?php echo number_format($outstanding_loan, 2);?></span>
-                                </li>
+                                </li>-->
                                 <?php
                             }
                             
@@ -146,7 +147,6 @@ $total_savings = $row->total_savings;
                             $total_credit = 0;
                             $total_disbursments = $disbursments->num_rows();
                             $disbursments_count = 0;
-                            
                             if($total_disbursments > 0)
                             {
                                 foreach ($disbursments->result() as $row)
@@ -183,10 +183,10 @@ $total_savings = $row->total_savings;
                                                     <span class="sale-text">Loan repayment</span>
                                                     <span class="sale-price"><?php echo number_format($payment_amount, 2);?></span>
                                                 </li>
-                                                <li>
+                                                <!--<li>
                                                 	<span class="sale-text">Running balance</span>
                                                     <span class="sale-price"><?php echo number_format($running_balance, 2);?></span>
-                                                </li>
+                                                </li>-->
                                                 <?php
                                                 $total_credit += $payment_amount;
                                             }
@@ -208,10 +208,10 @@ $total_savings = $row->total_savings;
                                             <span class="sale-text">Disbursed cheque <?php echo $cheque_number;?></span>
                                             <span class="sale-price">(<?php echo number_format($cheque_amount, 2);?>)</span>
                                         </li>
-                                        <li>
+                                        <!--<li>
                                         	<span class="sale-text">Running balance</span>
                                             <span class="sale-price"><?php echo number_format($running_balance, 2);?></span>
-                                        </li>
+                                        </li>-->
                                         <?php
                                     }
                                     
@@ -243,10 +243,10 @@ $total_savings = $row->total_savings;
                                                         <span class="sale-text">Loan repayment</span>
                                                         <span class="sale-price"><?php echo number_format($payment_amount, 2);?></span>
                                                     </li>
-                                                    <li>
+                                                    <!--<li>
                                                 		<span class="sale-text">Running balance</span>
                                                         <span class="sale-price"><?php echo number_format($running_balance, 2);?></span>
-                                                    </li>
+                                                    </li>-->
                                                     <?php
                                                     $total_credit += $payment_amount;
                                                 }
@@ -284,16 +284,22 @@ $total_savings = $row->total_savings;
                                                 <span class="sale-text">Loan repayment</span>
                                                 <span class="sale-price"><?php echo number_format($payment_amount, 2);?></span>
                                             </li>
-                                            <li>
+                                            <!--<li>
                                             	<span class="sale-text">Running balance</span>
                                                 <span class="sale-price"><?php echo number_format($running_balance, 2);?></span>
-                                            </li>
+                                            </li>-->
                                             <?php
                                             $total_credit += $payment_amount;
                                         }
                                     }
                                 }
                             }
+							?>
+							<li>
+								<span class="sale-text">Loan balance</span>
+								<span class="sale-price"><?php echo number_format($running_balance, 2);?></span>
+							</li>
+							<?php
                             
                             ?>
                         </ul>

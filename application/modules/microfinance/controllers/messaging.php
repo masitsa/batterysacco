@@ -8,6 +8,7 @@ class Messaging extends microfinance
 	function __construct()
 	{
 		parent:: __construct();
+		$this->load->model('reports_model');
 		$this->load->model('messaging_model');
 		$this->load->model('individual_model');
 		$this->load->model('admin/admin_model');
