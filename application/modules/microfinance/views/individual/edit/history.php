@@ -52,6 +52,7 @@
                 {
                     $count = 1;
                     $total_payments = 0;
+					//var_dump($all_savings_payments->result());die();
                     foreach ($all_savings_payments->result() as $row2)
                     {
                         $savings_payment_id = $row2->savings_payment_id;
@@ -77,7 +78,7 @@
 							$running_balance += $payment_amount;
 							$total_credit += $payment_amount;	
 						}
-						$payments = $this->individual_model->get_loan_payments($individual_id);
+						//$payments = $this->individual_model->get_loan_payments($individual_id);
 											
 						if($payment_amount > 0)
 						{
