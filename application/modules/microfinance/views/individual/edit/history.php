@@ -21,32 +21,13 @@
     	<a href="<?php echo site_url().'send-statement/'.$individual_id;?>" class="btn btn-success">SMS Statement</a>
         <?php }}?>
     	<!-- Adding Errors -->
-    	<table class="table table-striped table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th style="text-align:center" rowspan=3>Date</th>
-                    <th rowspan=2>Description</th>
-                    <th colspan=3 style="text-align:center;">Amount</th>
-                </tr>
-                <tr>
-                    <th style="text-align:left">Debit</th>
-                    <th style="text-align:left">Credit</th>
-                    <th style="text-align:left">Savings Running Balance</th>
-                </tr>
-            </thead>
-            <tbody>
-            	<tr>
-                    <td></td>
-                    <td>Savings balance b/f</td>
-                    <td></td>
-                    <td><?php echo number_format($total_savings, 2);?></td>
-                </tr> 
                 
 				<?php
                 //get all savings before date
 				$total_credit = $running_balance = $total_savings;
                 $result = '';
                 $total_debit = $total_credit = 0;
+				$current_year = date('Y');
 				
 				if($all_savings_payments->num_rows() > 0)
                 {
@@ -62,6 +43,18 @@
 						$description = $row2->description;
 						$cheque_number = $row2->cheque_number;
 						$debit = $credit= '';
+						
+						//get year portion of payment date
+						$split = explode('-', $payment_date);
+						
+						if(is_array($split))
+						{
+							$year = $split[0];
+						}
+						else
+						{
+							$year = 0;
+						}
 						if(empty($description))
 						{
 							$description = 'Shares deposit';
@@ -86,16 +79,25 @@
 							if ($running_balance > 0)
 							{
 							}
-							$result .= 
-							'
-								<tr>
-									<td>'.date('d M Y',strtotime($payment_date)).' </td>
-									<td>'.$description.' '.$cheque_number.'</td>
-									<td>'.$debit.'</td>
-									<td>'.$credit.'</td>
-									<td>'.number_format($running_balance, 2).'</td>
-								</tr> 
-							';
+							
+							if($year == $current_year)
+							{
+								$result .= 
+								'
+									<tr>
+										<td>'.date('d M Y',strtotime($payment_date)).' </td>
+										<td>'.$description.' '.$cheque_number.'</td>
+										<td>'.$debit.'</td>
+										<td>'.$credit.'</td>
+										<td>'.number_format($running_balance, 2).'</td>
+									</tr> 
+								';
+							}
+							
+							else
+							{
+								$total_savings += $payment_amount;
+							}
 							
 						}
 				
@@ -114,9 +116,31 @@
                     ';
                 }
 			
-				echo $result;
+				
 				?>
-			</table>
+    	<table class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="text-align:center" rowspan=3>Date</th>
+                    <th rowspan=2>Description</th>
+                    <th colspan=3 style="text-align:center;">Amount</th>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Debit</th>
+                    <th style="text-align:left">Credit</th>
+                    <th style="text-align:left">Savings Running Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+            	<tr>
+                    <td></td>
+                    <td>Savings balance b/f</td>
+                    <td></td>
+                    <td><?php echo number_format($total_savings, 2);?></td>
+                </tr>
+                <?php echo $result;?>
+            </tbody>
+		</table>
     </div>
 </section>
             
@@ -126,35 +150,6 @@
     </header>
     <div class="panel-body">
     	<!-- Adding Errors -->
-    	<table class="table table-striped table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th style="text-align:center" rowspan=3>Date</th>
-                    <th rowspan=2>Description</th>
-                    <th colspan=5 style="text-align:center;">Amount</th>
-                </tr>
-                <tr>
-                    <th rowspan=2 style="text-align:left">Debit</th>
-                    <th colspan=6 style="text-align:center">Credit</th>
-                </tr>
-                <tr>
-                    <th colspan=2 style="text-align:left"></th>
-                    <th style="text-align:left">Principal Repayment</th>
-                    <th style="text-align:left">Interest Payment</th>
-                    <th style="text-align:left">Repayment</th>
-                    <th style="text-align:left">Loan Running Balance</th>
-                </tr>
-            </thead>
-            <tbody>
-            	<tr>
-                    <td></td>
-                    <td>Loan balance b/f</td>
-                    <td><?php echo number_format($outstanding_loan, 2);?></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr> 
             <?php
 			$last_date = '';
 			$payments = $this->individual_model->get_loan_payments($individual_id);
@@ -188,23 +183,42 @@
 							$payment_interest = $row2->payment_interest;
 							$created = date('jS M Y H:i:s',strtotime($row2->created));
 							$payment_date = $row2->payment_date;
+							$split = explode('-', $payment_date);
+							
+							if(is_array($split))
+							{
+								$year = $split[0];
+							}
+							else
+							{
+								$year = 0;
+							}
 							
 							if(($payment_date <= $disbursement_date) && ($payment_date > $last_date) && ($payment_amount > 0))
 							{
 								$count++;
 								$running_balance -= $payment_amount;
-								$result .= 
-								'
-									<tr>
-										<td>'.date('d M Y',strtotime($payment_date)).' </td>
-										<td>Loan repayment</td>
-										<td></td>
-										<td>'.number_format($payment_amount, 2).'</td>
-										<td>'.number_format($payment_interest, 2).'</td>
-										<td>'.number_format(($payment_amount + $payment_interest), 2).'</td>
-										<td>'.number_format($running_balance, 2).'</td>
-									</tr> 
-								';
+							
+								if($year == $current_year)
+								{
+									$result .= 
+									'
+										<tr>
+											<td>'.date('d M Y',strtotime($payment_date)).' </td>
+											<td>Loan repayment</td>
+											<td></td>
+											<td>'.number_format($payment_amount, 2).'</td>
+											<td>'.number_format($payment_interest, 2).'</td>
+											<td>'.number_format(($payment_amount + $payment_interest), 2).'</td>
+											<td>'.number_format($running_balance, 2).'</td>
+										</tr> 
+									';
+								}
+								
+								else
+								{
+									$outstanding_loan -= $payment_amount;
+								}
 								$total_credit += $payment_amount;
 							}
 						}
@@ -216,19 +230,39 @@
 						$running_balance += $cheque_amount;
 						$total_debit += $cheque_amount;
 						
+						$split = explode('-', $disbursement_date);
+							
+						if(is_array($split))
+						{
+							$year = $split[0];
+						}
+						else
+						{
+							$year = 0;
+						}
+						
 						$count++;
-						$result .= 
-						'
-							<tr>
-								<td>'.date('d M Y',strtotime($disbursement_date)).' </td>
-								<td>Disbursed cheque '.$cheque_number.'</td>
-								<td>'.number_format($cheque_amount, 2).'</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>'.number_format($running_balance, 2).'</td>
-							</tr> 
-						';
+							
+						if($year == $current_year)
+						{
+							$result .= 
+							'
+								<tr>
+									<td>'.date('d M Y',strtotime($disbursement_date)).' </td>
+									<td>Disbursed cheque '.$cheque_number.'</td>
+									<td>'.number_format($cheque_amount, 2).'</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td>'.number_format($running_balance, 2).'</td>
+								</tr> 
+							';
+						}
+						
+						else
+						{
+							$outstanding_loan += $cheque_amount;
+						}
 					}
 					
 					//check if there are any more payments
@@ -246,23 +280,42 @@
 								$payment_interest = $row2->payment_interest;
 								$created = date('jS M Y H:i:s',strtotime($row2->created));
 								$payment_date = $row2->payment_date;
+								$split = explode('-', $payment_date);
+								
+								if(is_array($split))
+								{
+									$year = $split[0];
+								}
+								else
+								{
+									$year = 0;
+								}
 								
 								if(($payment_date > $disbursement_date) && ($payment_amount > 0))
 								{
 									$count++;
 									$running_balance -= $payment_amount;
-									$result .= 
-									'
-										<tr>
-											<td>'.date('d M Y',strtotime($payment_date)).' </td>
-											<td>Loan repayment</td>
-											<td></td>
-											<td>'.number_format($payment_amount, 2).'</td>
-											<td>'.number_format($payment_interest, 2).'</td>
-											<td>'.number_format(($payment_amount + $payment_interest), 2).'</td>
-											<td>'.number_format($running_balance, 2).'</td>
-										</tr> 
-									';
+							
+									if($year == $current_year)
+									{
+										$result .= 
+										'
+											<tr>
+												<td>'.date('d M Y',strtotime($payment_date)).' </td>
+												<td>Loan repayment</td>
+												<td></td>
+												<td>'.number_format($payment_amount, 2).'</td>
+												<td>'.number_format($payment_interest, 2).'</td>
+												<td>'.number_format(($payment_amount + $payment_interest), 2).'</td>
+												<td>'.number_format($running_balance, 2).'</td>
+											</tr> 
+										';
+									}
+									
+									else
+									{
+										$outstanding_loan -= $payment_amount;
+									}
 									$total_credit += $payment_amount;
 								}
 							}
@@ -287,22 +340,40 @@
 						$created = date('jS M Y H:i:s',strtotime($row2->created));
 						$payment_date = $row2->payment_date;
 						$running_balance -= $payment_amount;
+						$split = explode('-', $payment_date);
+						
+						if(is_array($split))
+						{
+							$year = $split[0];
+						}
+						else
+						{
+							$year = 0;
+						}
 						
 						$count++;
 						if($payment_amount > 0)
 						{
-							$result .= 
-							'
-								<tr>
-									<td>'.date('d M Y',strtotime($payment_date)).' </td>
-									<td>Loan repayment</td>
-									<td></td>
-									<td>'.number_format($payment_amount, 2).'</td>
-									<td>'.number_format($payment_interest, 2).'</td>
-									<td>'.number_format(($payment_amount + $payment_interest), 2).'</td>
-									<td>'.number_format($running_balance, 2).'</td>
-								</tr> 
-							';
+							if($year == $current_year)
+							{
+								$result .= 
+								'
+									<tr>
+										<td>'.date('d M Y',strtotime($payment_date)).' </td>
+										<td>Loan repayment</td>
+										<td></td>
+										<td>'.number_format($payment_amount, 2).'</td>
+										<td>'.number_format($payment_interest, 2).'</td>
+										<td>'.number_format(($payment_amount + $payment_interest), 2).'</td>
+										<td>'.number_format($running_balance, 2).'</td>
+									</tr> 
+								';
+							}
+							
+							else
+							{
+								$outstanding_loan -= $payment_amount;
+							}
 							$total_credit += $payment_amount;
 						}
 					}
@@ -327,8 +398,39 @@
 				</tr> 
 			';
 			
-			echo $result;
+			
 			?>
+    	<table class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="text-align:center" rowspan=3>Date</th>
+                    <th rowspan=2>Description</th>
+                    <th colspan=5 style="text-align:center;">Amount</th>
+                </tr>
+                <tr>
+                    <th rowspan=2 style="text-align:left">Debit</th>
+                    <th colspan=6 style="text-align:center">Credit</th>
+                </tr>
+                <tr>
+                    <th colspan=2 style="text-align:left"></th>
+                    <th style="text-align:left">Principal Repayment</th>
+                    <th style="text-align:left">Interest Payment</th>
+                    <th style="text-align:left">Repayment</th>
+                    <th style="text-align:left">Loan Running Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+            	<tr>
+                    <td></td>
+                    <td>Loan balance b/f</td>
+                    <td><?php echo number_format($outstanding_loan, 2);?></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr> 
+                <?php echo $result;?>
+            </tbody>
         </table>
     </div>
 </section>

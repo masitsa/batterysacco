@@ -1174,5 +1174,6 @@ class Individual extends microfinance
 		
 		redirect('microfinance/edit-individual/'.$individual_id);
 	}
+
 }
 ?>

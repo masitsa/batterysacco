@@ -1136,7 +1136,6 @@ class Individual_model extends CI_Model
 		return $query;
 	}
 	
-	
 	public function get_individual_types()
 	{
 		//retrieve all users
